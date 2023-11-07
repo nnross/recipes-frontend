@@ -7,7 +7,7 @@ import {
 import Home from './pages/home'
 import Search from './pages/search'
 import Recipe from './pages/recipe'
-import Calendar from './pages/calendar'
+import Today from './pages/today'
 import Personal from './pages/personal'
 import Settings from './pages/settings'
 
@@ -21,7 +21,7 @@ const App = () => (
       <Route exact path="/" element={<Home /> }/>
       <Route exact path="/search" element={<Search />} />
       <Route exact path="/recipe/:recipeId" element={<Recipe />} />
-      <Route exact path="/calendar" element={<Calendar />} />
+      <Route exact path="/today" element={<Today />} />
       <Route exact path="/personal" element={<Personal />} />
       <Route exact path="/settings" element={<Settings />} />
       <Route path="*" element={<Navigate to="/" />} />
