@@ -14,8 +14,8 @@
   justify-content: space-around;
 }
 .footer__about {
-  padding: 20px;
-  width: 300px;
+  padding: 10px;
+  width: 245px;
 }
 .footer__about__title {
   width: 180px;
@@ -25,8 +25,8 @@
   color: #0000EE;
 }
 .footer__contact {
-  padding: 20px;
-  width: 240px;
+  padding: 10px;
+  width: 245px;
 }
 .footer__contact__title {
   width: 94px;
@@ -40,6 +40,32 @@
   padding: 4px;
 }
 
+@media only screen and (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer__about {
+    padding: 0px;
+    padding-top: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  .footer__about__title {
+    width: 100%;
+  }
+  .footer__contact {
+    padding: 0px;
+    width: 200px;
+    text-align: center;
+  }
+  .footer__contact__title {
+    width: 100%;
+  }
+  .footer__contact__contactsli {
+    font-size: 13px;
+  }
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -58,6 +84,17 @@ p {
   font-size: 16px;
 }
 
+@media only screen and (max-width: 600px) {
+  h5 {
+    font-size: 18px;
+    border-bottom: 1px solid #333333;
+  }
+}
+@media only screen and (max-width: 600px) {
+  p {
+    font-size: 13px;
+  }
+}
 .layout {
   min-height: 100vh;
   font-family: "mainBody";
@@ -73,4 +110,10 @@ p {
 }
 .layout__footer {
   height: 170px;
+}
+
+@media only screen and (max-width: 600px) {
+  .layout__footer {
+    height: 230px;
+  }
 }/*# sourceMappingURL=main.css.map */
