@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "mainText";
+  src: url("../assets/gupter-regular.ttf");
+}
+@font-face {
+  font-family: "mainTitle";
+  src: url("../assets/gupter-medium.ttf");
+}
+.footer {
+  height: 100%;
+  background: #D4E2CD;
+  color: #333333;
+  display: flex;
+  justify-content: space-around;
+}
+.footer__about {
+  padding: 20px;
+  width: 300px;
+}
+.footer__about__title {
+  width: 180px;
+}
+.footer__about__body__link {
+  text-decoration: none;
+  color: #0000EE;
+}
+.footer__contact {
+  padding: 20px;
+  width: 240px;
+}
+.footer__contact__title {
+  width: 94px;
+}
+.footer__contact__contacts {
+  list-style-type: none;
+  padding-left: 4px;
+}
+.footer__contact__contactsli {
+  font-size: 16px;
+  padding: 4px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #FAFAFE;
+  font-family: "main";
+}
+
+h5 {
+  font-family: "mainTitle";
+  margin: 0;
+  font-size: 24px;
+  border-bottom: 2px solid #333333;
+}
+
+p {
+  font-size: 16px;
+}
+
+.layout {
+  min-height: 100vh;
+  font-family: "mainBody";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.layout__header {
+  height: 50px;
+}
+.layout__content {
+  height: 100%;
+}
+.layout__footer {
+  height: 170px;
+}/*# sourceMappingURL=main.css.map */

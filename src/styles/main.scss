@@ -1,2 +1,39 @@
 // all imports
-@import './colorsAndFonts.scss';
+@import './colorsAndFonts';
+@import './components/components';
+
+html,body {
+    margin:0;
+    padding:0;
+    background: $white;
+    font-family: 'main';
+}
+
+h5 {
+    font-family: 'mainTitle';
+    margin: 0;
+    font-size: 24px;
+    border-bottom: 2px solid $black;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+.layout {
+    min-height: 100vh;
+    font-family: 'mainBody';
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+        height: 50px;
+    }
+    &__content {
+        height: 100%;
+    }
+    &__footer {
+        height: 170px;
+    }
+}
