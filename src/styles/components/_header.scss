@@ -1,0 +1,170 @@
+
+.header {
+    height: 100%;
+    background: $white;
+    color: $black;
+    display: flex;
+    justify-content: space-around;
+
+
+    &__title {
+        height: 100%;
+        padding-top: 6px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__logIn {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        &__button {
+            height: 40px;
+            width: 80px;
+            border-radius: 25px;
+            border: 3px solid $lightGreen;
+            background: $white;
+            &:hover {
+                background: $hoverGreen;
+            }
+        }
+    }
+
+    &__nav {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        &__button {
+            border: none;
+            height: 40px;
+            width: 40px;
+            background: transparent;
+        }
+        &__icon {
+            pointer-events: none;
+            background: $black;
+            width: 30px;
+            height: 4px;
+            border-radius: 3px;
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            &::before {
+                content: '';
+                background: $black;
+                width: 30px;
+                height: 4px;
+                border-radius: 3px;
+                position: absolute;
+                bottom: 10px;
+            }
+            &::after {
+                content: '';
+                background: $black;
+                width: 30px;
+                height: 4px;
+                border-radius: 3px;
+                position: absolute;
+                top: 10px;
+            }
+        }
+        &__sidebar {
+            display: none;
+            background: $grey;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 200px;
+            bottom: 0;
+            flex-direction: column;
+            padding-top: 57px;
+            padding-bottom: 10px;
+            gap: 15px;
+
+            &__close {
+                background-color: transparent;
+                border: 0;
+                background-image: url('../assets/close-icon.svg');
+                background-size: 150%;
+                background-position: center;
+                width: 30px;
+                height: 30px;
+                align-self: flex-end;
+                margin-right: 20px;
+
+            }
+
+            &__logout {
+                justify-self: flex-end;
+                border: 3px solid $darkGreen;
+                width: 100px;
+                height: 35px;
+                border-radius: 25px;
+                background: $white;
+                margin-top: auto;
+                align-self: center;
+                &:hover {
+                    background: $hoverGreen;
+                }
+            }
+
+            & a {
+                color: $link;
+                text-decoration: none;
+                padding: 10px;
+                padding-left: 20px;
+                &:hover {
+                    background: $lightGreen;
+                    color: $black;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        &__logIn {
+            &__button {
+                height: 35px;
+                width: 65px;
+            }
+        }
+        &__nav {
+            &__button {
+                height: 30px;
+                width: 30px;
+            }
+            &__icon {
+                width: 25px;
+                height: 3px;
+                top: 50%;
+                left: 3px;
+                &::before {
+                    width: 25px;
+                    height: 3px;
+                    bottom: 8px;
+                }
+                &::after {
+                    width: 25px;
+                    height: 3px;
+                    top: 8px;
+                }
+
+            }
+            &__sidebar {
+                &__close {
+
+                }
+                &__logout {
+
+                }
+                & a {
+
+                }
+
+            }
+        }
+    }
+}

@@ -3,7 +3,9 @@ $lightGreen : #D4E2CD;
 $darkGreen : #1C5253;
 $brown : #B7918C;
 $black : #333333;
-$link : #0000EE;
+$link : #E58F65;
+$hoverGreen: rgba(212, 226, 205, 0.5);
+$grey : #ececec;
 
 
 @font-face {
@@ -14,4 +16,9 @@ $link : #0000EE;
 @font-face {
   font-family: 'mainTitle';
   src: url('../assets/gupter-medium.ttf');
+}
+
+@font-face {
+  font-family: 'header';
+  src: url('../assets/jomhuria-regular.ttf');
 }
