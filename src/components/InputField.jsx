@@ -13,7 +13,7 @@ const InputField = ({
         onChange={onChange}
         style={{ fontSize }}
       />
-      <input className={`${className}__form__search`} id={`${id}__form__search`} type="submit" value="" style={{ width: height }} />
+      <button className={`${className}__form__search`} id={`${id}__form__search`} type="submit" value="" style={{ width: height }} aria-label="Search" />
     </form>
   </div>
 );
@@ -39,5 +39,5 @@ InputField.defaultProps = {
   onChange: null,
   width: '500px',
   height: '60px',
-  fontSize: '16px',
+  fontSize: '32px',
 };

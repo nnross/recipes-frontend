@@ -1,6 +1,7 @@
 // all imports
 @import './colorsAndFonts';
 @import './components/components';
+@import './search/search';
 
 html,body {
   margin:0;
@@ -20,6 +21,13 @@ h5 {
   margin: 0;
   font-size: 24px;
   border-bottom: 2px solid $black;
+}
+
+h3 {
+  font-family: 'mainTitle';
+  margin: 0;
+  font-size: 32px;
+  font-weight: normal;
 }
 
 p {

@@ -14,7 +14,7 @@ describe('InputField tests', () => {
       expect(container).toBeVisible();
       expect(container.className).toBe('inputField');
 
-      expect(component.getByRole('button', { name: 'Submit' })).toBeVisible();
+      expect(component.getByRole('button', { label: 'Submit' })).toBeVisible();
       expect(component.getByPlaceholderText('testLabel')).toBeVisible();
 
       const input = component.getByPlaceholderText('testLabel');
@@ -37,7 +37,7 @@ describe('InputField tests', () => {
 
       expect(mockChange.mock.calls).toHaveLength(10);
 
-      await userEvent.click(component.getByRole('button', { name: 'Submit' }));
+      await userEvent.click(component.getByRole('button', { label: 'Submit' }));
 
       expect(mockSubmit.mock.calls).toHaveLength(1);
       expect(mockSubmit.mock.calls[0][0].target.elements[0].value).toBe('test input');
