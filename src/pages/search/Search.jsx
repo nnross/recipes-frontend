@@ -1,5 +1,7 @@
+import React from 'react';
+
 const Search = () => (
-    <div> Search </div>
-)
+  <div> search </div>
+);
 
 export default Search;
