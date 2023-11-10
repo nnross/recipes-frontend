@@ -23,23 +23,23 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/13</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -110,13 +110,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">27x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,14 +124,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
 import path from 'path';
@@ -144,29 +144,29 @@ import path from 'path';
  * @param {*} query - th equery to be searched.
  * @returns true if found false otherwise.
  */
-export const findWithTag = (node, query) =&gt; {
-  const hasText = (n) =&gt; n.textContent === query;
-  const nodeHasText = hasText(node);
-  const childrenDontHaveText = Array.from(node.children).every(
-    (child) =&gt; !hasText(child),
+export const findWithTag = <span class="fstat-no" title="function not covered" >(n</span>ode, query) =&gt; {
+  const hasText = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(n</span>) =&gt; <span class="cstat-no" title="statement not covered" >n.textContent === query;</span></span>
+  const nodeHasText = <span class="cstat-no" title="statement not covered" >hasText(node);</span>
+  const childrenDontHaveText = <span class="cstat-no" title="statement not covered" >Array.from(node.children).every(</span>
+<span class="fstat-no" title="function not covered" >    (c</span>hild) =&gt; <span class="cstat-no" title="statement not covered" >!hasText(child),</span>
   );
 &nbsp;
-  return nodeHasText &amp;&amp; childrenDontHaveText;
+<span class="cstat-no" title="statement not covered" >  return nodeHasText &amp;&amp; childrenDontHaveText;</span>
 };
 &nbsp;
 /**
  * Adds all additional css styling to the component.
  * @param {*} component - the component to be added styling for.
  */
-export const addStyling = <span class="fstat-no" title="function not covered" >(c</span>omponent) =&gt; {
-  const cssFile = <span class="cstat-no" title="statement not covered" >fs.readFileSync(</span>
+export const addStyling = (component) =&gt; {
+  const cssFile = fs.readFileSync(
     path.resolve(__dirname, '../styles/main.css'),
     'utf8',
   );
-  const style = <span class="cstat-no" title="statement not covered" >document.createElement('style');</span>
-<span class="cstat-no" title="statement not covered" >  style.type = 'text/css';</span>
-<span class="cstat-no" title="statement not covered" >  style.innerHTML = cssFile;</span>
-<span class="cstat-no" title="statement not covered" >  component.container.append(style);</span>
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = cssFile;
+  component.container.append(style);
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -175,7 +175,7 @@ export const addStyling = <span class="fstat-no" title="function not covered" >(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-08T17:07:24.955Z
+                at 2023-11-10T10:46:48.766Z
             </div>
         <script src="../prettify.js"></script>
         <script>
