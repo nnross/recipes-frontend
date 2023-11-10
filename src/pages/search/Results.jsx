@@ -3,18 +3,24 @@ import propTypes from 'prop-types';
 import ImageList from '../../components/ImageList';
 
 const Results = ({
-  className, id, items, loadMore, moreResults,
-}) => (
-  <div className={className} id={id}>
-    <div className={`${className}__items`}>
-      <ImageList items={items} />
+  className, id, items, loadMore, moreResults, loading,
+}) => {
+  console.log(moreResults);
+  let loadingBtn;
+  if (loading === 2) loadingBtn = <div> loading </div>; // TODO: loading icon
+  else loadingBtn = <button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>;
+  return (
+    <div className={className} id={id}>
+      <div className={`${className}__items`}>
+        <ImageList items={items} />
+      </div>
+      <div className={`${className}__load`}>
+        {moreResults ? (loadingBtn
+        ) : (<div className={`${className}__noResults`}> no more results </div>)}
+      </div>
     </div>
-    <div className={`${className}__load`}>
-      {moreResults ? (<button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>
-      ) : (null)}
-    </div>
-  </div>
-);
+  );
+};
 
 Results.propTypes = {
   className: propTypes.string,
@@ -22,6 +28,7 @@ Results.propTypes = {
   items: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
   loadMore: propTypes.func,
   moreResults: propTypes.bool,
+  loading: propTypes.string,
 };
 
 Results.defaultProps = {
@@ -30,6 +37,7 @@ Results.defaultProps = {
   items: null,
   loadMore: null,
   moreResults: false,
+  loading: 0,
 };
 
 export default Results;

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import InputField from '../../components/InputField';
 import SkeletonLoad from '../../components/SkeletonLoad';
 import Results from './Results';
 import getTokenAndId from '../../helpers/getTokenAndId';
+import { UseSearch } from './searchHooks';
 import searchService from '../../services/searchService';
 
 const Search = ({ className, id }) => {
@@ -11,29 +12,85 @@ const Search = ({ className, id }) => {
   const [moreResults, setMoreResults] = useState(false);
   const [token, setToken] = useState(null);
   const [accountId, setAccountId] = useState(null);
-  const [loading, setLoading] = useState(2);
+  const [loading, setLoading] = useState(1);
+  const [filters, setFilters] = useState([]);
+  const [search, setSearch] = useState('');
+  const [message, setMessage] = useState('or scroll for suggestions');
+  const page = useRef(0);
 
   useEffect(() => {
-    const res = getTokenAndId();
-    setToken(res.token); setAccountId(res.accountId);
-    const call = searchService.getSomeRecipes(token, accountId, setLoading);
-    setItems(call.items);
-    setMoreResults(call.moreResults);
+    const storage = getTokenAndId();
+    setToken(storage.token); setAccountId(storage.accountId);
+
+    searchService.getSomeRecipes(token, accountId)
+      .then((res) => {
+        setItems(res.items);
+        setMoreResults(res.moreResults);
+        setLoading(0);
+      })
+      .catch(() => {
+        setLoading(4);
+      });
   }, []);
+
+  const updateItems = (newItems) => {
+    setItems([...items, ...newItems]);
+  };
+
+  const searchResults = (e) => {
+    setLoading(1);
+    e.preventDefault();
+    const input = e.target.elements[0].value;
+    setSearch(input);
+
+    console.log(input);
+    UseSearch(
+      accountId,
+      token,
+      input,
+      filters,
+      page,
+      setItems,
+      setMoreResults,
+      setLoading,
+    );
+    setMessage('results');
+  };
+
+  const loadMore = () => {
+    setLoading(2);
+    UseSearch(
+      accountId,
+      token,
+      search,
+      filters,
+      page + 1,
+      updateItems,
+      setMoreResults,
+      setLoading,
+    );
+  };
 
   return (
     <div className={className} id={id}>
       <div className={`${className}__filters`}>
         <div className={`${className}__filters__search`}>
-          <InputField placeholder="Search" />
+          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
         </div>
         <div className={`${className}__filters__selectors`} />
       </div>
-      <h3 className={`${className}__scrollSuggestion`}> or scroll for suggestions </h3>
-      <div className={`${className}__results`} style={{ height: '600px' }}>
-        { loading === 1 ? (<Results items={items} moreResults={moreResults} />
-        ) : (<SkeletonLoad />)}
-      </div>
+      { loading === 1 ? (
+        <div className={`${className}__results`} style={{ height: '600px' }}>
+          <SkeletonLoad />
+        </div>
+      ) : (
+        <div className={`${className}__results`}>
+          <h3 className={`${className}__scrollSuggestion`}>
+            {message}
+          </h3>
+          <Results items={items} loadMore={loadMore} moreResults={moreResults} loading={loading} />
+        </div>
+      )}
     </div>
   );
 };
