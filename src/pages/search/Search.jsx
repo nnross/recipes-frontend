@@ -23,7 +23,6 @@ const Search = ({ className, id }) => {
 
   return (
     <div className={className} id={id}>
-      <div className="mockHeader" />
       <div className={`${className}__filters`}>
         <div className={`${className}__filters__search`}>
           <InputField placeholder="Search" />

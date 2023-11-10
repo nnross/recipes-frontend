@@ -23,6 +23,13 @@ h5 {
   border-bottom: 2px solid $black;
 }
 
+h4 {
+  font-family: 'header';
+  margin: 0;
+  font-size: 80px;
+  font-weight: normal;
+}
+
 h3 {
   font-family: 'mainTitle';
   margin: 0;
@@ -32,6 +39,11 @@ h3 {
 
 p {
   font-size: 16px;
+}
+
+button {
+  font-family: mainText;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -47,6 +59,22 @@ p {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  button {
+    font-family: mainText;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h4 {
+    font-family: 'header';
+    margin: 0;
+    font-size: 60px;
+    font-weight: normal;
+  }
+}
+
 
 .layout {
   min-height: 100vh;
@@ -54,7 +82,7 @@ p {
   flex-direction: column;
   justify-content: space-between;
   &__header {
-    height: 50px;
+    height: 140px;
   }
   &__content {
     height: 100%;
@@ -66,6 +94,9 @@ p {
 
 @media only screen and (max-width: 600px) {
   .layout {
+    &__header{
+      height: 100px;
+    }
     &__footer {
       height: 230px;
     }

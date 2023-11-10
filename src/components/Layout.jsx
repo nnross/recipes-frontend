@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
+import Header from './Header';
 
 /**
  * Sets the header and footer to all pages automatically.
@@ -8,7 +9,12 @@ import Footer from './Footer';
  */
 const Layout = () => (
   <div className="layout" id="layout">
-    <Outlet />
+    <div className="layout__header">
+      <Header />
+    </div>
+    <div className="layout__content">
+      <Outlet />
+    </div>
     <div className="layout__footer">
       <Footer />
     </div>
