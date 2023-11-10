@@ -64,19 +64,31 @@ button {
 
 .layout {
   min-height: 100vh;
-  font-family: 'mainBody';
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  &__header {
-    height: 140px;
-  }
-  &__content {
-    height: 100%;
-  }
-  &__footer {
-    height: 160px;
-  }
+  background: $white;
+  align-items: center;
+    &__header {
+      height: 140px;
+      width: 100vw;
+      background: $white;
+      display: flex;
+      justify-content: center;
+    }
+    &__content {
+      height: 100%;
+      max-width: 1600px;
+      background: $white;
+
+    }
+    &__footer {
+      height: 160px;
+      width: 100vw;
+      background: $lightGreen;
+      display: flex;
+      justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 600px) {
