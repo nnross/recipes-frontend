@@ -1,13 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import ImageListItem from './ImageListItem';
 
 const ImageList = ({ className, id, items }) => {
   const itemList = [];
   for (let i = 0; i < items.length; i += 1) {
     itemList.push(
-      <div className="mockItem">
-        {items[i].title}
-      </div>,
+      <ImageListItem
+        src={items[i].src}
+        title={items[i].title}
+        body={items[i].body}
+        id={items[i].id}
+        key={items[i].id}
+      />,
     );
   }
   return (

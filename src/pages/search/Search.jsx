@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import InputField from '../../components/InputField';
@@ -55,6 +56,10 @@ const Search = ({ className, id }) => {
       setLoading,
     );
     setMessage('results');
+    window.scrollTo({
+      top: 220,
+      behavior: 'smooth',
+    });
   };
 
   const loadMore = () => {
@@ -80,7 +85,7 @@ const Search = ({ className, id }) => {
         <div className={`${className}__filters__selectors`} />
       </div>
       { loading === 1 ? (
-        <div className={`${className}__results`} style={{ height: '600px' }}>
+        <div className={`${className}__results`} style={{ height: '600px', 'padding-bottom': '20px' }}>
           <SkeletonLoad />
         </div>
       ) : (
