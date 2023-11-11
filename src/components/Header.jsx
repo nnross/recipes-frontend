@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
  * @property {String} className - Custom className if wanted. Default is header.
  * @property {String} id - Custom id if wanted. Default is header.
  * // TODO: add openLogin
+ * // TODO: add logedIn
  * @returns Header.
  */
 const Header = ({
@@ -62,10 +63,12 @@ Header.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
   openLogin: propTypes.func,
+  loggedIn: propTypes.bool,
 };
 
 Header.defaultProps = {
   className: 'header',
   id: 'header',
   openLogin: null,
+  loggedIn: false,
 };

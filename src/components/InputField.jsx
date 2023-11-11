@@ -1,6 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * Renders the input field component for the application
+ * @property {String} className - custom className if wanted. Default is inputField.
+ * @property {String} id - custom id if wanted. Default is inputField.
+ * @property {String} placeholder - placeholder text for input field
+ * @property {func} onSubmit - the onSubmit function to be used.
+ * @property {func} onChange - the onChange to be used on the input field.
+ * @property {String} width - width of the component.
+ * @property {String} height - height of the component.
+ * @property {String} fontSize - font size for the input field.
+ * @returns input field component.
+ */
 const InputField = ({
   className, id, placeholder, onSubmit, onChange, width, height, fontSize,
 }) => (
