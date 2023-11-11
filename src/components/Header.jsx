@@ -9,7 +9,9 @@ import $ from 'jquery';
  * // TODO: add openLogin
  * @returns Header.
  */
-const Header = ({ className, id, openLogin, loggedIn }) => {
+const Header = ({
+  className, id, openLogin, loggedIn,
+}) => {
   const openNav = () => {
     $(`#${id}__nav__sidebar`).css('display', 'flex');
   };
@@ -33,7 +35,7 @@ const Header = ({ className, id, openLogin, loggedIn }) => {
           <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
           <a className={`${className}__nav__sidebar__settings`} href="/personal"> personal </a>
           <a className={`${className}__nav__sidebar__settings`} href="/settings"> settings </a>
-          <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}> log out </button>
+          <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}>LOG OUT</button>
         </nav>
       </div>
       <div className={`${className}__title`} id={`${id}__title`}>
@@ -43,7 +45,7 @@ const Header = ({ className, id, openLogin, loggedIn }) => {
       </div>
       <div className={`${className}__logIn`} id={`${id}__logIn`}>
         {loggedIn ? (null
-        ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">Log in</button>)}
+        ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">LOG IN</button>)}
       </div>
     </header>
   );
@@ -55,10 +57,12 @@ Header.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
   openLogin: propTypes.func,
+  loggedIn: propTypes.func,
 };
 
 Header.defaultProps = {
   className: 'header',
   id: 'header',
   openLogin: null,
+  loggedIn: null,
 };

@@ -1,6 +1,5 @@
 
 .header {
-  height: 100%;
   width: 100%;
   max-width: 1600px;
   background: $white;
@@ -21,7 +20,7 @@
       height: 40px;
       width: 80px;
       border-radius: 25px;
-      border: 3px solid $lightGreen;
+      border: 2px solid $lightGreen;
       background: $white;
       &:hover {
         background: $hoverGreen;
@@ -92,10 +91,9 @@
         margin-right: 20px;
 
       }
-
       &__logout {
         justify-self: flex-end;
-        border: 3px solid $darkGreen;
+        border: 2px solid $darkGreen;
         width: 100px;
         height: 35px;
         border-radius: 25px;
@@ -106,7 +104,6 @@
           background: $hoverGreen;
         }
       }
-
       & a {
         color: $link;
         text-decoration: none;

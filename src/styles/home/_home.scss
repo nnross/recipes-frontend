@@ -1,0 +1,53 @@
+
+.home {
+	display: flex;
+	padding-top: 150px;
+	padding-bottom: 100px;
+	&__info {
+		padding-right: 100px;
+		padding-top: 50px;
+		&__titles {
+			&__1 {
+				line-height: 0;
+				font-size: 50px;
+				text-align: left;
+			}
+			&__2 {
+				line-height: 0;
+				font-family: homePage;
+				font-size: 50px;
+				text-align: center;
+			}
+			&__3 {
+				line-height: 0;
+				font-size: 50px;
+				text-align: right;
+			}
+		}
+		&__text {
+			font-size: 20px;
+			padding-top: 20px;
+			padding-bottom: 40px;
+			width: 300px;
+		}
+		&__search {
+			text-decoration: none;
+			&__button{
+				border: 2px solid $darkGreen;
+				height: 50px;
+				width: 200px;
+				align-self: center;
+        border-radius: 25px;
+        background: $white;
+				&:hover {
+          background: $hoverGreen;
+        }
+			}
+		}
+	}
+	&__img {
+		box-shadow: -50px 40px 0 $lightGreen;
+		width: 555px;
+		height: 680px;
+	}
+}
