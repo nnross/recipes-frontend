@@ -67,7 +67,7 @@
       }
     }
     &__sidebar {
-      display: none;
+      display: flex;
       background: $grey;
       position: fixed;
       left: 0;
