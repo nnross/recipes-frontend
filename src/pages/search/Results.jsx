@@ -5,7 +5,6 @@ import ImageList from '../../components/ImageList';
 const Results = ({
   className, id, items, loadMore, moreResults, loading,
 }) => {
-  console.log(moreResults);
   let loadingBtn;
   if (loading === 2) loadingBtn = <div> loading </div>; // TODO: loading icon
   else loadingBtn = <button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>;
@@ -28,7 +27,7 @@ Results.propTypes = {
   items: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
   loadMore: propTypes.func,
   moreResults: propTypes.bool,
-  loading: propTypes.string,
+  loading: propTypes.number,
 };
 
 Results.defaultProps = {

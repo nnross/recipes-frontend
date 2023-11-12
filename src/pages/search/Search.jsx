@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 import InputField from '../../components/InputField';
 import SkeletonLoad from '../../components/SkeletonLoad';
 import Results from './Results';
 import getTokenAndId from '../../helpers/getTokenAndId';
 import { UseSearch } from './searchHooks';
 import searchService from '../../services/searchService';
+import Filters from './Filters';
 
 const Search = ({ className, id }) => {
   const [items, setItems] = useState([]);
@@ -18,6 +20,7 @@ const Search = ({ className, id }) => {
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
   const page = useRef(0);
+  const scroll = useOutletContext();
 
   useEffect(() => {
     const storage = getTokenAndId();
@@ -43,8 +46,6 @@ const Search = ({ className, id }) => {
     e.preventDefault();
     const input = e.target.elements[0].value;
     setSearch(input);
-
-    console.log(input);
     UseSearch(
       accountId,
       token,
@@ -78,21 +79,28 @@ const Search = ({ className, id }) => {
 
   return (
     <div className={className} id={id}>
-      <div className={`${className}__filters`}>
-        <div className={`${className}__filters__search`}>
-          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+      <div
+        className={`${className}__filters`}
+        style={scroll > 160 ? { position: 'sticky' } : { position: 'relative' }}
+      >
+        {scroll > 160 ? (null) : (
+          <div className={`${className}__filters__search`}>
+            <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+          </div>
+        )}
+        <div className={`${className}__filters__selectors`}>
+          <Filters />
         </div>
-        <div className={`${className}__filters__selectors`} />
       </div>
+      <h3 className={`${className}__scrollSuggestion`}>
+        {message}
+      </h3>
       { loading === 1 ? (
-        <div className={`${className}__results`} style={{ height: '600px', 'padding-bottom': '20px' }}>
+        <div className={`${className}__results`} style={{ height: '600px', paddingBottom: '20px' }}>
           <SkeletonLoad />
         </div>
       ) : (
         <div className={`${className}__results`}>
-          <h3 className={`${className}__scrollSuggestion`}>
-            {message}
-          </h3>
           <Results items={items} loadMore={loadMore} moreResults={moreResults} loading={loading} />
         </div>
       )}

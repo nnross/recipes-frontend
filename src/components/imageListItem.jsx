@@ -12,11 +12,11 @@ const ImageListItem = ({
 
 ImageListItem.propTypes = {
   className: propTypes.string,
-  id: propTypes.string,
+  id: propTypes.number,
   src: propTypes.string,
   title: propTypes.string,
   body: propTypes.string,
-  itemId: propTypes.string,
+  itemId: propTypes.number,
 };
 
 ImageListItem.defaultProps = {
