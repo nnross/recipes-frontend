@@ -77,6 +77,21 @@ const Search = ({ className, id }) => {
     );
   };
 
+  const backToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
+  const scrolling = () => {
+    if (document.body.scrollTop > 200
+    || document.documentElement.scrollTop > 200) {
+      document.getElementById('search__backtop__button').style.display = 'block';
+    } else {
+      document.getElementById('search__backtop__button').style.display = 'none';
+    }
+  };
+  window.onscroll = function () { scrolling(); };
+
   return (
     <div className={className} id={id}>
       <div
@@ -104,6 +119,9 @@ const Search = ({ className, id }) => {
           <Results items={items} loadMore={loadMore} moreResults={moreResults} loading={loading} />
         </div>
       )}
+      <div className={`${className}__backtop`}>
+        <button className={`${className}__backtop__button`} id={`${className}__backtop__button`} onClick={() => { backToTop(); }} type="button" aria-label="top" />
+      </div>
     </div>
   );
 };
