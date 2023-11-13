@@ -7,7 +7,7 @@ import propTypes from 'prop-types';
  * @property {String} id - Custom id if wanted. Default is header.
  * // TODO: add openLogin
  * // TODO: add logedIn
- * @returns Header.
+ * @returns Header
  */
 const Header = ({
   className, id, openLogin, loggedIn, scroll,
