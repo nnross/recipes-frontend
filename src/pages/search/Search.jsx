@@ -15,7 +15,7 @@ const Search = ({ className, id }) => {
   const [token, setToken] = useState(null);
   const [accountId, setAccountId] = useState(null);
   const [loading, setLoading] = useState(1);
-  const [filters, setFilters] = useState(['vegetarian', 'italian']);
+  const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
   const page = useRef(0);
@@ -92,6 +92,7 @@ const Search = ({ className, id }) => {
             selected={filters}
             resetFilters={() => setFilters([])}
             removeFilter={(filter) => removeFilter(filter)}
+            setFilter={(filter) => setFilters([...filters, filter])}
           />
         </div>
       </div>

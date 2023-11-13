@@ -1,0 +1,73 @@
+
+.filter {
+  position: relative;
+  z-index: 1;
+  &__open {
+    cursor: pointer;
+    text-align: left;
+    background-color: $white;
+    border: none;
+    padding: 5px;
+    padding-right: 30px;
+    height: 33px;
+    width: 100%;
+    border: 1px solid $darkGreen;
+    z-index: 2;
+    border: 1px solid $darkGreen;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  &__arrow {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background-image: url('../assets/arrowdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 33px;
+    width: 33px;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  &__filters {
+    border: 1px solid $darkGreen;
+    position: absolute;
+    top: 32px;
+    z-index: -1;
+    align-items: column;
+    width: 140px;
+    background-color: $white;
+    & button {
+      cursor: pointer;
+      text-align: left;
+      padding: 5px;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid $white;
+      &:hover {
+        background-color: $darkGrey;
+      }
+    }
+  }  
+}
+
+// TODO add mobile page support
+@media only screen and (max-width: 600px) {
+  .filter {
+    &__open{
+
+    }
+    &__arrow {
+
+    }
+    &__filters {
+      &__button {
+        &:hover {
+
+        }
+      }
+    }
+  }
+}

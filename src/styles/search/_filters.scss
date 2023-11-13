@@ -1,16 +1,19 @@
 .filters {
     display: grid;
     grid-template-columns: auto 70px;
-    grid-template-rows: 70px auto;
+    grid-template-rows: 50px auto;
 
     height: 100%;
     width: 100%;
-    border: 1px solid red;
     cursor: default;
     &__selectors {
         grid-column: 1/3;
         grid-row: 1/1;
-        background: blue;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
     &__selected {
         grid-column: 1/1;
