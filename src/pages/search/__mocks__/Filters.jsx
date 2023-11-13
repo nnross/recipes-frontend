@@ -2,12 +2,12 @@
 import React from 'react';
 
 const Filters = ({
-  className, id, resetFilters, selected, removeFilter,
+  className, id, resetFilters, selected, removeFilter, setFilter,
 }) => {
   const selectedFilters = [];
   selected.map((filter) => selectedFilters.push(
     <div className={`${className}__selected__item`} key={`${filter}`}>
-      {filter}
+      {filter.split('-')[1]}
       <button
         className={`${className}__selected__item__remove`}
         type="button"
@@ -19,7 +19,9 @@ const Filters = ({
 
   return (
     <div className={className} id={id}>
-      <div className={`${className}__selectors`} />
+      <div className={`${className}__selectors`}>
+        <button onClick={() => setFilter('test-addition')} type="button"> add </button>
+      </div>
       <div className={`${className}__selected`}>
         {selectedFilters}
       </div>

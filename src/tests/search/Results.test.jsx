@@ -34,6 +34,11 @@ describe('Results tests', () => {
 
       expect(component.getByText('loading')).toBeVisible();
     });
+    test('error state works succesfully', () => {
+      const component = render(<Results id="test" items={withNoMore.items} moreResults loading={4} />);
+
+      expect(component.getByText('an error occurred')).toBeVisible();
+    });
   });
   describe('functions work', () => {
     test('load more works', async () => {

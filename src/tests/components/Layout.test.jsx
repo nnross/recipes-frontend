@@ -4,9 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import Layout from '../../components/Layout';
 
-const scrollToMock = jest.fn();
-global.scrollTo = scrollToMock;
-
 describe('Layout tests', () => {
   test('Layout renders', () => {
     const component = render(

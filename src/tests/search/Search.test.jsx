@@ -1,6 +1,7 @@
 /* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
+import { useOutletContext } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Search from '../../pages/search/Search';
@@ -11,6 +12,14 @@ import { UseSearch } from '../../pages/search/searchHooks';
 jest.mock('../../pages/search/Filters');
 jest.mock('../../pages/search/Results');
 jest.mock('../../components/InputField');
+
+const scrollToMock = jest.fn();
+global.scrollTo = scrollToMock;
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useOutletContext: jest.fn(),
+}));
 
 const getSomeMock = () => Promise.resolve(withMore);
 const getSomeRejectMock = () => Promise.reject(withMore);
@@ -46,7 +55,7 @@ beforeEach(() => {
 
 describe('Search tests', () => {
   describe('render tests', () => {
-    test('search page renders succesfully', () => {
+    test('search page renders succesfully', async () => {
       const component = render(<Search id="test" />);
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -54,14 +63,18 @@ describe('Search tests', () => {
       expect(container.className).toBe('search');
 
       expect(component.getByPlaceholderText('Search')).toBeVisible();
-      // TODO add all filters
-      expect(component.getByRole('button', { name: 'filter' })).toBeVisible();
+
+      expect(component.getByRole('button', { name: 'add' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'reset' })).toBeVisible();
       expect(component.getByText('or scroll for suggestions')).toBeVisible();
-      expect(component.getByText('test title 1')).toBeVisible();
-      expect(component.getAllByText('test title')).toHaveLength(12);
+
+      await waitFor(() => {
+        expect(component.getByText('test title 1')).toBeVisible();
+      });
+      expect(component.getAllByText(/test title/)).toHaveLength(12);
 
       expect(component.getByRole('button', { name: 'load more results' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'back to search' })).not.toBeVisible();
+      expect(component.getByLabelText('top')).not.toBeVisible();
     });
     test('search page renders fails works', async () => {
       getSomeRecipes.mockImplementation(getSomeRejectMock);
@@ -71,9 +84,13 @@ describe('Search tests', () => {
         expect(component.getByText('an error occurred')).toBeVisible();
       });
     });
-    test('back to search displays when scrolling down', () => {
-      // TODO: test
-      expect(false).toBeTruthy();
+    test('back to search displays when scrolling down', async () => {
+      useOutletContext.mockImplementation(() => 220);
+      const component = render(<Search id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByLabelText('top')).toBeVisible();
+      });
     });
     test('when loading displays loading icons', () => {
       const component = render(<Search id="test" />);
@@ -97,7 +114,24 @@ describe('Search tests', () => {
       expect(component.getAllByText(/test title/)).toHaveLength(4);
 
       expect(mockUseSearch.mock.calls).toHaveLength(1);
-      expect(mockUseSearch.mock.calls[0][3]).toStrictEqual(['vegetarian', 'italian']);
+      expect(mockUseSearch.mock.calls[0][3]).toStrictEqual([]);
+    });
+    test('search works with filters', async () => {
+      const component = render(<Search id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByPlaceholderText('Search'));
+      });
+
+      await userEvent.click(component.getByRole('button', { name: 'add' }));
+
+      await userEvent.type(component.getByPlaceholderText('Search'), 'test input{enter}');
+
+      expect(component.getByText(/test title load 1/)).toBeVisible();
+      expect(component.getAllByText(/test title/)).toHaveLength(4);
+
+      expect(mockUseSearch.mock.calls).toHaveLength(1);
+      expect(mockUseSearch.mock.calls[0][3]).toStrictEqual(['test-addition']);
     });
     test('search fail works', async () => {
       UseSearch.mockImplementation((
@@ -125,7 +159,6 @@ describe('Search tests', () => {
 
       await userEvent.type(component.getByPlaceholderText('Search'), 'test input{enter}');
 
-      // TODO: correct error message.
       expect(component.getByText('an error occurred')).toBeVisible();
     });
     test('search sets results to load', async () => {
@@ -154,61 +187,6 @@ describe('Search tests', () => {
       expect(load).not.toBeNull();
       expect(load).toBeVisible();
     });
-    test('filter selection works', async () => {
-      const component = render(<Search id="test" />);
-
-      // TODO filter name
-      await userEvent.click(component.getByRole('button', { name: 'filter ' }));
-
-      expect(component.getByText('filter')).toBeVisible();
-
-      //  TODO: correct name
-      await userEvent.click(component.getByRole('button', { name: 'apply ' }));
-
-      // TODO test that call happened
-      expect(false).toBeTruthy();
-      // TODO succesful results
-      expect(component.getByText('test success 1')).toBeVisible();
-      expect(component.getAllByText('test success')).toHaveLength(12);
-    });
-    test('filter selection failure works', async () => {
-      const component = render(<Search id="test" />);
-
-      // TODO filter name
-      await userEvent.click(component.getByRole('button', { name: 'filter ' }));
-
-      expect(component.getByText('filter')).toBeVisible();
-
-      //  TODO: correct name
-      await userEvent.click(component.getByRole('button', { name: 'apply ' }));
-
-      // TODO test that call happened
-      expect(false).toBeTruthy();
-      // TODO how is error displayed
-      expect(component.getByText('test success 1')).not.toBeVisible();
-      expect(component.getAllByText('test success')).toHaveLength(0);
-      expect(component.getByText('error whilst getting recipes')).toBeVisible();
-    });
-    test('filter selection sets load state', async () => {
-      const component = render(<Search id="test" />);
-
-      // TODO filter name
-      await userEvent.click(component.getByRole('button', { name: 'filter ' }));
-
-      expect(component.getByText('filter')).toBeVisible();
-
-      //  TODO: correct name
-      await userEvent.click(component.getByRole('button', { name: 'apply ' }));
-
-      // TODO test that call happened
-      expect(false).toBeTruthy();
-      // TODO how is error displayed
-      // TODO test that call happened
-      expect(false).toBeTruthy();
-      // TODO right id for loading icons
-      const loads = component.container.querySelector('#loadingIcon');
-      expect(loads).toHaveLength(12);
-    });
     test('load more works', async () => {
       const component = render(<Search id="test" />);
 
@@ -221,7 +199,7 @@ describe('Search tests', () => {
       expect(component.getAllByText(/test title/)).toHaveLength(16);
 
       expect(mockUseSearch.mock.calls).toHaveLength(1);
-      expect(mockUseSearch.mock.calls[0][3]).toStrictEqual(['vegetarian', 'italian']);
+      expect(mockUseSearch.mock.calls[0][3]).toStrictEqual([]);
     });
     test('load more fail works', async () => {
       UseSearch.mockImplementation((
@@ -247,7 +225,6 @@ describe('Search tests', () => {
 
       await userEvent.click(component.getByRole('button', { name: 'load more results' }));
 
-      // TODO: correct error message.
       expect(component.getByText('an error occurred')).toBeVisible();
     });
     test('load more sets loading state', async () => {
@@ -277,23 +254,31 @@ describe('Search tests', () => {
       expect(loadingBar).toBeVisible();
     });
     test('back to search works', async () => {
+      useOutletContext.mockImplementation(() => 220);
       const component = render(<Search id="test" />);
-      // TODO: scroll
 
-      // TODO: search field goes away.
-      await userEvent.click(component.getByRole('button', { name: 'back to search' }));
+      await userEvent.click(component.getByLabelText('top'));
 
-      // TODO: check we are back at search
-      expect(false).toBeTruthy();
+      expect(scrollToMock).toHaveBeenCalledTimes(1);
     });
     test('remove filter works', async () => {
       const component = render(<Search id="test" />);
 
-      // TODO: search field goes away.
-      await userEvent.click(component.getByRole('button', { name: 'back to search' }));
+      await waitFor(() => {
+        expect(component.getByRole('button', { name: 'add' })).toBeVisible();
+      });
 
-      // TODO: check we are back at search
-      expect(false).toBeTruthy();
+      await userEvent.click(component.getByRole('button', { name: 'add' }));
+      expect(component.getByText('addition')).toBeVisible();
+
+      await userEvent.click(component.getByRole('button', { name: 'reset' }));
+      expect(component.queryByText('addition')).not.toBeInTheDocument();
+
+      await userEvent.click(component.getByRole('button', { name: 'add' }));
+      expect(component.getByText('addition')).toBeVisible();
+
+      await userEvent.click(component.getByRole('button', { name: 'remove' }));
+      expect(component.queryByText('addition')).not.toBeInTheDocument();
     });
   });
 });

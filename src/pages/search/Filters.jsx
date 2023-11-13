@@ -33,7 +33,14 @@ const Filters = ({
         {selectedFilters}
       </div>
       <div className={`${className}__reset`}>
-        <button className={`${className}__reset__button`} onClick={resetFilters} type="button"> reset </button>
+        <button
+          className={`${className}__reset__button`}
+          onClick={resetFilters}
+          type="button"
+          style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
+        >
+          reset
+        </button>
       </div>
     </div>
   );

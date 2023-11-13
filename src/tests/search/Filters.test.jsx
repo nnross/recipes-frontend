@@ -26,6 +26,11 @@ describe('Search Filters tests', () => {
 
       expect(component.getAllByText('vegan')).toHaveLength(2);
     });
+    test('render rest invis when no selected succesfully', () => {
+      const component = render(<Filters id="test" selected={[]} />);
+
+      expect(component.getByText('reset')).not.toBeVisible();
+    });
   });
   describe('Functionality tests', () => {
     test('Filters call when pressed and removal works', async () => {

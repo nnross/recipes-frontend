@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 import InputField from '../../components/InputField';
 import Load from '../../components/Load';
 import Results from './Results';
@@ -18,6 +19,7 @@ const Search = ({ className, id }) => {
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
+  const scroll = useOutletContext();
   const page = useRef(0);
 
   useEffect(() => {
@@ -75,6 +77,13 @@ const Search = ({ className, id }) => {
     );
   };
 
+  const backToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const removeFilter = (toRemove) => {
     setFilters(filters.filter((item) => item !== toRemove));
   };
@@ -108,6 +117,14 @@ const Search = ({ className, id }) => {
           <Results items={items} loadMore={loadMore} moreResults={moreResults} loading={loading} />
         </div>
       )}
+      <button
+        className={`${className}__backtop`}
+        id={`${className}__backtop`}
+        onClick={() => { backToTop(); }}
+        type="button"
+        aria-label="top"
+        style={scroll > 200 ? { display: 'block' } : { display: 'none' }}
+      />
     </div>
   );
 };

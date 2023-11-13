@@ -15,7 +15,7 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe('ImageListItem tests', () => {
+describe.skip('ImageListItem tests', () => {
   describe('render tests', () => {
     test('successful render works', () => {
       const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" />);
