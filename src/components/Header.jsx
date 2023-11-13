@@ -10,7 +10,7 @@ import propTypes from 'prop-types';
  * @returns Header.
  */
 const Header = ({
-  className, id, openLogin, loggedIn, scroll,
+  className, id, openLogin, loggedIn,
 }) => {
   const [nav, setNav] = useState(null);
 
@@ -44,15 +44,9 @@ const Header = ({
         <div className={`${className}__nav__icon`} id={`${id}__nav__icon`} />
         {nav}
       </div>
-      <div className={`${className}__title`} id={`${id}__title`}>
-        <h4
-          className={`${className}__title__text`}
-          id={`${id}__title__text`}
-          style={scroll > 80 ? { visibility: 'hidden' } : { visibility: 'visible' }}
-        >
-          RecipeBuddy
-        </h4>
-      </div>
+      <h4 className={`${className}__title`} id={`${id}__title`}>
+        RecipeBuddy
+      </h4>
       <div className={`${className}__logIn`} id={`${id}__logIn`}>
         {loggedIn ? (null
         ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">Log in</button>)}
@@ -68,7 +62,6 @@ Header.propTypes = {
   id: propTypes.string,
   openLogin: propTypes.func,
   loggedIn: propTypes.bool,
-  scroll: propTypes.number,
 };
 
 Header.defaultProps = {
@@ -76,5 +69,4 @@ Header.defaultProps = {
   id: 'header',
   openLogin: null,
   loggedIn: false,
-  scroll: 0,
 };

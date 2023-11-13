@@ -4,21 +4,21 @@ import ImageListItem from './ImageListItem';
 
 const ImageList = ({ className, id, items }) => {
   const itemList = [];
-  for (let i = 0; i < items.length; i += 1) {
-    itemList.push(
-      <ImageListItem
-        src={items[i].src}
-        title={items[i].title}
-        body={items[i].body}
-        id={items[i].id}
-        key={items[i].id}
-      />,
-    );
-  }
+
+  items.map((item) => itemList.push(
+    <ImageListItem
+      src={item.src}
+      title={item.title}
+      body={item.body}
+      itemId={item.id}
+      key={item.id}
+    />,
+  ));
+
   return (
-    <div className={className} id={id}>
+    <ul className={className} id={id}>
       {itemList}
-    </div>
+    </ul>
   );
 };
 

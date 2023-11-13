@@ -5,9 +5,9 @@ import propTypes from 'prop-types';
 const ImageListItem = ({
   className, id, src, title, body, itemId,
 }) => (
-  <div className="mockItem">
-    <img src={src} alt="icon" />
-  </div>
+  <li className="mockItem">
+    <img className="mockItem__img" src={src} alt="icon" />
+  </li>
 );
 
 ImageListItem.propTypes = {

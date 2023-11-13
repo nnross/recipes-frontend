@@ -22,6 +22,7 @@
       border-radius: 25px;
       border: 3px solid $lightGreen;
       background: $white;
+      transition: all 0.3s;
       &:hover {
         background: $hoverGreen;
       }
@@ -30,6 +31,7 @@
   &__nav {
     position: relative;
     height: 100%;
+    width: 80px;
     display: flex;
     align-items: center;
     &__button {
@@ -101,6 +103,7 @@
         background: $white;
         margin-top: auto;
         align-self: center;
+        transition: all 0.3s;
         &:hover {
           background: $hoverGreen;
         }

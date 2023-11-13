@@ -4,7 +4,7 @@ import { render } from '@testing-library/react/';
 import ImageList from '../../components/ImageList';
 import { withMore } from '../testData/imageListItems.json';
 
-jest.mock('../../../components/ImageListItem.jsx');
+jest.mock('../../components/ImageListItem.jsx');
 
 describe('imageList tests', () => {
   describe('render tests', () => {
@@ -16,12 +16,12 @@ describe('imageList tests', () => {
       expect(container).toBeVisible();
       expect(container.className).toBe('imageList');
 
-      expect(component.getByText(withMore.items[0].title)).toBeVisible();
-      expect(component.getByText(withMore.items[0].body)).toBeVisible();
-      expect(component.getByText(withMore.items[0].src)).toBeVisible();
-      expect(component.getByText(withMore.items[0].id)).toBeVisible();
+      expect(component.getByText(/test title 12/)).toBeVisible();
+      expect(component.getByText(/test body 12/)).toBeVisible();
+      expect(component.getAllByText(/https:\/\/spoonacular.com\/recipeImages\/284420-636x393.jpg/)).toHaveLength(4);
+      expect(component.getByText(/12/)).toBeVisible();
 
-      expect(component.getAllByText('test title')).toHaveLength(5);
+      expect(component.getAllByText(/test title/)).toHaveLength(12);
     });
   });
 });

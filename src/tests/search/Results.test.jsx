@@ -17,37 +17,30 @@ describe('Results tests', () => {
       expect(container).toBeVisible();
       expect(container.className).toBe('results');
 
-      expect(component.getByText(withMore.items[0].title).toBeVisible());
-      expect(component.getByText(withMore.items[0].id).toBeVisible());
-      expect(component.getByText(withMore.items[0].body).toBeVisible());
-      expect(component.getByText(withMore.items[0].src).toBeVisible());
-      expect(component).getAllByText('test title').toHaveLength(5);
+      expect(component.getByText(/test title 12/)).toBeVisible();
+      expect(component.getByText(/12/)).toBeVisible();
+      expect(component.getByText(/test body 12/)).toBeVisible();
+      expect(component.getAllByText(/test title/)).toHaveLength(12);
 
       expect(component.getByRole('button', { name: 'load more results' })).toBeVisible();
     });
     test('render with no more results works succesfully', () => {
-      const component = render(<Results id="test" items={withNoMore.items} moreResults />);
+      const component = render(<Results id="test" items={withNoMore.items} moreResults={false} />);
 
-      const container = component.container.querySelector('#test');
-      expect(container).not.toBeNull();
-      expect(container).toBeVisible();
-      expect(container.className).toBe('results');
+      expect(component.queryByRole('button', { name: 'load more results' })).not.toBeInTheDocument();
+    });
+    test('loading state works succesfully', () => {
+      const component = render(<Results id="test" items={withNoMore.items} moreResults loading={2} />);
 
-      expect(component.getByText(withNoMore.items[0].title).toBeVisible());
-      expect(component.getByText(withNoMore.items[0].id).toBeVisible());
-      expect(component.getByText(withNoMore.items[0].body).toBeVisible());
-      expect(component.getByText(withNoMore.items[0].src).toBeVisible());
-      expect(component).getAllByText('test title').toHaveLength(5);
-
-      expect(component.getByRole('button', { name: 'load more results' })).nto.toBeVisible();
+      expect(component.getByText('loading')).toBeVisible();
     });
   });
   describe('functions work', () => {
     test('load more works', async () => {
       const mockLoadMore = jest.fn();
-      const component = render(<Results id="test" items={withMore.items} loadMore={mockLoadMore} />);
+      const component = render(<Results id="test" items={withMore.items} loadMore={mockLoadMore} moreResults />);
 
-      await userEvent.click(component.getByRole('button', { name: 'load more results ' }));
+      await userEvent.click(component.getByRole('button', { name: 'load more results' }));
 
       expect(mockLoadMore.mock.calls).toHaveLength(1);
     });

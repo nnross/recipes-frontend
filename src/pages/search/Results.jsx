@@ -1,21 +1,26 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import ImageList from '../../components/ImageList';
+import Spinner from '../../components/Spinner';
 
 const Results = ({
   className, id, items, loadMore, moreResults, loading,
 }) => {
-  let loadingBtn;
-  if (loading === 2) loadingBtn = <div> loading </div>; // TODO: loading icon
-  else loadingBtn = <button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>;
+  let msg;
+
+  if (moreResults) msg = (<button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>);
+  else msg = (<div className={`${className}__noResults`}> no more results </div>);
+
+  if (loading === 2) msg = (<Spinner />);
+  else if (loading === 4) msg = (<div> an error occurred </div>); // TODO: error message
+
   return (
     <div className={className} id={id}>
       <div className={`${className}__items`}>
         <ImageList items={items} />
       </div>
       <div className={`${className}__load`}>
-        {moreResults ? (loadingBtn
-        ) : (<div className={`${className}__noResults`}> no more results </div>)}
+        {msg}
       </div>
     </div>
   );

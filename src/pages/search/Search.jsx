@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
-import { useOutletContext } from 'react-router-dom';
 import InputField from '../../components/InputField';
-import SkeletonLoad from '../../components/SkeletonLoad';
+import Load from '../../components/Load';
 import Results from './Results';
 import getTokenAndId from '../../helpers/getTokenAndId';
 import { UseSearch } from './searchHooks';
@@ -16,11 +15,10 @@ const Search = ({ className, id }) => {
   const [token, setToken] = useState(null);
   const [accountId, setAccountId] = useState(null);
   const [loading, setLoading] = useState(1);
-  const [filters, setFilters] = useState([]);
+  const [filters, setFilters] = useState(['vegetarian', 'italian']);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
   const page = useRef(0);
-  const scroll = useOutletContext();
 
   useEffect(() => {
     const storage = getTokenAndId();
@@ -77,19 +75,24 @@ const Search = ({ className, id }) => {
     );
   };
 
+  const removeFilter = (toRemove) => {
+    setFilters(filters.filter((item) => item !== toRemove));
+  };
+
   return (
     <div className={className} id={id}>
       <div
         className={`${className}__filters`}
-        style={scroll > 160 ? { position: 'sticky' } : { position: 'relative' }}
       >
-        {scroll > 160 ? (null) : (
-          <div className={`${className}__filters__search`}>
-            <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
-          </div>
-        )}
+        <div className={`${className}__filters__search`}>
+          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+        </div>
         <div className={`${className}__filters__selectors`}>
-          <Filters />
+          <Filters
+            selected={filters}
+            resetFilters={() => setFilters([])}
+            removeFilter={(filter) => removeFilter(filter)}
+          />
         </div>
       </div>
       <h3 className={`${className}__scrollSuggestion`}>
@@ -97,7 +100,7 @@ const Search = ({ className, id }) => {
       </h3>
       { loading === 1 ? (
         <div className={`${className}__results`} style={{ height: '600px', paddingBottom: '20px' }}>
-          <SkeletonLoad />
+          <Load />
         </div>
       ) : (
         <div className={`${className}__results`}>
@@ -108,6 +111,8 @@ const Search = ({ className, id }) => {
   );
 };
 
+export default Search;
+
 Search.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
@@ -117,5 +122,3 @@ Search.defaultProps = {
   className: 'search',
   id: 'search',
 };
-
-export default Search;

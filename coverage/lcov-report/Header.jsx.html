@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Header.jsx</title>
+    <title>Code coverage report for Header.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> Header.jsx</h1>
+        <h1><a href="index.html">All files</a> Header.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>8/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>8/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -149,32 +149,32 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,18 +223,18 @@ const Header = ({
 }) =&gt; {
   const [nav, setNav] = useState(null);
 &nbsp;
-  const logOut = () =&gt; {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('accountId');
-    window.location.reload();
+  const logOut = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    window.localStorage.removeItem('token');</span>
+<span class="cstat-no" title="statement not covered" >    window.localStorage.removeItem('accountId');</span>
+<span class="cstat-no" title="statement not covered" >    window.location.reload();</span>
   };
 &nbsp;
-  const closeNav = () =&gt; {
-    setNav(null);
+  const closeNav = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    setNav(null);</span>
   };
 &nbsp;
-  const openNav = () =&gt; {
-    setNav(
+  const openNav = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    setNav(</span>
       &lt;nav className={`${className}__nav__sidebar`} id={`${id}__nav__sidebar`}&gt;
         &lt;button className={`${className}__nav__sidebar__close`} id={`${id}__nav__sidebar__close`} onClick={closeNav} type="button" aria-label="close" /&gt;
         &lt;a className={`${className}__nav__sidebar__home`} href="/home"&gt; home &lt;/a&gt;
@@ -242,7 +242,7 @@ const Header = ({
         &lt;a className={`${className}__nav__sidebar__settings`} href="/today"&gt; today&amp;apos;s recipe &lt;/a&gt;
         &lt;a className={`${className}__nav__sidebar__settings`} href="/personal"&gt; personal &lt;/a&gt;
         &lt;a className={`${className}__nav__sidebar__settings`} href="/settings"&gt; settings &lt;/a&gt;
-        &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={() =&gt; logOut()}&gt; log out &lt;/button&gt;
+        &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >logOut()}</span>&gt; log out &lt;/button&gt;
       &lt;/nav&gt;,
     );
   };
@@ -257,7 +257,7 @@ const Header = ({
         RecipeBuddy
       &lt;/h4&gt;
       &lt;div className={`${className}__logIn`} id={`${id}__logIn`}&gt;
-        {loggedIn ? (null
+        {loggedIn ? (<span class="branch-0 cbranch-no" title="branch not covered" >null</span>
         ) : (&lt;button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button"&gt;Log in&lt;/button&gt;)}
       &lt;/div&gt;
     &lt;/header&gt;
@@ -286,16 +286,16 @@ Header.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-13T18:00:20.656Z
+                at 2023-11-13T18:00:01.986Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="sorter.js"></script>
+        <script src="block-navigation.js"></script>
     </body>
 </html>
     

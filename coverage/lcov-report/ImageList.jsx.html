@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tests/testHelpers.jsx</title>
+    <title>Code coverage report for ImageList.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">tests</a> testHelpers.jsx</h1>
+        <h1><a href="index.html">All files</a> ImageList.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,8 +98,16 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,13 +118,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,49 +127,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
-import path from 'path';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import propTypes from 'prop-types';
+import ImageListItem from './ImageListItem';
 &nbsp;
-/**
- * Finds text from the DOM even if it is split with a &lt;span&gt; or other tag.
- * So for example: &lt;div&gt; Hello &lt;span&gt; world &lt;/span&gt;&lt;/div&gt;
- * would work when queried with "Hello world"
- * @param {*} node - the node to be searched from.
- * @param {*} query - th equery to be searched.
- * @returns true if found false otherwise.
- */
-export const findWithTag = <span class="fstat-no" title="function not covered" >(n</span>ode, query) =&gt; {
-  const hasText = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(n</span>) =&gt; <span class="cstat-no" title="statement not covered" >n.textContent === query;</span></span>
-  const nodeHasText = <span class="cstat-no" title="statement not covered" >hasText(node);</span>
-  const childrenDontHaveText = <span class="cstat-no" title="statement not covered" >Array.from(node.children).every(</span>
-<span class="fstat-no" title="function not covered" >    (c</span>hild) =&gt; <span class="cstat-no" title="statement not covered" >!hasText(child),</span>
+const ImageList = ({ className, id, items }) =&gt; {
+  const itemList = [];
+&nbsp;
+  items.map((item) =&gt; itemList.push(
+    &lt;ImageListItem
+      src={item.src}
+      title={item.title}
+      body={item.body}
+      itemId={item.id}
+      key={item.id}
+    /&gt;,
+  ));
+&nbsp;
+  return (
+    &lt;ul className={className} id={id}&gt;
+      {itemList}
+    &lt;/ul&gt;
   );
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return nodeHasText &amp;&amp; childrenDontHaveText;</span>
 };
 &nbsp;
-/**
- * Adds all additional css styling to the component.
- * @param {*} component - the component to be added styling for.
- */
-export const addStyling = <span class="fstat-no" title="function not covered" >(c</span>omponent) =&gt; {
-  const cssFile = <span class="cstat-no" title="statement not covered" >fs.readFileSync(</span>
-    path.resolve(__dirname, '../styles/main.css'),
-    'utf8',
-  );
-  const style = <span class="cstat-no" title="statement not covered" >document.createElement('style');</span>
-<span class="cstat-no" title="statement not covered" >  style.type = 'text/css';</span>
-<span class="cstat-no" title="statement not covered" >  style.innerHTML = cssFile;</span>
-<span class="cstat-no" title="statement not covered" >  component.container.append(style);</span>
+export default ImageList;
+&nbsp;
+ImageList.propTypes = {
+  className: propTypes.string,
+  id: propTypes.string,
+  items: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
+};
+&nbsp;
+ImageList.defaultProps = {
+  className: 'imageList',
+  id: 'imageList',
+  items: null,
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -175,16 +181,16 @@ export const addStyling = <span class="fstat-no" title="function not covered" >(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-13T18:00:20.656Z
+                at 2023-11-13T17:43:46.950Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="sorter.js"></script>
+        <script src="block-navigation.js"></script>
     </body>
 </html>
     
