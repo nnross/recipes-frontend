@@ -7,38 +7,40 @@ import InputField from '../../components/InputField';
 describe('InputField tests', () => {
   describe('InputField renders', () => {
     test('InputField renders correctly', () => {
-      const component = render(<InputField id="test" placeholder="testLabel" width="200px" height="40px" />);
+      const component = render(<InputField id="test" placeholder="testLabel" width="200px" height="40px" fontSize="20px" />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
       expect(container.className).toBe('inputField');
 
-      const searchButton = component.container.querySelector('#test__container__search');
-      expect(searchButton).not.toBeNull();
-      expect(searchButton).toBeVisible();
+      expect(component.getByRole('button', { label: 'Submit' })).toBeVisible();
+      expect(component.getByPlaceholderText('testLabel')).toBeVisible();
 
       const input = component.getByPlaceholderText('testLabel');
-      expect(input).not.toBeNull();
       expect(input).toBeVisible();
-      expect(input).toHaveStyle('width: 200px');
-      expect(input).toHaveStyle('height: 40px');
+      expect(input).toHaveStyle('font-size: 20px');
+      expect(container).toHaveStyle('width: 200px');
+      expect(container).toHaveStyle('height: 40px');
     });
   });
   describe('InputField functions work', () => {
-    test('submit works', async () => {
-      const mockSubmit = jest.fn();
-      const component = render(<InputField id="test" onSubmit={mockSubmit} />);
+    test('submit and onChange works', async () => {
+      const mockSubmit = jest.fn((e) => e.preventDefault());
+      const mockChange = jest.fn();
+      const component = render(<InputField id="test" placeholder="test" onSubmit={mockSubmit} onChange={mockChange} />);
 
-      await userEvent.type(component, 'test input');
+      const input = component.getByPlaceholderText('test');
+      await userEvent.type(input, 'test input');
 
-      expect(component).toHaveValue('test input');
+      expect(input).toHaveValue('test input');
 
-      const searchButton = component.container.querySelector('#test__container__search');
-      await userEvent.click(searchButton);
+      expect(mockChange.mock.calls).toHaveLength(10);
+
+      await userEvent.click(component.getByRole('button', { label: 'Submit' }));
 
       expect(mockSubmit.mock.calls).toHaveLength(1);
-      expect(mockSubmit.mock.calls[0][0]).toBe('test input');
+      expect(mockSubmit.mock.calls[0][0].target.elements[0].value).toBe('test input');
     });
   });
 });

@@ -2,13 +2,20 @@
 @import './colorsAndFonts';
 @import './components/components';
 @import './home/home';
+@import './search/search';
 
 html,body {
   margin:0;
   padding:0;
   background: $white;
-  font-family: 'main';
+  font-family: 'mainText';
 }
+
+input {
+  font-family: 'mainText';
+  font-size: 16px;
+}
+
 
 h5 {
   font-family: 'mainTitle';
@@ -21,6 +28,13 @@ h4 {
   font-family: 'header';
   margin: 0;
   font-size: 80px;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: 'mainTitle';
+  margin: 0;
+  font-size: 32px;
   font-weight: normal;
 }
 
@@ -68,29 +82,33 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: $white;
   align-items: center;
-    &__header {
-      position: fixed;
-      height: 140px;
-      width: 100vw;
-      background: $white;
-      display: flex;
-      justify-content: center;
-    }
-    &__content {
-      height: 100%;
-      max-width: 1600px;
-      background: $white;
+  background: $white;
+  &__header {
+    height: 140px;
+    width: 100vw;
+    background: $white;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  &__content {
+    height: 100%;
+    max-width: 1600px;
+    width: 100%;
+    background: $white;
 
-    }
-    &__footer {
-      height: 160px;
-      width: 100vw;
-      background: $lightGreen;
-      display: flex;
-      justify-content: center;
-    }
+  }
+  &__footer {
+    height: 160px;
+    width: 100vw;
+    background: $lightGreen;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 600px) {

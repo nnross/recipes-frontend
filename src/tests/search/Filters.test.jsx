@@ -9,52 +9,57 @@ jest.mock('../../components/Filter');
 describe('Search Filters tests', () => {
   describe('render tests', () => {
     test('render works succesfully', () => {
-      const component = render(<Filters id="test" />);
+      const component = render(<Filters id="test" selected={['diet-vegan']} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
       expect(container.className).toBe('filters');
 
-      // TODO correct filters render
-      expect(false).toBeTruthy();
-      expect(component.getByRole('button', { name: 'reset filters' })).toBeVisible();
+      expect(component.getByText('sort')).toBeVisible();
+      expect(component.getByText('ingredients')).toBeVisible();
+      expect(component.getByText('intolerances')).toBeVisible();
+      expect(component.getByText('diet')).toBeVisible();
+      expect(component.getByText('cuisine')).toBeVisible();
+      expect(component.getByText('type')).toBeVisible();
+      expect(component.getByRole('button', { name: 'reset' })).toBeVisible();
+
+      expect(component.getAllByText('vegan')).toHaveLength(2);
+    });
+    test('render rest invis when no selected succesfully', () => {
+      const component = render(<Filters id="test" selected={[]} />);
+
+      expect(component.getByText('reset')).not.toBeVisible();
     });
   });
   describe('Functionality tests', () => {
-    test('Filters call when pressed and displays correct filters', async () => {
+    test('Filters call when pressed and removal works', async () => {
       const mockOnFilter = jest.fn();
-      const component = render(<Filters id="test" onFilter={mockOnFilter} />);
+      const mockRemove = jest.fn();
+      const mockReset = jest.fn();
+      const component = render(<Filters id="test" removeFilter={mockRemove} resetFilters={mockReset} setFilter={mockOnFilter} />);
 
       await userEvent.click(component.getByRole('button', { name: 'vegan' }));
       await userEvent.click(component.getByRole('button', { name: 'vegetarian' }));
 
-      expect(component.getByText('vegan')).toBeVisible();
-      expect(component.getByText('vegetarian')).toBeVisible();
-
-      await userEvent.click(component.getByRole('button', { name: 'apply' }));
-
-      expect(mockOnFilter.mock.calls).toHaveLength(1);
-      expect(mockOnFilter.mock.calls[0][0]).toBe(['vegan', 'vegetarian']);
-
-      await userEvent.click(component.getByRole('button', { name: 'vegetarian' }));
-
-      expect(component.getByText('vegetarian')).not.toBeVisible();
-      expect(component.getByText('vegan')).toBeVisible();
-
-      await userEvent.click(component.getByRole('button', { name: 'apply' }));
-
       expect(mockOnFilter.mock.calls).toHaveLength(2);
-      expect(mockOnFilter.mock.calls[1][0]).toBe(['vegan']);
+      expect(mockOnFilter.mock.calls[0][0]).toBe('diet-vegan');
+    });
+    test('remove filter works', async () => {
+      const mockRemove = jest.fn();
+      const component = render(<Filters id="test" removeFilter={mockRemove} selected={['diet-vege']} />);
 
-      await userEvent.click(component.getByRole('button', { name: 'reset filters' }));
+      await userEvent.click(component.getByRole('button', { name: 'remove' }));
 
-      expect(component.getByText('vegan')).not.toBeVisible();
+      expect(mockRemove.mock.calls).toHaveLength(1);
+    });
+    test('reset filters works', async () => {
+      const mockReset = jest.fn();
 
-      await userEvent.click(component.getByRole('button', { name: 'apply' }));
+      const component = render(<Filters id="test" resetFilters={mockReset} selected={['diet-vegetarian']} />);
 
-      expect(mockOnFilter.mock.calls).toHaveLength(3);
-      expect(mockOnFilter.mock.calls[2][0]).toBe([]);
+      await userEvent.click(component.getByRole('button', { name: 'reset' }));
+      expect(mockReset.mock.calls).toHaveLength(1);
     });
   });
 });

@@ -5,8 +5,9 @@ import propTypes from 'prop-types';
  * The Header component.
  * @property {String} className - Custom className if wanted. Default is header.
  * @property {String} id - Custom id if wanted. Default is header.
- * // TODO: add openLogin
- * @returns Header.
+ * @property {Function} openLogin - Function to open the login form.
+ * @property {Boolean} loggedIn - Status of being logged in. True if logged, false otherwise.
+ * @returns Header
  */
 const Header = ({
   className, id, openLogin, loggedIn,

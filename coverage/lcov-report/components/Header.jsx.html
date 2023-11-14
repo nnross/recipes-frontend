@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">64.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">64.28% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -135,13 +135,7 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,15 +154,23 @@
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,6 +183,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,6 +204,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -217,21 +228,22 @@ import propTypes from 'prop-types';
  * @property {String} className - Custom className if wanted. Default is header.
  * @property {String} id - Custom id if wanted. Default is header.
  * // TODO: add openLogin
- * @returns Header.
+ * // TODO: add logedIn
+ * @returns Header
  */
 const Header = ({
   className, id, openLogin, loggedIn,
 }) =&gt; {
   const [nav, setNav] = useState(null);
 &nbsp;
-  const logOut = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    window.localStorage.removeItem('token');</span>
-<span class="cstat-no" title="statement not covered" >    window.localStorage.removeItem('accountId');</span>
-<span class="cstat-no" title="statement not covered" >    window.location.reload();</span>
+  const logOut = () =&gt; {
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('accountId');
+    window.location.reload();
   };
 &nbsp;
-  const closeNav = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    setNav(null);</span>
+  const closeNav = () =&gt; {
+    setNav(null);
   };
 &nbsp;
   const openNav = () =&gt; {
@@ -243,7 +255,7 @@ const Header = ({
         &lt;a className={`${className}__nav__sidebar__settings`} href="/today"&gt; today&amp;apos;s recipe &lt;/a&gt;
         &lt;a className={`${className}__nav__sidebar__settings`} href="/personal"&gt; personal &lt;/a&gt;
         &lt;a className={`${className}__nav__sidebar__settings`} href="/settings"&gt; settings &lt;/a&gt;
-        &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >logOut()}</span>&gt;LOG OUT&lt;/button&gt;
+        &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={() =&gt; logOut()}&gt; log out &lt;/button&gt;
       &lt;/nav&gt;,
     );
   };
@@ -259,6 +271,9 @@ const Header = ({
           RecipeBuddy
         &lt;/h4&gt;
       &lt;/div&gt;
+      &lt;h4 className={`${className}__title`} id={`${id}__title`}&gt;
+        RecipeBuddy
+      &lt;/h4&gt;
       &lt;div className={`${className}__logIn`} id={`${id}__logIn`}&gt;
         {loggedIn ? (null
         ) : (&lt;button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button"&gt;LOG IN&lt;/button&gt;)}
@@ -289,7 +304,7 @@ Header.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-13T21:25:25.463Z
+                at 2023-11-14T09:11:04.424Z
             </div>
         <script src="../prettify.js"></script>
         <script>
