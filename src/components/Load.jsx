@@ -2,10 +2,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 /**
- * Renders a loadin screen.
+ * Renders a loading screen.
  * @property {String} className - custom className if wanted. Default is loading
  * @property {String} id - custom id if wanted. Default is loading
- * @returns the skeletonLoad
+ * @returns the skeletonLoad load
  */
 const Load = ({ className, id }) => (
   <div className={className} id={id} />

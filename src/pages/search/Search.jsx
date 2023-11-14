@@ -10,6 +10,12 @@ import { UseSearch } from './searchHooks';
 import searchService from '../../services/searchService';
 import Filters from './Filters';
 
+/**
+ * Renders the search page for the application
+ * @property {String} className - Custom className if wanted. Default is search.
+ * @property {String} id - Custom id if wanted. Default is search.
+ * @returns Search page.
+ */
 const Search = ({ className, id }) => {
   const [items, setItems] = useState([]);
   const [moreResults, setMoreResults] = useState(false);

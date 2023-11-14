@@ -6,6 +6,8 @@ import Header from './Header';
 
 /**
  * Sets the header and footer to all pages automatically.
+ * @property {String} className - Custom className if wanted. Default is layout.
+ * @property {String} id - Custom id if wanted. Default is layout.
  * @returns full view
  */
 const Layout = ({ className, id }) => {
@@ -16,6 +18,7 @@ const Layout = ({ className, id }) => {
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
   }, []);
+
   return (
     <div className={className} id={id}>
       <div

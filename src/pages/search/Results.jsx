@@ -3,6 +3,16 @@ import propTypes from 'prop-types';
 import ImageList from '../../components/ImageList';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Renders the results for search page. A list of items and a load more button.
+ * @property {String} className - Custom className if wanted. Default is results.
+ * @property {String} id - Custom id if wanted. Default is results.
+ * @property {List<JSON>} items - List of items to be rendered.
+ * @property {Function} loadMore - Function to be used when load more pressed.
+ * @property {Boolean} moreResults - True if more results, false otherwise.
+ * @property {Integer} loading - The loading state. 2 if loading, 4 if error.
+ * @returns Results component for search page.
+ */
 const Results = ({
   className, id, items, loadMore, moreResults, loading,
 }) => {

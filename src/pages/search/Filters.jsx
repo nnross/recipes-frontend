@@ -2,6 +2,16 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Filter from '../../components/filter';
 
+/**
+ * Renders the filters component for search page.
+ * @property {String} className - Custom className if wanted. Default is filters.
+ * @property {String} id - Custom id if wanted. Default is filters.
+ * @property {Function} resetFilters - Function to be used when reset button is pressed.
+ * @property {List<String>} selected - The selected filters. In format category-name
+ * @property {Function} removeFilter - Function to be used when single filter is removed.
+ * @property {Function} setFilter - Function to be used when filter is selected.
+ * @returns Filters component for search page.
+ */
 const Filters = ({
   className, id, resetFilters, selected, removeFilter, setFilter,
 }) => {
