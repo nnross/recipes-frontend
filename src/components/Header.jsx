@@ -33,7 +33,7 @@ const Header = ({
         <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
         <a className={`${className}__nav__sidebar__settings`} href="/personal"> personal </a>
         <a className={`${className}__nav__sidebar__settings`} href="/settings"> settings </a>
-        <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}> log out </button>
+        <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}>LOG OUT</button>
       </nav>,
     );
   };
@@ -44,12 +44,14 @@ const Header = ({
         <div className={`${className}__nav__icon`} id={`${id}__nav__icon`} />
         {nav}
       </div>
-      <h4 className={`${className}__title`} id={`${id}__title`}>
-        RecipeBuddy
-      </h4>
+      <div className={`${className}__title`} id={`${id}__title`}>
+        <h4 className={`${className}__title__text`} id={`${id}__title__text`}>
+          RecipeBuddy
+        </h4>
+      </div>
       <div className={`${className}__logIn`} id={`${id}__logIn`}>
         {loggedIn ? (null
-        ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">Log in</button>)}
+        ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">LOG IN</button>)}
       </div>
     </header>
   );

@@ -3,7 +3,6 @@ import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Header from '../../components/Header';
-import { addStyling } from '../testHelpers';
 
 describe('header tests', () => {
   describe('render tests', () => {
