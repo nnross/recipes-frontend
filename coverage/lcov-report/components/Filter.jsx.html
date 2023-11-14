@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Filter.jsx</title>
+    <title>Code coverage report for components/filter.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> Filter.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> filter.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,25 +139,25 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">25x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,18 +210,18 @@ const Filter = ({
   const [filter, setFilter] = useState(null);
   const buttons = [];
   filters.map((item) =&gt; buttons.push(
-    &lt;button className={`${className}__filters__button`} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >selectFilter(`${title}-${item}`); </span>}} type="button"&gt;{item}&lt;/button&gt;,
+    &lt;button className={`${className}__filters__button`} onClick={() =&gt; { selectFilter(`${title}-${item}`); }} type="button"&gt;{item}&lt;/button&gt;,
   ));
-  const toggleFilter = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (filter === null) {</span>
-<span class="cstat-no" title="statement not covered" >      setFilter(</span>
+  const toggleFilter = () =&gt; {
+    if (filter === null) {
+      setFilter(
         &lt;div className={`${className}__filters`} id={`${id}__filters`}&gt;
           {buttons}
         &lt;/div&gt;,
       );
     }
-<span class="cstat-no" title="statement not covered" >    if (filter != null) {</span>
-<span class="cstat-no" title="statement not covered" >      setFilter(null);</span>
+    if (filter != null) {
+      setFilter(null);
     }
   };
 &nbsp;
@@ -236,7 +236,7 @@ const Filter = ({
           borderBottom: '1px solid #1C5253',
           borderBottomRightRadius: '5px',
           borderBottomLeftRadius: '5px',
-        } : <span class="branch-1 cbranch-no" title="branch not covered" >{</span>
+        } : {
           borderBottom: '0px',
           borderBottomRightRadius: '0px',
           borderBottomLeftRadius: '0px',
@@ -244,7 +244,7 @@ const Filter = ({
       &gt;
         {title}
       &lt;/button&gt;
-      &lt;div className={`${className}__arrow`} style={filter === null ? { transform: 'rotate(0deg)' } : <span class="branch-1 cbranch-no" title="branch not covered" >{ transform: 'rotate(180deg)' }}</span> /&gt;
+      &lt;div className={`${className}__arrow`} style={filter === null ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }} /&gt;
       {filter}
     &lt;/div&gt;
   );
@@ -274,7 +274,7 @@ Filter.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-13T21:25:53.088Z
+                at 2023-11-14T08:57:50.979Z
             </div>
         <script src="../prettify.js"></script>
         <script>
