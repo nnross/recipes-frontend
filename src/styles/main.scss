@@ -1,0 +1,123 @@
+// all imports
+@import './colorsAndFonts';
+@import './components/components';
+@import './home/home';
+@import './search/search';
+
+html,body {
+  margin:0;
+  padding:0;
+  background: $white;
+  font-family: 'mainText';
+}
+
+input {
+  font-family: 'mainText';
+  font-size: 16px;
+}
+
+
+h5 {
+  font-family: 'mainTitle';
+  margin: 0;
+  font-size: 24px;
+  border-bottom: 2px solid $black;
+}
+
+h4 {
+  font-family: 'header';
+  margin: 0;
+  font-size: 80px;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: 'mainTitle';
+  margin: 0;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 16px;
+}
+
+button {
+  font-family: button;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  h5 {
+    font-size: 18px;
+    border-bottom: 1px solid $black;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  button {
+    font-family: button;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h4 {
+    font-family: 'header';
+    margin: 0;
+    font-size: 60px;
+    font-weight: normal;
+  }
+}
+
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: $white;
+  &__header {
+    height: 140px;
+    width: 100vw;
+    background: $white;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  &__content {
+    height: 100%;
+    max-width: 1600px;
+    width: 100%;
+    background: $white;
+
+  }
+  &__footer {
+    height: 160px;
+    width: 100vw;
+    background: $lightGreen;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .layout {
+    &__header{
+      height: 100px;
+    }
+    &__footer {
+      height: 230px;
+    }
+  }
+}

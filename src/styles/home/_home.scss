@@ -1,0 +1,129 @@
+
+.home {
+	display: flex;
+  justify-content: center;
+	padding-top: 50px;
+	padding-bottom: 100px;
+	&__info {
+		padding-right: 100px;
+		padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+		&__titles {
+			&__1 {
+				line-height: 0;
+				font-size: 50px;
+				text-align: left;
+			}
+			&__2 {
+				line-height: 0;
+				font-family: homePage;
+				font-size: 50px;
+				text-align: center;
+			}
+			&__3 {
+				line-height: 0;
+				font-size: 50px;
+				text-align: right;
+			}
+		}
+		&__text {
+			font-size: 20px;
+			padding-top: 20px;
+			padding-bottom: 40px;
+			width: 300px;
+		}
+		&__search {
+			text-decoration: none;
+      align-self: center;
+			&__button{
+				border: 2px solid $darkGreen;
+				height: 50px;
+				width: 200px;
+				align-self: center;
+        border-radius: 25px;
+        background: $white;
+				&:hover {
+          background: $hoverGreen;
+        }
+			}
+		}
+	}
+	&__img {
+		box-shadow: -50px 40px 0 $lightGreen;
+		width: 555px;
+		height: 680px;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+  .home {
+    &__info {
+      padding-right: 64px;
+      &__titles {
+        &__1 {
+          font-size: 32px;
+        }
+        &__2 {
+          font-size: 32px;
+        }
+        &__3 {
+          font-size: 32px;
+        }
+      }
+      &__text {
+        font-size: 13px;
+      }
+      &__search {
+        &__button {
+          height: 32px;
+				  width: 128px;
+          font-size: 13px;
+        }
+      }
+    }
+    &__img {
+      box-shadow: -32px 25px 0 $lightGreen;
+      width: 355px;
+      height: 435px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    flex-direction: column;
+    &__info {
+      padding-top: 0px;
+      padding-right: 0px;
+      &__titles {
+        &__1 {
+          font-size: 40px;
+        }
+        &__2 {
+          font-size: 40px;
+        }
+        &__3 {
+          font-size: 40px;
+        }
+      }
+      &__text {
+        font-size: 16px;
+        line-height: 25px;
+        padding-bottom: 0px;
+      }
+      &__search {
+        &__button {
+          height: 40px;
+				  width: 160px;
+        }
+      }
+    }
+    &__img {
+      box-shadow: -40px 32px 0 $lightGreen;
+      width: 444px;
+      height: 544px;
+      z-index: 0;
+    }
+  }
+}

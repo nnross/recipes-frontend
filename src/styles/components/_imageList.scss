@@ -1,0 +1,17 @@
+.imageList {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, calc(100% / 4 - 15px));
+  grid-gap: 1rem;
+  justify-content: space-between;
+  list-style-type: none;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+@media only screen and (max-width: 1300px) {
+  .imageList {
+    grid-template-columns: repeat(auto-fill, calc(100% / 3 - 15px));
+  }
+}
