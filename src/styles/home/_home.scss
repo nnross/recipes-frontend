@@ -1,11 +1,14 @@
 
 .home {
 	display: flex;
-	padding-top: 150px;
+  justify-content: center;
+	padding-top: 50px;
 	padding-bottom: 100px;
 	&__info {
 		padding-right: 100px;
 		padding-top: 50px;
+    display: flex;
+    flex-direction: column;
 		&__titles {
 			&__1 {
 				line-height: 0;
@@ -32,6 +35,7 @@
 		}
 		&__search {
 			text-decoration: none;
+      align-self: center;
 			&__button{
 				border: 2px solid $darkGreen;
 				height: 50px;
