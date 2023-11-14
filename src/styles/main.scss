@@ -1,6 +1,7 @@
 // all imports
 @import './colorsAndFonts';
 @import './components/components';
+@import './home/home';
 
 html,body {
   margin:0;
@@ -28,8 +29,8 @@ p {
 }
 
 button {
-  font-family: mainText;
-  font-size: 20px;
+  font-family: button;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -47,8 +48,8 @@ button {
 
 @media only screen and (max-width: 600px) {
   button {
-    font-family: mainText;
-    font-size: 16px;
+    font-family: button;
+    font-size: 13px;
   }
 }
 
@@ -70,6 +71,7 @@ button {
   background: $white;
   align-items: center;
     &__header {
+      position: fixed;
       height: 140px;
       width: 100vw;
       background: $white;

@@ -3,13 +3,11 @@ import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Header from '../../components/Header';
-import { addStyling } from '../testHelpers';
 
 describe('header tests', () => {
   describe('render tests', () => {
     test('nav bar renders succesfully when logged out', () => {
       const component = render(<Header id="test" loggedIn={false} />);
-      addStyling(component);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -26,20 +24,6 @@ describe('header tests', () => {
       const hamburgerIcon = component.container.querySelector('#test__nav__button');
       expect(hamburgerIcon).not.toBeNull();
       expect(hamburgerIcon).toBeVisible();
-
-      expect(component.getByRole('button', { name: 'log out', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'search', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'home', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'personal', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'today\'s recipe', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'settings', hidden: true })).not.toBeVisible();
-
-      expect(component.getByRole('link', { name: 'search', hidden: true })).toHaveAttribute('href', '/search');
-      expect(component.getByRole('link', { name: 'home', hidden: true })).toHaveAttribute('href', '/home');
-      expect(component.getByRole('link', { name: 'personal', hidden: true })).toHaveAttribute('href', '/personal');
-      expect(component.getByRole('link', { name: 'today\'s recipe', hidden: true })).toHaveAttribute('href', '/today');
-      expect(component.getByRole('link', { name: 'settings', hidden: true })).toHaveAttribute('href', '/settings');
     });
     test('nav bar renders succesfully when logged in', () => {
       const component = render(<Header id="test" loggedIn />);
@@ -67,6 +51,9 @@ describe('header tests', () => {
       });
       const component = render(<Header id="test" loggedIn />);
 
+      const hamburger = component.container.querySelector('#test__nav__button');
+      await userEvent.click(hamburger);
+
       const logout = component.getByRole('button', { name: 'log out' });
       await userEvent.click(logout);
 
@@ -76,20 +63,11 @@ describe('header tests', () => {
     });
     test('nav bar opens and closes', async () => {
       const component = render(<Header id="test" />);
-      addStyling(component);
-
-      expect(component.getByRole('button', { name: 'log out', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'home', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'search', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'personal', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'today\'s recipe', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'settings', hidden: true })).not.toBeVisible();
 
       const hamburger = component.container.querySelector('#test__nav__button');
       await userEvent.click(hamburger);
 
-      expect(component.getByRole('link', { name: 'search', hidden: true })).toBeVisible();
+      expect(component.getByRole('link', { name: 'search' })).toBeVisible();
       expect(component.getByRole('link', { name: 'home' })).toBeVisible();
       expect(component.getByRole('link', { name: 'personal' })).toBeVisible();
       expect(component.getByRole('link', { name: 'today\'s recipe' })).toBeVisible();
@@ -97,16 +75,22 @@ describe('header tests', () => {
       expect(component.getByRole('button', { name: 'log out' })).toBeVisible();
       expect(component.getByRole('button', { name: 'close' })).toBeVisible();
 
+      expect(component.getByRole('link', { name: 'search' })).toHaveAttribute('href', '/search');
+      expect(component.getByRole('link', { name: 'home' })).toHaveAttribute('href', '/home');
+      expect(component.getByRole('link', { name: 'personal' })).toHaveAttribute('href', '/personal');
+      expect(component.getByRole('link', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today');
+      expect(component.getByRole('link', { name: 'settings' })).toHaveAttribute('href', '/settings');
+
       const close = component.container.querySelector('#test__nav__sidebar__close');
       await userEvent.click(close);
 
-      expect(component.getByRole('button', { name: 'log out', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'home', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'search', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'personal', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'today\'s recipe', hidden: true })).not.toBeVisible();
-      expect(component.getByRole('link', { name: 'settings', hidden: true })).not.toBeVisible();
+      expect(component.queryByRole('link', { name: 'search' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'home' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'personal' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'today\'s recipe' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'log out' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'close' })).not.toBeInTheDocument();
     });
   });
 });
