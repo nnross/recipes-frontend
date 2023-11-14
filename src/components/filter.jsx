@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * The filter component
+ * @property {String} className - Custom className if wanted. Default is filter.
+ * @property {String} id - Custom id if wanted. Default is filter.
+ * @property {Array} filters - Array of filters.
+ * @property {String} title - Title to the array of filters.
+ * @property {Function} selectFilter - Returns the title and the filter item when clicked.
+ * @returns Fitler
+ */
+
 // TODO add mobile page support
 
 const Filter = ({
