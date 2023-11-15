@@ -7,6 +7,7 @@
   height: 100%;
   justify-content: space-between;
   align-items: center;
+  min-width: 300px;
   &__filters {
     display: flex;
     height: 200px;
@@ -55,10 +56,20 @@
   }
 }
 
-@media only screen and (max-width: 799px) {
+@media only screen and (max-width: 600px) {
   .search {
     &__filters {
-    display: none;
+      width: 100%;
+      height: 120px;
+      &__search {
+      }
+      &__selectors {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &__scrollSuggestion {
+      padding: 0px;
     }
     &__results {
       padding: 10px;

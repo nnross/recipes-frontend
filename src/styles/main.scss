@@ -76,6 +76,15 @@ button {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  h3 {
+    font-family: 'mainTitle';
+    margin: 0;
+    font-size: 20px;
+    font-weight: normal;
+  }
+}
+
 
 .layout {
   min-height: 100vh;

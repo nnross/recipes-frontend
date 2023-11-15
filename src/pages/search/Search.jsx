@@ -25,9 +25,13 @@ const Search = ({ className, id }) => {
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const scroll = useOutletContext();
   const page = useRef(0);
 
+  window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+
+  // TODO: DOBUMENTATION
   useEffect(() => {
     const storage = getTokenAndId();
     setToken(storage.token); setAccountId(storage.accountId);
@@ -100,7 +104,11 @@ const Search = ({ className, id }) => {
         className={`${className}__filters`}
       >
         <div className={`${className}__filters__search`}>
-          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+          <InputField
+            placeholder="Search"
+            onSubmit={(e) => searchResults(e)}
+            width={windowWidth > 600 ? '500px' : '85vw'}
+          />
         </div>
         <div className={`${className}__filters__selectors`}>
           <Filters
@@ -108,6 +116,7 @@ const Search = ({ className, id }) => {
             resetFilters={() => setFilters([])}
             removeFilter={(filter) => removeFilter(filter)}
             setFilter={(filter) => setFilters([...filters, filter])}
+            windowWidth={windowWidth}
           />
         </div>
       </div>

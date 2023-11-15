@@ -56,16 +56,26 @@
 // TODO add mobile page support
 @media only screen and (max-width: 600px) {
   .filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     &__open{
-
-    }
-    &__arrow {
-
+      width: 100vw;
+      height: 40px;
+      border: 0;
+      border-radius: 0;
     }
     &__filters {
-      &__button {
+      position: static;
+      border: 0;
+      gap: 4px;
+      align-items: column;
+      width: 100%;
+      background-color: $white;
+      & button {
+        z-index: 1;
         &:hover {
-
         }
       }
     }
