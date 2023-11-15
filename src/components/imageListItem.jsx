@@ -12,7 +12,9 @@ const ImageListItem = ({
   const openInfo = (e, opening) => {
     if (opening) {
       const windowWidth = window.innerWidth;
-      if (windowWidth >= 1300 && windowWidth - (windowWidth / 4 - 15) < e.clientX + 30) setLeft('-100%');
+      if (
+        windowWidth >= 1300
+        && windowWidth - (windowWidth / 4 - 15) < e.clientX + 30) setLeft('-100%');
       else if (
         windowWidth >= 800
         && windowWidth < 1300
@@ -40,13 +42,14 @@ const ImageListItem = ({
       <div
         className={`${className}__wrapper`}
         onClick={(e) => openInfo(e, true)}
-        onKeyDown={(e) => openInfo(e, true)}
         role="presentation"
+        aria-label="iconBtn"
       >
         <img className={`${className}__wrapper__img`} src={src} alt="icon" />
       </div>
       <div
         className={`${className}__info`}
+        id={`${id}__info`}
         style={open ? { display: 'grid', left } : { display: 'none' }}
       >
         <button
@@ -69,7 +72,7 @@ const ImageListItem = ({
 
 ImageListItem.propTypes = {
   className: propTypes.string,
-  id: propTypes.number,
+  id: propTypes.string,
   src: propTypes.string,
   title: propTypes.string,
   body: propTypes.string,

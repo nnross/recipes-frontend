@@ -1,24 +1,13 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import { render } from '@testing-library/react/';
+import { render, fireEvent } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import ImageListItem from '../../components/ImageListItem';
 
-const mockedUseNavigate = jest.fn();
-// mocks the useNavigate from react-router-dom
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUseNavigate,
-}));
-
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
-describe.skip('ImageListItem tests', () => {
+describe('ImageListItem tests', () => {
   describe('render tests', () => {
     test('successful render works', () => {
-      const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" />);
+      const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" itemId={2} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -26,47 +15,67 @@ describe.skip('ImageListItem tests', () => {
       expect(container.className).toBe('imageListItem');
 
       expect(component.getByText('test title')).not.toBeVisible();
-      expect(component.getByText('body')).not.toBeVisible();
+      expect(component.getByText('test body')).not.toBeVisible();
 
-      const image = component.container.querySelector('#test__image');
-      expect(image).not.toBeNull();
-      expect(image).toBeVisible();
+      expect(component.getByAltText('icon')).toBeVisible();
+      expect(component.getByRole('presentation', { name: 'iconBtn' })).toBeVisible();
 
-      expect(component.getByRole('button', { name: 'view full recipe' })).not.toBeVisible();
-      const closeButton = component.container.querySelector('#test__info__close');
-      expect(closeButton).not.toBeNull();
-      expect(closeButton).not.toBeVisible();
+      expect(component.getByRole('link', { name: 'view full recipe', hidden: true })).toHaveAttribute('href', '/recipe/2');
+      expect(component.getByRole('button', { name: 'view full recipe', hidden: true })).not.toBeVisible();
+
+      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
     });
   });
   describe('ImageListItem functions work', () => {
-    test('Info opens and closes and view full recipe works', async () => {
-      const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" itemId={4} />);
+    const widths = [[300, '0'], [700, '-100%'], [1000, '-100%'], [1400, '-100%']];
+    test.each(widths)('Info opens and closes and view full recipe works', (width, left) => {
+      global.innerWidth = width;
+      global.dispatchEvent(new Event('resize'));
+
+      const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" itemId={2} />);
 
       expect(component.getByText('test title')).not.toBeVisible();
-      expect(component.getByText('body')).not.toBeVisible();
-      expect(component.getByRole('button', { name: 'view full recipe' })).not.toBeVisible();
-      const closeButton = component.container.querySelector('#test__info__close');
-      expect(closeButton).not.toBeNull();
-      expect(closeButton).not.toBeVisible();
+      expect(component.getByText('test body')).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'view full recipe', hidden: true })).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
 
-      await userEvent.click(component.container.querySelector('#test__image'));
+      fireEvent.click(component.getByRole('presentation', { name: 'iconBtn' }), { clientX: width - 50 });
 
       expect(component.getByText('test title')).toBeVisible();
-      expect(component.getByText('body')).toBeVisible();
+      expect(component.getByText('test body')).toBeVisible();
       expect(component.getByRole('button', { name: 'view full recipe' })).toBeVisible();
-      expect(closeButton).toBeVisible();
+      expect(component.getByRole('button', { name: 'close' })).toBeVisible();
+      expect(component.container.querySelector('#test__info')).toHaveStyle(`left: ${left}`);
 
-      await userEvent.click(component.getByRole('button', { name: 'view full recipe' }));
-
-      expect(mockedUseNavigate.mock.calls).toHaveLength(1);
-      expect(mockedUseNavigate.mock.calls[0][0]).toBe(4);
-
-      await userEvent.click(closeButton);
+      fireEvent.click(component.getByRole('button', { name: 'close' }));
 
       expect(component.getByText('test title')).not.toBeVisible();
-      expect(component.getByText('body')).not.toBeVisible();
-      expect(component.getByRole('button', { name: 'view full recipe' })).not.toBeVisible();
-      expect(closeButton).not.toBeVisible();
+      expect(component.getByText('test body')).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'view full recipe', hidden: true })).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
+    });
+    test('Info works with open to right', () => {
+      const component = render(<ImageListItem id="test" src="test route" title="test title" body="test body" itemId={2} />);
+
+      expect(component.getByText('test title')).not.toBeVisible();
+      expect(component.getByText('test body')).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'view full recipe', hidden: true })).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
+
+      fireEvent.click(component.getByRole('presentation', { name: 'iconBtn' }));
+
+      expect(component.getByText('test title')).toBeVisible();
+      expect(component.getByText('test body')).toBeVisible();
+      expect(component.getByRole('button', { name: 'view full recipe' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'close' })).toBeVisible();
+      expect(component.container.querySelector('#test__info')).toHaveStyle('left: 100%');
+
+      fireEvent.click(component.getByRole('button', { name: 'close' }));
+
+      expect(component.getByText('test title')).not.toBeVisible();
+      expect(component.getByText('test body')).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'view full recipe', hidden: true })).not.toBeVisible();
+      expect(component.getByRole('button', { name: 'close', hidden: true })).not.toBeVisible();
     });
   });
 });
