@@ -1,16 +1,6 @@
 @import './results';
 @import './filters';
 
-.mockItem {
-  width: 100%;
-  &__img {
-    height: 100%;
-    width: 100%;
-    background-size: 100%;
-    object-fit: contain;
-  }
-}
-
 .search {
   display: flex;
   flex-direction: column;
@@ -62,5 +52,18 @@
     height: 50px;
     cursor: pointer;
     padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .search {
+    &__filters {
+    display: none;
+    }
+    &__results {
+      padding: 10px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 }

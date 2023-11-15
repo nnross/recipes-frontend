@@ -45,10 +45,12 @@ const Filter = ({
           borderBottom: '1px solid #1C5253',
           borderBottomRightRadius: '5px',
           borderBottomLeftRadius: '5px',
+          height: '33px',
         } : {
           borderBottom: '0px',
           borderBottomRightRadius: '0px',
           borderBottomLeftRadius: '0px',
+          height: '40px',
         }}
       >
         {title}
