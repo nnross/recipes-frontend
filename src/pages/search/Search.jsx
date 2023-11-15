@@ -98,6 +98,10 @@ const Search = ({ className, id }) => {
     setFilters(filters.filter((item) => item !== toRemove));
   };
 
+  const updateFilters = (filter) => {
+    if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
+  };
+
   return (
     <div className={className} id={id}>
       <div
@@ -115,7 +119,7 @@ const Search = ({ className, id }) => {
             selected={filters}
             resetFilters={() => setFilters([])}
             removeFilter={(filter) => removeFilter(filter)}
-            setFilter={(filter) => setFilters([...filters, filter])}
+            setFilter={(filter) => updateFilters(filter)}
             windowWidth={windowWidth}
           />
         </div>
