@@ -29,21 +29,21 @@ const Filter = ({
         id={`${id}__open`}
         onClick={filter ? () => setFilter(false) : () => setFilter(true)}
         type="button"
-        style={filter ? {
-          borderBottom: '0px',
-          borderBottomRightRadius: '0px',
-          borderBottomLeftRadius: '0px',
-          height: '40px',
-        } : {
+        style={!filter && window.innerWidth > 600 ? {
           borderBottom: '1px solid #1C5253',
           borderBottomRightRadius: '5px',
           borderBottomLeftRadius: '5px',
           height: '33px',
+        } : {
+          borderBottom: '0px',
+          borderBottomRightRadius: '0px',
+          borderBottomLeftRadius: '0px',
+          height: '40px',
         }}
       >
         {title}
       </button>
-      <div className={`${className}__arrow`} style={filter === null ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }} />
+      <div className={`${className}__arrow`} style={filter ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }} />
       {filter ? (
         <div className={`${className}__filters`} id={`${id}__filters`}>
           {buttons}

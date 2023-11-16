@@ -3,6 +3,10 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react/';
 import ImageListItem from '../../components/ImageListItem';
 
+afterEach(() => {
+  global.innerWidth = 1080;
+  global.dispatchEvent(new Event('resize'));
+});
 describe('ImageListItem tests', () => {
   describe('render tests', () => {
     test('successful render works', () => {

@@ -110,6 +110,7 @@ const Search = ({ className, id }) => {
         <div className={`${className}__filters__search`}>
           <InputField
             placeholder="Search"
+            id={`${id}__filters__search__container`}
             onSubmit={(e) => searchResults(e)}
             width={windowWidth > 600 ? '500px' : '85vw'}
           />

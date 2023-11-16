@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700067139291" clover="3.2.0">
-  <project timestamp="1700067139291" name="All files">
-    <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="22" methods="4" coveredmethods="4" elements="51" coveredelements="51" complexity="0" loc="25" ncloc="25" packages="1" files="1" classes="1"/>
-    <file name="imageListItem.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/imageListItem.jsx">
-      <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="22" methods="4" coveredmethods="4"/>
-      <line num="5" count="1" type="stmt"/>
-      <line num="8" count="16" type="stmt"/>
-      <line num="9" count="16" type="stmt"/>
-      <line num="10" count="16" type="stmt"/>
-      <line num="12" count="16" type="stmt"/>
-      <line num="13" count="10" type="cond" truecount="2" falsecount="0"/>
-      <line num="14" count="5" type="stmt"/>
-      <line num="15" count="5" type="cond" truecount="2" falsecount="0"/>
-      <line num="17" count="1" type="stmt"/>
-      <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
-      <line num="21" count="1" type="stmt"/>
-      <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="25" count="1" type="stmt"/>
-      <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="27" count="1" type="stmt"/>
-      <line num="28" count="1" type="stmt"/>
-      <line num="29" count="1" type="stmt"/>
-      <line num="30" count="5" type="stmt"/>
-      <line num="32" count="5" type="stmt"/>
-      <line num="33" count="5" type="stmt"/>
-      <line num="36" count="16" type="stmt"/>
-      <line num="44" count="5" type="stmt"/>
-      <line num="58" count="5" type="stmt"/>
-      <line num="73" count="1" type="stmt"/>
-      <line num="82" count="1" type="stmt"/>
+<coverage generated="1700135149445" clover="3.2.0">
+  <project timestamp="1700135149445" name="All files">
+    <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5" elements="21" coveredelements="21" complexity="0" loc="14" ncloc="14" packages="1" files="1" classes="1"/>
+    <file name="Header.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Header.jsx">
+      <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="15" count="8" type="stmt"/>
+      <line num="17" count="8" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="23" count="8" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="27" count="8" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="40" count="8" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="69" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
