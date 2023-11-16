@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import { useOutletContext } from 'react-router-dom';
-import InputField from '../../components/InputField';
+import SearchField from '../../components/SearchField';
 import Load from '../../components/Load';
 import Results from './Results';
 import getTokenAndId from '../../helpers/getTokenAndId';
@@ -108,7 +108,7 @@ const Search = ({ className, id }) => {
         className={`${className}__filters`}
       >
         <div className={`${className}__filters__search`}>
-          <InputField
+          <SearchField
             placeholder="Search"
             id={`${id}__filters__search__container`}
             onSubmit={(e) => searchResults(e)}

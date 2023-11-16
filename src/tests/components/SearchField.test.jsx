@@ -2,17 +2,17 @@ import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import InputField from '../../components/InputField';
+import SearchField from '../../components/SearchField';
 
-describe('InputField tests', () => {
-  describe('InputField renders', () => {
-    test('InputField renders correctly', () => {
-      const component = render(<InputField id="test" placeholder="testLabel" width="200px" height="40px" fontSize="20px" />);
+describe('SearchField tests', () => {
+  describe('SearchField renders', () => {
+    test('SearchField renders correctly', () => {
+      const component = render(<SearchField id="test" placeholder="testLabel" width="200px" height="40px" fontSize="20px" />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
-      expect(container.className).toBe('inputField');
+      expect(container.className).toBe('SearchField');
 
       expect(component.getByRole('button', { label: 'Submit' })).toBeVisible();
       expect(component.getByPlaceholderText('testLabel')).toBeVisible();
@@ -24,11 +24,11 @@ describe('InputField tests', () => {
       expect(container).toHaveStyle('height: 40px');
     });
   });
-  describe('InputField functions work', () => {
+  describe('SearchField functions work', () => {
     test('submit and onChange works', async () => {
       const mockSubmit = jest.fn((e) => e.preventDefault());
       const mockChange = jest.fn();
-      const component = render(<InputField id="test" placeholder="test" onSubmit={mockSubmit} onChange={mockChange} />);
+      const component = render(<SearchField id="test" placeholder="test" onSubmit={mockSubmit} onChange={mockChange} />);
 
       const input = component.getByPlaceholderText('test');
       await userEvent.type(input, 'test input');

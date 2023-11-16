@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import propTypes from 'prop-types';
 import Footer from './Footer';
 import Header from './Header';
+import Login from '../pages/login/Login';
 
 /**
  * Sets the header and footer to all pages automatically.
@@ -12,12 +13,24 @@ import Header from './Header';
  */
 const Layout = ({ className, id }) => {
   const [scroll, setScroll] = useState(0);
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScroll(window.scrollY);
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
   }, []);
+
+  const openLogin = () => {
+    if (login) {
+      setLogin(false);
+      document.body.style.overflow = 'scroll';
+      return;
+    }
+
+    setLogin(true);
+    document.body.style.overflow = 'hidden';
+  };
 
   return (
     <div className={className} id={id}>
@@ -26,8 +39,15 @@ const Layout = ({ className, id }) => {
         id={`${id}__header`}
         style={scroll > 0 ? { height: '90px' } : { height: '140px' }}
       >
-        <Header scroll={scroll} />
+        <Header scroll={scroll} openLogin={() => openLogin()} />
       </div>
+
+      {login ? (
+        <div className={`${className}__login`}>
+          <Login closeLogin={() => openLogin()} />
+        </div>
+      ) : (null)}
+
       <div className={`${className}__content`}>
         <Outlet context={scroll} />
       </div>
