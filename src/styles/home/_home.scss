@@ -37,6 +37,7 @@
 			text-decoration: none;
       align-self: center;
 			&__button{
+        cursor: pointer;
 				border: 2px solid $darkGreen;
 				height: 50px;
 				width: 200px;
@@ -56,7 +57,7 @@
 	}
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) and (min-width: 601px) {
   .home {
     &__info {
       padding-right: 64px;
@@ -92,22 +93,33 @@
 
 @media only screen and (max-width: 600px) {
   .home {
-    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: red;
+    display: grid;
+    grid-template-columns: auto, auto, 300px;
+    grid-template-rows: 100px, auto, 100px, 200px;
+    padding: 0;
     &__info {
-      padding-top: 0px;
-      padding-right: 0px;
+      grid-row: 1/2;
+      grid-column: 1/2;
+      background: orange;
+      padding: 0;
+      width: auto;
+      height: auto;
       &__titles {
         &__1 {
-          font-size: 40px;
+          font-size: 32px;
         }
         &__2 {
-          font-size: 40px;
+          font-size: 32px;
         }
         &__3 {
-          font-size: 40px;
+          font-size: 32px;
         }
       }
       &__text {
+        padding: 0;
         font-size: 16px;
         line-height: 25px;
         padding-bottom: 0px;
@@ -120,10 +132,13 @@
       }
     }
     &__img {
-      box-shadow: -40px 32px 0 $lightGreen;
-      width: 444px;
-      height: 544px;
+      grid-row: 3/4;
+      grid-column: 3/4;
+      background: pink;
+      box-shadow: -32px 25px 0 $lightGreen;
       z-index: 0;
+      width: 100%;
+      height: 100%;
     }
   }
 }
