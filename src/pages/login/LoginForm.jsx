@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import SearchField from '../../components/SearchField';
 
 const LoginForm = ({ className, id, switchView }) => (
   <div className={className} id={id}>
