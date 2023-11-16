@@ -14,7 +14,7 @@ describe('header tests', () => {
       expect(container).toBeVisible();
       expect(container.className).toBe('header');
 
-      expect(component.getByRole('button', { name: 'Log in' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'LOG IN' })).toBeVisible();
       expect(component.getByText('RecipeBuddy')).toBeVisible();
 
       const hamburger = component.container.querySelector('#test__nav__button');
@@ -28,7 +28,7 @@ describe('header tests', () => {
     test('nav bar renders succesfully when logged in', () => {
       const component = render(<Header id="test" loggedIn />);
 
-      expect(component.queryByRole('button', { name: 'log in' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'LOG IN' })).not.toBeInTheDocument();
     });
   });
   describe('functionality works', () => {
@@ -36,7 +36,7 @@ describe('header tests', () => {
       const mockOpen = jest.fn();
       const component = render(<Header id="test" openLogin={mockOpen} />);
 
-      const login = component.getByRole('button', { name: 'Log in' });
+      const login = component.getByRole('button', { name: 'LOG IN' });
       await userEvent.click(login);
 
       expect(mockOpen.mock.calls).toHaveLength(1);
@@ -54,7 +54,7 @@ describe('header tests', () => {
       const hamburger = component.container.querySelector('#test__nav__button');
       await userEvent.click(hamburger);
 
-      const logout = component.getByRole('button', { name: 'log out' });
+      const logout = component.getByRole('button', { name: 'LOG OUT' });
       await userEvent.click(logout);
 
       expect(window.localStorage.getItem('token')).toBeNull();
@@ -72,7 +72,7 @@ describe('header tests', () => {
       expect(component.getByRole('link', { name: 'personal' })).toBeVisible();
       expect(component.getByRole('link', { name: 'today\'s recipe' })).toBeVisible();
       expect(component.getByRole('link', { name: 'settings' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'log out' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'LOG OUT' })).toBeVisible();
       expect(component.getByRole('button', { name: 'close' })).toBeVisible();
 
       expect(component.getByRole('link', { name: 'search' })).toHaveAttribute('href', '/search');
@@ -89,7 +89,7 @@ describe('header tests', () => {
       expect(component.queryByRole('link', { name: 'personal' })).not.toBeInTheDocument();
       expect(component.queryByRole('link', { name: 'today\'s recipe' })).not.toBeInTheDocument();
       expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
-      expect(component.queryByRole('button', { name: 'log out' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'LOG OUT' })).not.toBeInTheDocument();
       expect(component.queryByRole('button', { name: 'close' })).not.toBeInTheDocument();
     });
   });

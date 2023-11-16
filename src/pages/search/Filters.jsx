@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Filter from '../../components/filter';
 
@@ -13,9 +13,10 @@ import Filter from '../../components/filter';
  * @returns Filters component for search page.
  */
 const Filters = ({
-  className, id, resetFilters, selected, removeFilter, setFilter,
+  className, id, resetFilters, selected, removeFilter, setFilter, windowWidth,
 }) => {
   const selectedFilters = [];
+  const [open, setOpen] = useState(false);
 
   selected.map((filter) => selectedFilters.push(
     <div className={`${className}__selected__item`} key={filter}>
@@ -31,7 +32,28 @@ const Filters = ({
 
   return (
     <div className={className} id={id}>
-      <div className={`${className}__selectors`}>
+      { windowWidth > 600 ? (null) : (
+        <button
+          className={`${className}__open`}
+          type="button"
+          onClick={() => setOpen(true)}
+        >
+          open filters
+        </button>
+      )}
+      <div
+        className={`${className}__selectors`}
+        style={windowWidth > 600 || open ? { display: 'flex' } : { display: 'none' }}
+      >
+        { windowWidth > 600 ? (null) : (
+          <button
+            className={`${className}__selectors__close`}
+            type="button"
+            onClick={() => setOpen(false)}
+          >
+            close filters
+          </button>
+        )}
         <Filter title="sort" filters={['date ascending', 'date descending']} selectFilter={setFilter} />
         <Filter title="ingredients" filters={['beef', 'chicken', 'tofu']} selectFilter={setFilter} />
         <Filter title="cuisine" filters={['italian', 'asian']} selectFilter={setFilter} />
@@ -65,6 +87,7 @@ Filters.propTypes = {
   selected: propTypes.arrayOf(propTypes.string),
   removeFilter: propTypes.func,
   setFilter: propTypes.func,
+  windowWidth: propTypes.number,
 };
 
 Filters.defaultProps = {
@@ -74,4 +97,5 @@ Filters.defaultProps = {
   selected: [],
   removeFilter: null,
   setFilter: null,
+  windowWidth: 0,
 };

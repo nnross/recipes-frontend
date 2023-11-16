@@ -25,9 +25,13 @@ const Search = ({ className, id }) => {
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const scroll = useOutletContext();
   const page = useRef(0);
 
+  window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+
+  // TODO: DOBUMENTATION
   useEffect(() => {
     const storage = getTokenAndId();
     setToken(storage.token); setAccountId(storage.accountId);
@@ -94,20 +98,30 @@ const Search = ({ className, id }) => {
     setFilters(filters.filter((item) => item !== toRemove));
   };
 
+  const updateFilters = (filter) => {
+    if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
+  };
+
   return (
     <div className={className} id={id}>
       <div
         className={`${className}__filters`}
       >
         <div className={`${className}__filters__search`}>
-          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+          <InputField
+            placeholder="Search"
+            id={`${id}__filters__search__container`}
+            onSubmit={(e) => searchResults(e)}
+            width={windowWidth > 600 ? '500px' : '85vw'}
+          />
         </div>
         <div className={`${className}__filters__selectors`}>
           <Filters
             selected={filters}
             resetFilters={() => setFilters([])}
             removeFilter={(filter) => removeFilter(filter)}
-            setFilter={(filter) => setFilters([...filters, filter])}
+            setFilter={(filter) => updateFilters(filter)}
+            windowWidth={windowWidth}
           />
         </div>
       </div>
