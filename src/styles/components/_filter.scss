@@ -33,7 +33,7 @@
   &__filters {
     border: 1px solid $darkGreen;
     position: absolute;
-    top: 32px;
+    top: 39px;
     z-index: -1;
     align-items: column;
     width: 140px;
@@ -56,16 +56,31 @@
 // TODO add mobile page support
 @media only screen and (max-width: 600px) {
   .filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
     &__open{
-
+      width: 100vw;
+      height: 40px;
+      border: 0;
+      border-radius: 0;
+      z-index: 0;
+      border: 0;
     }
     &__arrow {
-
+      z-index: 1;
     }
     &__filters {
-      &__button {
+      position: static;
+      border: 0;
+      gap: 4px;
+      align-items: column;
+      width: 100%;
+      background-color: $white;
+      & button {
+        z-index: 1;
         &:hover {
-
         }
       }
     }

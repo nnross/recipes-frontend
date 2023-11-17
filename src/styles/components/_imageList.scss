@@ -3,15 +3,22 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, calc(100% / 4 - 15px));
-  grid-gap: 1rem;
+  grid-gap: 1em;
   justify-content: space-between;
   list-style-type: none;
   box-sizing: border-box;
   padding: 0;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1300px) and (min-width: 800px) {
   .imageList {
     grid-template-columns: repeat(auto-fill, calc(100% / 3 - 15px));
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .imageList {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
