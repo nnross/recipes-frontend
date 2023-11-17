@@ -18,6 +18,7 @@ const Results = ({
 }) => {
   let msg;
 
+  // sets message based on state. if more results, and if an error occurred / is still loading.
   if (moreResults) msg = (<button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>);
   else msg = (<div className={`${className}__noResults`}> no more results </div>);
 

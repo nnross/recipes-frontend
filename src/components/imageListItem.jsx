@@ -9,9 +9,15 @@ const ImageListItem = ({
   const [left, setLeft] = useState(null);
   const [width, setWidth] = useState(null);
 
+  /**
+   * Calculates the direction of the popup and sets it visible
+   * @param {*} e - on click event of call.
+   * @param {Boolean} opening - direction of function true if being opened, false otherwise.
+   */
   const openInfo = (e, opening) => {
     if (opening) {
       const windowWidth = window.innerWidth;
+      // all ifs check the window size and if the far right item was clicked.
       if (
         windowWidth >= 1300
         && windowWidth - (windowWidth / 4 - 15) < e.clientX + 30) setLeft('-100%');
