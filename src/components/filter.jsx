@@ -43,7 +43,7 @@ const Filter = ({
       >
         {title}
       </button>
-      <div className={`${className}__arrow`} style={filter ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }} />
+      <div className={`${className}__arrow`} style={filter ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' }} />
       {filter ? (
         <div className={`${className}__filters`} id={`${id}__filters`}>
           {buttons}
