@@ -31,7 +31,9 @@ const Search = ({ className, id }) => {
 
   window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
 
-  // TODO: DOBUMENTATION
+  /**
+   * UseEffect to get token and id from storage and also to load initial data.
+   */
   useEffect(() => {
     const storage = getTokenAndId();
     setToken(storage.token); setAccountId(storage.accountId);
@@ -47,10 +49,18 @@ const Search = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Updates the list of items
+   * @param {List<String>} newItems - list of new items
+   */
   const updateItems = (newItems) => {
     setItems([...items, ...newItems]);
   };
 
+  /**
+   * Searches new results from the form call that is made.
+   * @param {*} e - event called with
+   */
   const searchResults = (e) => {
     setLoading(1);
     e.preventDefault();
@@ -73,6 +83,9 @@ const Search = ({ className, id }) => {
     });
   };
 
+  /**
+   * Loads more results with current filters.
+   */
   const loadMore = () => {
     setLoading(2);
     UseSearch(
@@ -87,6 +100,9 @@ const Search = ({ className, id }) => {
     );
   };
 
+  /**
+   * Scrolls back to top
+   */
   const backToTop = () => {
     window.scrollTo({
       top: 0,
@@ -94,10 +110,18 @@ const Search = ({ className, id }) => {
     });
   };
 
+  /**
+   * Removes singular filer
+   * @param {String} toRemove - the filter to be removed.
+   */
   const removeFilter = (toRemove) => {
     setFilters(filters.filter((item) => item !== toRemove));
   };
 
+  /**
+   * updates filters, checks if a filter with same name is already present and skips if true.
+   * @param {String} filter - filter to be added.
+   */
   const updateFilters = (filter) => {
     if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
   };

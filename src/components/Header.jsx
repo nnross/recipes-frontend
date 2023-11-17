@@ -14,20 +14,22 @@ const Header = ({
 }) => {
   const [nav, setNav] = useState(null);
 
+  /**
+   * Function to log out of the application. Done by removing the token and id from account.
+   */
   const logOut = () => {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('accountId');
     window.location.reload();
   };
 
-  const closeNav = () => {
-    setNav(null);
-  };
-
+  /**
+   * Opens the nav by setting it to the state.
+   */
   const openNav = () => {
     setNav(
       <nav className={`${className}__nav__sidebar`} id={`${id}__nav__sidebar`}>
-        <button className={`${className}__nav__sidebar__close`} id={`${id}__nav__sidebar__close`} onClick={closeNav} type="button" aria-label="close" />
+        <button className={`${className}__nav__sidebar__close`} id={`${id}__nav__sidebar__close`} onClick={() => setNav(null)} type="button" aria-label="close" />
         <a className={`${className}__nav__sidebar__home`} href="/home"> home </a>
         <a className={`${className}__nav__sidebar__search`} href="/search"> search </a>
         <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
