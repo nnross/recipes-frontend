@@ -96,9 +96,6 @@
     height: 100%;
     width: 100%;
     background: red;
-    display: grid;
-    grid-template-columns: auto, auto, 300px;
-    grid-template-rows: 100px, auto, 100px, 200px;
     padding: 0;
     &__info {
       grid-row: 1/2;
@@ -132,8 +129,6 @@
       }
     }
     &__img {
-      grid-row: 3/4;
-      grid-column: 3/4;
       background: pink;
       box-shadow: -32px 25px 0 $lightGreen;
       z-index: 0;

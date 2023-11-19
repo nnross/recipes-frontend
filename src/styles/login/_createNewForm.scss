@@ -1,0 +1,90 @@
+
+.createNewForm {
+  background: $dirtyWhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__title {
+    height: 50px;
+    padding: 10px 0px 0px 10px;
+    box-sizing: border-box;
+  }
+  &__form {
+    transition: all 0.5s;
+    display: flex;
+    padding: 20px 0px 20px 0;
+    gap: 20px;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    & input {
+      width: 280px;
+      height: 35px;
+      border: 2px solid $darkGreen;
+      border-radius: 5px;
+      text-indent: 6px;
+      &::placeholder {
+          font-size: 20px;
+      }
+      &:focus {
+          outline: none;
+      }
+    }
+
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      vertical-align: top;
+    }
+
+    &__username, &__confirmPassword {
+      &__text {
+        margin: 2px;
+        text-align: center;
+      }
+    }
+    &__password {
+      &__list {
+        margin: 0;
+        text-align: center;
+        padding: 0;
+        & li {
+          text-align: left;
+          list-style-type: '-';
+          margin-left: 45px;
+          padding-left: 2px;
+        }
+      }
+    }
+  }
+  &__error {
+    text-align: center;
+    color: $red;
+  }
+  &__create {
+    cursor: pointer;
+    height: 30px;
+    width: 150px;
+    margin: 10px 0 10px 0;
+    align-self: center;
+    border: 2px solid $darkGreen;
+    border-radius: 5px;
+    background: transparent;
+    transition: all 0.3s;
+    &:hover {
+        background: $lightGreen;
+    }
+  }
+  &__switch {
+    align-self: center;
+    &__btn {
+      font-size: 13px;
+      color: $link;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+  }
+}

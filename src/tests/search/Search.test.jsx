@@ -11,7 +11,7 @@ import { UseSearch } from '../../pages/search/searchHooks';
 
 jest.mock('../../pages/search/Filters');
 jest.mock('../../pages/search/Results');
-jest.mock('../../components/InputField');
+jest.mock('../../components/SearchField');
 
 const scrollToMock = jest.fn();
 global.scrollTo = scrollToMock;
@@ -84,6 +84,19 @@ describe('Search tests', () => {
         expect(component.getByText('an error occurred')).toBeVisible();
       });
     });
+    test('search page with smaller screen works', async () => {
+      global.innerWidth = 300;
+      global.dispatchEvent(new Event('resize'));
+
+      getSomeRecipes.mockImplementation(getSomeRejectMock);
+      const component = render(<Search id="test" />);
+
+      await waitFor(() => {
+        const container = component.container.querySelector('#test__filters__search__container');
+        expect(container).toBeVisible();
+        expect(container).toHaveStyle('width: 85vw');
+      });
+    });
     test('back to search displays when scrolling down', async () => {
       useOutletContext.mockImplementation(() => 220);
       const component = render(<Search id="test" />);
@@ -92,12 +105,14 @@ describe('Search tests', () => {
         expect(component.getByLabelText('top')).toBeVisible();
       });
     });
-    test('when loading displays loading icons', () => {
+    test('when loading displays loading icons', async () => {
       const component = render(<Search id="test" />);
 
-      const loading = component.container.querySelector('#loading');
-      expect(loading).not.toBeNull();
-      expect(loading).toBeVisible();
+      await waitFor(() => {
+        const loading = component.container.querySelector('#loading');
+        expect(loading).not.toBeNull();
+        expect(loading).toBeVisible();
+      });
     });
   });
   describe('functionality works', () => {
@@ -279,6 +294,19 @@ describe('Search tests', () => {
 
       await userEvent.click(component.getByRole('button', { name: 'remove' }));
       expect(component.queryByText('addition')).not.toBeInTheDocument();
+    });
+    test('add filter twice adds only once works', async () => {
+      const component = render(<Search id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByRole('button', { name: 'add' })).toBeVisible();
+      });
+
+      await userEvent.click(component.getByRole('button', { name: 'add' }));
+      expect(component.getByText('addition')).toBeVisible();
+
+      await userEvent.click(component.getByRole('button', { name: 'add' }));
+      expect(component.getAllByText('addition')).toHaveLength(1);
     });
   });
 });
