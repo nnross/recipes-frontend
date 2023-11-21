@@ -11,7 +11,7 @@ import { UseSearch } from '../../pages/search/searchHooks';
 
 jest.mock('../../pages/search/Filters');
 jest.mock('../../pages/search/Results');
-jest.mock('../../components/InputField');
+jest.mock('../../components/SearchField');
 
 const scrollToMock = jest.fn();
 global.scrollTo = scrollToMock;

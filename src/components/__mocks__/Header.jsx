@@ -9,6 +9,7 @@ const Header = ({
     <h4 className={`${className}__title`} id={`${id}__title`}>
       RecipeBuddy
     </h4>
+    <button onClick={openLogin} type="button"> open login </button>
   </header>
 );
 

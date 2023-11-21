@@ -3,6 +3,7 @@
 @import './components/components';
 @import './home/home';
 @import './search/search';
+@import './login/login';
 
 html,body {
   margin:0;
@@ -103,6 +104,17 @@ button {
     top: 0;
     z-index: 1;
     transition: all 0.3s;
+  }
+  &__login {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: $dim;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &__content {
     height: 100%;
