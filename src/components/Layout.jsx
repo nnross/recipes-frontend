@@ -12,7 +12,10 @@ import Header from './Header';
  */
 const Layout = ({ className, id }) => {
   const [scroll, setScroll] = useState(0);
+  const [login, setLogin] = useState(null);
   const [loggedIn, setLoggedIn] = useState(null);
+  const [accountId, setAccountId] = useState();
+  const [token, setToken] = useState();
 
   /**
    * UseEffect to add the scroll eventListener and get the state.
@@ -23,8 +26,21 @@ const Layout = ({ className, id }) => {
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
 
+    setAccountId(window.localStorage.getItem('accountId'));
+    setToken(window.localStorage.getItem('token'));
     setLoggedIn(window.localStorage.getItem('token') == null);
   }, []);
+
+  const openLogin = () => {
+    if (login) {
+      setLogin(false);
+      document.body.style.overflow = 'scroll';
+      return;
+    }
+
+    setLogin(true);
+    document.body.style.overflow = 'hidden';
+  };
 
   return (
     <div className={className} id={id}>
@@ -33,10 +49,10 @@ const Layout = ({ className, id }) => {
         id={`${id}__header`}
         style={scroll > 0 ? { height: '90px' } : { height: '140px' }}
       >
-        <Header scroll={scroll} loggedIn={loggedIn} />
+        <Header scroll={scroll} openLogin={() => openLogin()} loggedIn={loggedIn} />
       </div>
       <div className={`${className}__content`}>
-        <Outlet context={scroll} />
+        <Outlet context={[scroll, token, accountId, loggedIn]} />
       </div>
       <div className={`${className}__footer`}>
         <Footer />
