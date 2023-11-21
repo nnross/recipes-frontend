@@ -14,11 +14,18 @@ import Login from '../pages/login/Login';
 const Layout = ({ className, id }) => {
   const [scroll, setScroll] = useState(0);
   const [login, setLogin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
 
+  /**
+   * UseEffect to add the scroll eventListener and get the state.
+   * Also gets if user is logged in or not.
+   */
   useEffect(() => {
     const onScroll = () => setScroll(window.scrollY);
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
+
+    setLoggedIn(window.localStorage.getItem('token') == null);
   }, []);
 
   const openLogin = () => {
@@ -39,7 +46,7 @@ const Layout = ({ className, id }) => {
         id={`${id}__header`}
         style={scroll > 0 ? { height: '90px' } : { height: '140px' }}
       >
-        <Header scroll={scroll} openLogin={() => openLogin()} />
+        <Header scroll={scroll} openLogin={() => openLogin()} loggedIn={loggedIn} />
       </div>
 
       {login ? (
