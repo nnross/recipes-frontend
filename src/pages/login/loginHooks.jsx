@@ -5,9 +5,10 @@ import loginService from '../../services/loginService';
 // TODO: preprocessing for actual call
 export const UseLogin = (username, password, setLoading, setError) => {
   loginService.getAccount(username, password)
-    .then(() => {
+    .then((res) => {
       setLoading(0);
-      console.log(`${username} and ${password}`);
+      window.localStorage.setItem('token', res.token);
+      window.localStorage.setItem('accountId', res.id);
     })
     .catch((exception) => {
       if (exception.response.status === 403) {
@@ -19,11 +20,13 @@ export const UseLogin = (username, password, setLoading, setError) => {
     });
 };
 
+// todo preprocessing for actual call
 export const UseCreateAccount = (name, email, username, password, confirm, setLoading, setError) => {
-  loginService.getAccount(username, password)
-    .then(() => {
+  loginService.createAccount(name, email, username, password)
+    .then((res) => {
       setLoading(0);
-      console.log(`${name}, ${email}, ${username}, ${password}, ${confirm}`);
+      window.localStorage.setItem('token', res.token);
+      window.localStorage.setItem('accountId', res.id);
     })
     .catch(() => {
       setError('An error has occurred');

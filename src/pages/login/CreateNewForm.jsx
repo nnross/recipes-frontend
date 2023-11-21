@@ -16,7 +16,7 @@ const CreateNewForm = ({
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongConfirmPassword, setWrongConfirmPassword] = useState(false);
 
-  const usernameRegex = /^(?=.{4,20})$/;
+  const usernameRegex = /^(?=.{4,20})/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
   useEffect(() => {

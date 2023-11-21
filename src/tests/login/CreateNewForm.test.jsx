@@ -7,50 +7,79 @@ import CreateNewForm from '../../pages/login/CreateNewForm';
 describe('CreateNewForm tests', () => {
   describe('CreateNewForm renders', () => {
     test('successful render works', () => {
-      const component = render(<CreateNewForm id="test" open />);
+      const component = render(<CreateNewForm id="test" />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
-      expect(container.className).toBe('createNew');
+      expect(container.className).toBe('createNewForm');
 
-      expect(component.getByText('Create New')).toBeVisible();
-      expect(component.getByRole('button', { name: 'Create' })).toBeVisible();
+      expect(component.getByText('Create new')).toBeVisible();
+      expect(component.getByRole('button', { name: 'Create account' })).toBeVisible();
 
-      expect(component.getByPlaceholder('name')).toBeVisible();
-      expect(component.getByPlaceholder('username')).toBeVisible();
-      expect(component.getByPlaceholder('email')).toBeVisible();
-      expect(component.getByPlaceholder('password')).toBeVisible();
-      expect(component.getByPlaceholder('confirm password')).toBeVisible();
+      expect(component.getByPlaceholderText('name')).toBeVisible();
+      expect(component.getByPlaceholderText('username')).toBeVisible();
+      expect(component.getByPlaceholderText('e-mail')).toBeVisible();
+      expect(component.getByPlaceholderText('password')).toBeVisible();
+      expect(component.getByPlaceholderText('confirm password')).toBeVisible();
 
-      expect(component.getByText('already have an account?')).toBeVisible();
-      expect(component.getByRole('button', { name: 'Login.' })).toBeVisible();
+      expect(component.getByText('Already have an account?')).toBeVisible();
+      expect(component.getByRole('button', { name: 'Log in.' })).toBeVisible();
 
       expect(component.queryByText('Login')).not.toBeInTheDocument();
+      expect(component.getByRole('button', { name: 'Create account' })).toBeDisabled();
     });
-    test('successful inividble render works', () => {
-      const component = render(<CreateNewForm id="test" open={false} />);
+    test('loading renders', () => {
+      const component = render(<CreateNewForm id="test" loading={2} />);
 
-      const container = component.container.querySelector('#test');
-      expect(container).not.toBeNull();
-      expect(container).not.toBeVisible();
+      expect(component.getByText('loading')).toBeVisible();
     });
   });
   describe('function calls work', () => {
-    test('on login works', async () => {
-      const mockLogin = jest.fn();
-      const component = render(<CreateNewForm id="test" open onCreate={mockLogin} />);
+    test('on create works', async () => {
+      const mockCreate = jest.fn((e) => {
+        e.preventDefault();
+        expect(e.target.elements[0].value).toBe('test name');
+        expect(e.target.elements[1].value).toBe('test email');
+        expect(e.target.elements[2].value).toBe('test username');
+        expect(e.target.elements[3].value).toBe('testPass123!');
+      });
+      const component = render(<CreateNewForm id="test" handleCreate={mockCreate} />);
 
-      await userEvent.type(component.getByPlaceholder('username'), 'test username');
-      await userEvent.type(component.getByPlaceholder('password'), 'test pass');
-      await userEvent.type(component.getByPlaceholder('name'), 'test name');
-      await userEvent.type(component.getByPlaceholder('email'), 'test email');
-      await userEvent.type(component.getByPlaceholder('confirm pass'), 'test pass');
+      await userEvent.type(component.getByPlaceholderText('username'), 'test username');
+      await userEvent.type(component.getByPlaceholderText('password'), 'testPass123!');
+      await userEvent.type(component.getByPlaceholderText('name'), 'test name');
+      await userEvent.type(component.getByPlaceholderText('e-mail'), 'test email');
+      await userEvent.type(component.getByPlaceholderText('confirm password'), 'testPass123!');
 
-      await userEvent.click(component.getByRole('button', { name: 'Create new' }));
+      await userEvent.click(component.getByRole('button', { name: 'Create account' }));
 
-      expect(mockLogin.mock.calls).toHaveLength(1);
-      expect(mockLogin.mock.calls[0][0]).toBe(['test name', 'test username', 'test email', 'test pass']);
+      expect(mockCreate.mock.calls).toHaveLength(1);
+    });
+    test('error when not same passwords', async () => {
+      const component = render(<CreateNewForm id="test" />);
+
+      await userEvent.type(component.getByPlaceholderText('password'), 'test pass');
+      await userEvent.type(component.getByPlaceholderText('confirm password'), 'test password');
+
+      expect(component.getByRole('button', { name: 'Create account' })).toBeDisabled();
+      expect(component.getByText('passwords do not match')).toBeVisible();
+    });
+    test('error when password is not valid', async () => {
+      const component = render(<CreateNewForm id="test" />);
+
+      await userEvent.type(component.getByPlaceholderText('password'), 'pass');
+
+      expect(component.getByRole('button', { name: 'Create account' })).toBeDisabled();
+      expect(component.getByText('password must include the following:')).toBeVisible();
+    });
+    test('error when username is not valid', async () => {
+      const component = render(<CreateNewForm id="test" />);
+
+      await userEvent.type(component.getByPlaceholderText('username'), 'a');
+
+      expect(component.getByRole('button', { name: 'Create account' })).toBeDisabled();
+      expect(component.getByText('username needs to be atleast 4 characters long')).toBeVisible();
     });
   });
 });
