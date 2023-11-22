@@ -1,0 +1,108 @@
+@import './recipeButtons';
+
+.recipe {
+    display: grid;
+    grid-template-columns: auto 200px 50px 350px 250px auto;
+    grid-template-rows: 80px 120px 50px 50px 200px;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 50px;
+    &__background {
+        background: $lightGreen;
+        grid-column: 3 / 6;
+        grid-row: 1 / 6;
+        height: 100%;
+        width: 100%;
+    }
+    &__wrapper {
+      grid-column: 2 / 4;
+      grid-row: 1 / 5;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__img {
+        width: 100%;
+        background-size: 100%;
+      }
+      &__load {
+        grid-column: 2 / 3;
+        grid-row: 1 / 5;
+        height: 160px;
+        align-self: center;
+        padding-right: 10px;
+      }
+    }
+    &__load {
+      grid-column: 2 / 4;
+      grid-row: 2 / 4;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+    &__title {
+        grid-column: 4;
+        grid-row: 1;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+    }
+    &__body {
+        grid-column: 4;
+        grid-row: 2;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        &__text {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+    }
+    &__stats {
+        grid-column: 4;
+        grid-row: 3;
+        height: 100%;
+        width: 100%;
+    }
+    &__instructions {
+        grid-column: 4;
+        grid-row: 4 / 6;
+        height: 100%;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    &__labels {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: 30%;
+        grid-column: 5;
+        grid-row: 1;
+        height: 100%;
+        width: 100%;
+    }
+    &__ingredients {
+        padding-top: 10px;
+        padding-left: 10px;
+        grid-column: 5;
+        grid-row: 2 / 5;
+        height: 100%;
+        width: 100%;
+    }
+    &__buttons {
+      grid-column: 5;
+      grid-row: 5;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      box-sizing: border-box;
+      padding-left: 15px;
+    }
+}

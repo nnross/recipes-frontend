@@ -26,7 +26,7 @@ const Search = ({ className, id }) => {
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const scroll = useOutletContext();
+  const scroll = useOutletContext()[0];
   const page = useRef(0);
 
   window.addEventListener('resize', () => setWindowWidth(window.innerWidth));

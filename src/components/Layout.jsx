@@ -15,6 +15,8 @@ const Layout = ({ className, id }) => {
   const [scroll, setScroll] = useState(0);
   const [login, setLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(null);
+  const [accountId, setAccountId] = useState();
+  const [token, setToken] = useState();
 
   /**
    * UseEffect to add the scroll eventListener and get the state.
@@ -25,6 +27,8 @@ const Layout = ({ className, id }) => {
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
 
+    setAccountId(window.localStorage.getItem('accountId'));
+    setToken(window.localStorage.getItem('token'));
     setLoggedIn(window.localStorage.getItem('token') == null);
   }, []);
 
@@ -56,7 +60,7 @@ const Layout = ({ className, id }) => {
       ) : (null)}
 
       <div className={`${className}__content`}>
-        <Outlet context={scroll} />
+        <Outlet context={[scroll, token, accountId, loggedIn]} />
       </div>
       <div className={`${className}__footer`}>
         <Footer />

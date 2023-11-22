@@ -1,0 +1,45 @@
+.label {
+  display: flex;
+  &__vegan {
+    background-image: url('../assets/vegan.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__vegetarian {
+    background-image: url('../assets/vegetarian.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__glutenfree {
+    background-image: url('../assets/glutenfree.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__pescetarian {
+    background-image: url('../assets/pescetarian.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__dairyfree {
+    background-image: url('../assets/dairyfree.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__eggfree {
+    background-image: url('../assets/eggfree.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+  &__nutfree {
+    background-image: url('../assets/nutfree.svg');
+    background-size: 100%;
+    height: 60px;
+    width: 60px;
+  }
+}

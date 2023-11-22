@@ -1,0 +1,10 @@
+.ingredients {
+  &__body {
+    &__item {
+      &__1 {
+        color: $darkGreen;
+        padding-right: 4px;
+      }
+    }
+  }
+}
