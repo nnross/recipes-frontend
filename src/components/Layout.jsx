@@ -29,7 +29,7 @@ const Layout = ({ className, id }) => {
 
     setAccountId(window.localStorage.getItem('accountId'));
     setToken(window.localStorage.getItem('token'));
-    setLoggedIn(window.localStorage.getItem('token') == null);
+    setLoggedIn(window.localStorage.getItem('token') != null);
   }, []);
 
   const openLogin = () => {
