@@ -26,7 +26,7 @@ const App = () => (
         <Route exact path="/" element={<Home />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/recipe/:recipeId" element={<Recipe />} />
-        <Route exact path="/today" element={<Today />} />
+        <Route exact path="/today/:date" element={<Today />} />
         <Route exact path="/personal" element={<Personal />} />
         <Route exact path="/settings" element={<Settings />} />
       </Route>
