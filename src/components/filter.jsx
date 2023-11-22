@@ -16,45 +16,39 @@ import propTypes from 'prop-types';
 const Filter = ({
   className, id, filters, title, selectFilter,
 }) => {
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState(false);
   const buttons = [];
   filters.map((item) => buttons.push(
-    <button className={`${className}__filters__button`} onClick={() => { selectFilter(`${title}-${item}`); }} type="button">{item}</button>,
+    <button className={`${className}__filters__button`} onClick={() => selectFilter(`${title}-${item}`)} type="button">{item}</button>,
   ));
-  const toggleFilter = () => {
-    if (filter === null) {
-      setFilter(
-        <div className={`${className}__filters`} id={`${id}__filters`}>
-          {buttons}
-        </div>,
-      );
-    }
-    if (filter != null) {
-      setFilter(null);
-    }
-  };
 
   return (
     <div className={className} id={id}>
       <button
         className={`${className}__open`}
         id={`${id}__open`}
-        onClick={toggleFilter}
+        onClick={filter ? () => setFilter(false) : () => setFilter(true)}
         type="button"
-        style={filter === null ? {
+        style={!filter && window.innerWidth > 600 ? {
           borderBottom: '1px solid #1C5253',
           borderBottomRightRadius: '5px',
           borderBottomLeftRadius: '5px',
+          height: '33px',
         } : {
           borderBottom: '0px',
           borderBottomRightRadius: '0px',
           borderBottomLeftRadius: '0px',
+          height: '40px',
         }}
       >
         {title}
       </button>
-      <div className={`${className}__arrow`} style={filter === null ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }} />
-      {filter}
+      <div className={`${className}__arrow`} style={filter ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' }} />
+      {filter ? (
+        <div className={`${className}__filters`} id={`${id}__filters`}>
+          {buttons}
+        </div>
+      ) : (null)}
     </div>
   );
 };

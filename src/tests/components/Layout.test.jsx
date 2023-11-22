@@ -1,8 +1,13 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent } from '@testing-library/react/';
 import { BrowserRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Layout from '../../components/Layout';
+
+jest.mock('../../components/Header');
+jest.mock('../../components/Footer');
+jest.mock('../../pages/login/Login');
 
 describe('Layout tests', () => {
   test('Layout renders', () => {
@@ -33,5 +38,21 @@ describe('Layout tests', () => {
     fireEvent.scroll(window, { target: { scrollY: 1000 } });
 
     expect(header).toHaveStyle('height: 90px');
+  });
+  test('Layout login works', async () => {
+    const component = render(
+      <BrowserRouter>
+        <Layout id="test" />
+      </BrowserRouter>,
+    );
+
+    expect(component.queryByRole('Login')).not.toBeInTheDocument();
+
+    await userEvent.click(component.getByRole('button', { name: 'open login' }));
+    expect(component.getByText('Login')).toBeVisible();
+
+    await userEvent.click(component.getByRole('button', { name: 'close login' }));
+
+    expect(component.queryByRole('Login')).not.toBeInTheDocument();
   });
 });

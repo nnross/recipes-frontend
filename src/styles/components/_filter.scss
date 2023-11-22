@@ -4,10 +4,12 @@
   z-index: 1;
   &__open {
     cursor: pointer;
-    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 5px;
     background-color: $white;
     border: none;
-    padding: 5px;
     padding-right: 30px;
     height: 33px;
     width: 100%;
@@ -33,7 +35,7 @@
   &__filters {
     border: 1px solid $darkGreen;
     position: absolute;
-    top: 32px;
+    top: 39px;
     z-index: -1;
     align-items: column;
     width: 140px;
@@ -56,16 +58,35 @@
 // TODO add mobile page support
 @media only screen and (max-width: 600px) {
   .filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
     &__open{
+      width: 100vw;
+      height: 40px;
+      border: 0;
+      border-radius: 0;
+      z-index: 0;
+      border: 0;
 
+      display: flex;
+      align-items: center;
     }
     &__arrow {
-
+      z-index: 1;
+      top: 5px;
     }
     &__filters {
-      &__button {
+      position: static;
+      border: 0;
+      gap: 4px;
+      align-items: column;
+      width: 100%;
+      background-color: $white;
+      & button {
+        z-index: 1;
         &:hover {
-
         }
       }
     }

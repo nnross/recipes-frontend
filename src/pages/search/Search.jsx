@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import { useOutletContext } from 'react-router-dom';
-import InputField from '../../components/InputField';
+import SearchField from '../../components/SearchField';
 import Load from '../../components/Load';
 import Results from './Results';
 import getTokenAndId from '../../helpers/getTokenAndId';
@@ -25,9 +25,15 @@ const Search = ({ className, id }) => {
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
-  const scroll = useOutletContext();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const scroll = useOutletContext()[0];
   const page = useRef(0);
 
+  window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+
+  /**
+   * UseEffect to get token and id from storage and also to load initial data.
+   */
   useEffect(() => {
     const storage = getTokenAndId();
     setToken(storage.token); setAccountId(storage.accountId);
@@ -43,10 +49,18 @@ const Search = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Updates the list of items
+   * @param {List<String>} newItems - list of new items
+   */
   const updateItems = (newItems) => {
     setItems([...items, ...newItems]);
   };
 
+  /**
+   * Searches new results from the form call that is made.
+   * @param {*} e - event called with
+   */
   const searchResults = (e) => {
     setLoading(1);
     e.preventDefault();
@@ -69,6 +83,9 @@ const Search = ({ className, id }) => {
     });
   };
 
+  /**
+   * Loads more results with current filters.
+   */
   const loadMore = () => {
     setLoading(2);
     UseSearch(
@@ -83,6 +100,9 @@ const Search = ({ className, id }) => {
     );
   };
 
+  /**
+   * Scrolls back to top
+   */
   const backToTop = () => {
     window.scrollTo({
       top: 0,
@@ -90,8 +110,20 @@ const Search = ({ className, id }) => {
     });
   };
 
+  /**
+   * Removes singular filer
+   * @param {String} toRemove - the filter to be removed.
+   */
   const removeFilter = (toRemove) => {
     setFilters(filters.filter((item) => item !== toRemove));
+  };
+
+  /**
+   * updates filters, checks if a filter with same name is already present and skips if true.
+   * @param {String} filter - filter to be added.
+   */
+  const updateFilters = (filter) => {
+    if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
   };
 
   return (
@@ -100,14 +132,20 @@ const Search = ({ className, id }) => {
         className={`${className}__filters`}
       >
         <div className={`${className}__filters__search`}>
-          <InputField placeholder="Search" onSubmit={(e) => searchResults(e)} />
+          <SearchField
+            placeholder="Search"
+            id={`${id}__filters__search__container`}
+            onSubmit={(e) => searchResults(e)}
+            width={windowWidth > 600 ? '500px' : '85vw'}
+          />
         </div>
         <div className={`${className}__filters__selectors`}>
           <Filters
             selected={filters}
             resetFilters={() => setFilters([])}
             removeFilter={(filter) => removeFilter(filter)}
-            setFilter={(filter) => setFilters([...filters, filter])}
+            setFilter={(filter) => updateFilters(filter)}
+            windowWidth={windowWidth}
           />
         </div>
       </div>
