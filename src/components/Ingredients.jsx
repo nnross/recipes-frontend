@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
  * Renders the ingredients for recipes
  * @property {String} className - custom className if wanted. Default is ingredients.
  * @property {String} id - custom id if wanted. Default is ingredients
- * @property {List<JSON>} ingredients - list of the ingredients.
+ * @property {List<JSON>} ingredients - list of the ingredients
  * @returns ingredients list
  */
 const Ingredients = ({
