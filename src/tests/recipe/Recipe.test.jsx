@@ -27,8 +27,8 @@ jest.mock('../../pages/recipe/recipeHooks', () => ({
   UseTag: jest.fn(),
 }));
 
-jest.mock('../../pages/recipe/recipeButtons');
-jest.mock('../../components/ingredients');
+jest.mock('../../pages/recipe/RecipeButtons');
+jest.mock('../../components/Ingredients');
 
 beforeEach(() => {
   jest.useRealTimers();
