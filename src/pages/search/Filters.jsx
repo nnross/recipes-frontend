@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import Filter from '../../components/filter';
+import Filter from '../../components/Filter';
 
 /**
  * Renders the filters component for search page.
