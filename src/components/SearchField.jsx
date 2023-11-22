@@ -2,18 +2,18 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 /**
- * Renders the input field component for the application
- * @property {String} className - custom className if wanted. Default is inputField.
- * @property {String} id - custom id if wanted. Default is inputField.
- * @property {String} placeholder - placeholder text for input field
+ * Renders the search field component for the application
+ * @property {String} className - custom className if wanted. Default is searchField.
+ * @property {String} id - custom id if wanted. Default is searchField.
+ * @property {String} placeholder - placeholder text for search field
  * @property {func} onSubmit - the onSubmit function to be used.
- * @property {func} onChange - the onChange to be used on the input field.
+ * @property {func} onChange - the onChange to be used on the Search field.
  * @property {String} width - width of the component.
  * @property {String} height - height of the component.
- * @property {String} fontSize - font size for the input field.
- * @returns input field component.
+ * @property {String} fontSize - font size for the search field.
+ * @returns search field component.
  */
-const InputField = ({
+const SearchField = ({
   className, id, placeholder, onSubmit, onChange, width, height, fontSize,
 }) => (
   <div className={className} id={id} style={{ width, height }}>
@@ -30,9 +30,9 @@ const InputField = ({
   </div>
 );
 
-export default InputField;
+export default SearchField;
 
-InputField.propTypes = {
+SearchField.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
   placeholder: propTypes.string,
@@ -43,9 +43,9 @@ InputField.propTypes = {
   fontSize: propTypes.string,
 };
 
-InputField.defaultProps = {
-  className: 'inputField',
-  id: 'inputField',
+SearchField.defaultProps = {
+  className: 'searchField',
+  id: 'searchField',
   placeholder: null,
   onSubmit: null,
   onChange: null,

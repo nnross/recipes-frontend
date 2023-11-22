@@ -187,6 +187,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,6 +223,7 @@ import { Outlet } from 'react-router-dom';
 import propTypes from 'prop-types';
 import Footer from './Footer';
 import Header from './Header';
+import Login from '../pages/login/Login';
 &nbsp;
 /**
  * Sets the header and footer to all pages automatically.
@@ -264,6 +272,13 @@ const Layout = ({ className, id }) =&gt; {
       &gt;
         &lt;Header scroll={scroll} openLogin={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >openLogin()}</span> loggedIn={loggedIn} /&gt;
       &lt;/div&gt;
+&nbsp;
+      {login ? (
+<span class="branch-0 cbranch-no" title="branch not covered" >        &lt;div className={`${className}__login`}&gt;</span>
+          &lt;Login closeLogin={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >openLogin()}</span> /&gt;
+        &lt;/div&gt;
+      ) : (null)}
+&nbsp;
       &lt;div className={`${className}__content`}&gt;
         &lt;Outlet context={[scroll, token, accountId, loggedIn]} /&gt;
       &lt;/div&gt;

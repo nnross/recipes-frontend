@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/search/Results.jsx</title>
+    <title>Code coverage report for components/SearchField.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/search</a> Results.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> SearchField.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -118,10 +118,7 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,16 +136,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,6 +153,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,62 +175,59 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import propTypes from 'prop-types';
-import ImageList from '../../components/ImageList';
-import Spinner from '../../components/Spinner';
 &nbsp;
 /**
- * Renders the results for search page. A list of items and a load more button.
- * @property {String} className - Custom className if wanted. Default is results.
- * @property {String} id - Custom id if wanted. Default is results.
- * @property {List&lt;JSON&gt;} items - List of items to be rendered.
- * @property {Function} loadMore - Function to be used when load more pressed.
- * @property {Boolean} moreResults - True if more results, false otherwise.
- * @property {Integer} loading - The loading state. 2 if loading, 4 if error.
- * @returns Results component for search page.
+ * Renders the search field component for the application
+ * @property {String} className - custom className if wanted. Default is searchField.
+ * @property {String} id - custom id if wanted. Default is searchField.
+ * @property {String} placeholder - placeholder text for search field
+ * @property {func} onSubmit - the onSubmit function to be used.
+ * @property {func} onChange - the onChange to be used on the Search field.
+ * @property {String} width - width of the component.
+ * @property {String} height - height of the component.
+ * @property {String} fontSize - font size for the search field.
+ * @returns search field component.
  */
-const Results = ({
-  className, id, items, loadMore, moreResults, loading,
-}) =&gt; {
-  let msg;
+const SearchField = ({
+  className, id, placeholder, onSubmit, onChange, width, height, fontSize,
+}) =&gt; (
+  &lt;div className={className} id={id} style={{ width, height }}&gt;
+    &lt;form className={`${className}__form`} id={`${id}__form`} onSubmit={onSubmit}&gt;
+      &lt;input
+        className={`${className}__form__input`}
+        id={`${id}__form__input`}
+        placeholder={placeholder}
+        onChange={onChange}
+        style={{ fontSize }}
+      /&gt;
+      &lt;button className={`${className}__form__search`} id={`${id}__form__search`} type="submit" value="" style={{ width: height }} aria-label="Search" /&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+);
 &nbsp;
-  // sets message based on state. if more results, and if an error occurred / is still loading.
-  if (moreResults) msg = (&lt;button className={`${className}__load__btn`} type="button" onClick={loadMore}&gt; load more results &lt;/button&gt;);
-  else msg = (&lt;div className={`${className}__noResults`}&gt; no more results &lt;/div&gt;);
+export default SearchField;
 &nbsp;
-  if (loading === 2) msg = (&lt;Spinner /&gt;);
-  else if (loading === 4) msg = (&lt;div&gt; an error occurred &lt;/div&gt;); // TODO: error message
-&nbsp;
-  return (
-    &lt;div className={className} id={id}&gt;
-      &lt;div className={`${className}__items`}&gt;
-        &lt;ImageList items={items} /&gt;
-      &lt;/div&gt;
-      &lt;div className={`${className}__load`}&gt;
-        {msg}
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};
-&nbsp;
-Results.propTypes = {
+SearchField.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  items: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
-  loadMore: propTypes.func,
-  moreResults: propTypes.bool,
-  loading: propTypes.number,
+  placeholder: propTypes.string,
+  onSubmit: propTypes.func,
+  onChange: propTypes.func,
+  width: propTypes.string,
+  height: propTypes.string,
+  fontSize: propTypes.string,
 };
 &nbsp;
-Results.defaultProps = {
-  className: 'results',
-  id: 'results',
-  items: null,
-  loadMore: null,
-  moreResults: false,
-  loading: 0,
+SearchField.defaultProps = {
+  className: 'searchField',
+  id: 'searchField',
+  placeholder: null,
+  onSubmit: null,
+  onChange: null,
+  width: '500px',
+  height: '60px',
+  fontSize: '32px',
 };
-&nbsp;
-export default Results;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -244,20 +235,16 @@ export default Results;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-11-21T23:50:41.021Z
-=======
                 at 2023-11-21T12:25:31.369Z
->>>>>>> sprint2
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     

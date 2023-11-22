@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const InputField = ({
+const SearchField = ({
   className, id, placeholder, onSubmit, onChange, width, height, fontSize,
 }) => (
   <div className={className} id={id} style={{ width, height }}>
@@ -18,4 +18,4 @@ const InputField = ({
   </div>
 );
 
-export default InputField;
+export default SearchField;

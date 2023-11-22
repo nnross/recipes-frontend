@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Spinner from '../../components/Spinner';
 
 const LoginForm = ({
   className, id, switchView, handleLogin, loading, error,
@@ -14,7 +13,7 @@ const LoginForm = ({
     <div className={`${className}__error`}>
       {error}
     </div>
-    {loading === 2 ? <Spinner /> : <button className={`${className}__login`} type="submit" form={`${id}__form`}> Log in </button>}
+    {loading === 2 ? <p> loading </p> : <button className={`${className}__login`} type="submit" form={`${id}__form`}> Log in </button>}
     <p className={`${className}__switch`}>
       Don&apos;t have an account?
       <button className={`${className}__switch__btn`} onClick={switchView} type="button"> Create new. </button>
