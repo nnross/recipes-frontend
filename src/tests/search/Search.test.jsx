@@ -33,6 +33,7 @@ jest.mock('../../pages/search/searchHooks', () => ({
 }));
 
 beforeEach(() => {
+  useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
   jest.clearAllMocks();
   getSomeRecipes.mockImplementation(getSomeMock);
 
@@ -98,7 +99,7 @@ describe('Search tests', () => {
       });
     });
     test('back to search displays when scrolling down', async () => {
-      useOutletContext.mockImplementation(() => 220);
+      useOutletContext.mockImplementation(() => [220]);
       const component = render(<Search id="test" />);
 
       await waitFor(() => {

@@ -12,7 +12,7 @@ describe('SearchField tests', () => {
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
-      expect(container.className).toBe('SearchField');
+      expect(container.className).toBe('searchField');
 
       expect(component.getByRole('button', { label: 'Submit' })).toBeVisible();
       expect(component.getByPlaceholderText('testLabel')).toBeVisible();

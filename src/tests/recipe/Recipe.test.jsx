@@ -4,6 +4,7 @@ import { render, waitFor } from '@testing-library/react/';
 import { useOutletContext } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import Recipe from '../../pages/recipe/Recipe';
 import { recipe1 } from '../testData/recipe.json';
 import { getRecipe } from '../../services/recipeService';
@@ -30,6 +31,7 @@ jest.mock('../../pages/recipe/recipeButtons');
 jest.mock('../../components/ingredients');
 
 beforeEach(() => {
+  jest.useRealTimers();
   jest.clearAllMocks();
   useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
   getRecipe.mockImplementation(mockGetRecipe);
@@ -74,12 +76,14 @@ describe('Recipe tests', () => {
         expect(component.getByText('error whilst loading')).toBeVisible();
       });
     });
-    test('render load works', () => {
+    test('render load works', async () => {
       const component = render(<Recipe id="test" />);
 
       const load = component.container.querySelector('#loading');
       expect(load).not.toBeNull();
-      expect(load).toBeVisible();
+      await waitFor(() => {
+        expect(load).toBeVisible();
+      });
     });
   });
   describe('Functionality tests', () => {
@@ -97,22 +101,6 @@ describe('Recipe tests', () => {
       expect(mockUseTag.mock.calls[0][2]).toBe('testAccountId');
       expect(mockUseTag.mock.calls[0][3]).toBe(null);
       expect(mockUseTag.mock.calls[0][4]).toBe('testToken');
-    });
-    test('logged out favourite doesn\'t work', async () => {
-      useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', false]);
-      const component = render(<Recipe id="test" />);
-
-      await waitFor(() => {
-        expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
-      });
-      await userEvent.click(component.getByRole('button', { name: 'favourite' }));
-
-      expect(component.getByText('you need to be logged in')).toBeVisible();
-
-      // TODO: better wau to deal with setTimeout
-      await new Promise((res) => { setTimeout(res, 3100); });
-
-      expect(component.queryByText('you need to be logged in')).not.toBeInTheDocument();
     });
     test('do later works', async () => {
       const component = render(<Recipe id="test" />);
@@ -145,6 +133,24 @@ describe('Recipe tests', () => {
       expect(mockUseTag.mock.calls[0][2]).toBe('testAccountId');
       expect(mockUseTag.mock.calls[0][3]).toBe('20-12-2022');
       expect(mockUseTag.mock.calls[0][4]).toBe('testToken');
+    });
+    test('logged out favourite doesn\'t work', async () => {
+      useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', false]);
+      const component = render(<Recipe id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
+      });
+      await userEvent.click(component.getByRole('button', { name: 'favourite' }));
+
+      expect(component.getByText('you need to be logged in')).toBeVisible();
+
+      // TODO: better way to deal with setTimeout
+      act(async () => {
+        await new Promise((res) => { setTimeout(res, 3100); });
+      });
+
+      expect(component.queryByRole('you need to be logged in')).not.toBeInTheDocument();
     });
   });
 });
