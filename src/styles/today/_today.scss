@@ -1,0 +1,71 @@
+.today {
+  display: grid;
+  grid-template-columns: auto 200px 300px 200px auto;
+  grid-template-rows: 100px 100px 200px 100px 100px;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 50px;
+  &__title {
+    grid-column: 3;
+    grid-row: 1;
+    background-color: pink;
+    height: 100%;
+    width: 100%;
+  }
+  &__background {
+    grid-column: 2 / 4;
+    grid-row: 2 / 6;
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+  }
+  &__ingredients {
+    grid-column: 2;
+    grid-row: 2 / 5;
+    background-color: cadetblue;
+    height: 100%;
+    width: 100%;
+  }
+  &__instructions {
+    grid-column: 3;
+    grid-row: 2 / 4;
+    background-color: seagreen;
+    height: 100%;
+    width: 100%;
+  }
+  &__labels {
+    grid-column: 3;
+    grid-row: 4;
+    background-color: lightcoral;
+    height: 100%;
+    width: 100%;
+  }
+  &__original {
+    grid-column: 2;
+    grid-row: 5;
+    background-color: purple;
+    height: 100%;
+    width: 100%;
+  }
+  &__buttons {
+    grid-column: 3;
+    grid-row: 5;
+    background-color: brown;
+    height: 100%;
+    width: 100%;
+  }
+  &__date {
+    grid-column: 4;
+    grid-row: 2;
+    background-color: peachpuff;
+    height: 100%;
+    width: 100%;
+  }
+  &__img {
+    grid-column: 4;
+    grid-row: 3 / 6;
+    background-color: salmon;
+    height: 100%;
+    width: 100%;
+  }
+}
