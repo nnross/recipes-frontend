@@ -83,7 +83,6 @@ export default RecipeButtons;
 RecipeButtons.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  recipeId: propTypes.number,
   source: propTypes.string,
   tag: propTypes.func,
   reminder: propTypes.string,
@@ -97,7 +96,6 @@ RecipeButtons.propTypes = {
 RecipeButtons.defaultProps = {
   className: 'recipeButtons',
   id: 'recipeButtons',
-  recipeId: [],
   source: '',
   tag: null,
   reminder: '',

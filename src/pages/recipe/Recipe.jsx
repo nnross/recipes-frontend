@@ -53,7 +53,7 @@ const Recipe = ({ className, id }) => {
         setFavourite(res.favourite);
         setLater(res.later);
         setCalendar(res.calendar);
-        setLoading(0);
+        setLoading(2);
       })
       .catch(() => {
         setLoading(4);
@@ -100,47 +100,46 @@ const Recipe = ({ className, id }) => {
         )}
       { loading === 1
         ? (
-          <div className={`${className}__background`}>
-            <Load />
+          <div className={`${className}__container`}>
+            <div className={`${className}__container__load`}>
+              <Load />
+            </div>
           </div>
         )
-
-        : <div className={`${className}__background`} /> }
-      <div className={`${className}__title`}>
-        <h3 className={`${className}__title__text`}>
-          {title}
-        </h3>
-      </div>
-      <div className={`${className}__body`}>
-        <p className={`${className}__body__text`}>
-          {body}
-        </p>
-      </div>
-      <div className={`${className}__stats`} />
-      <div className={`${className}__instructions`}>
-        { loading === 1 ? <div />
-          : <Instructions className={`${className}__instructions`} id={`${id}__instructions`} instructions={instructions} loading={loading} />}
-      </div>
-      <div className={`${className}__labels`}>
-        <Label labels={labels} />
-      </div>
-      <div className={`${className}__ingredients`}>
-        { loading === 1 ? <div />
-          : <Ingredients ingredients={ingredients} />}
-      </div>
-      { loading === 1 ? <div />
         : (
-          <div className={`${className}__buttons`}>
-            <RecipeButtons
-              source={source}
-              tag={tag}
-              reminder={reminder}
-              loading={loading}
-              current={curLoad}
-              favourite={favourite}
-              later={later}
-              calendar={calendar}
-            />
+          <div className={`${className}__container`}>
+            <div className={`${className}__container__title`}>
+              <h3 className={`${className}__container__title__text`}>
+                {title}
+              </h3>
+            </div>
+            <div className={`${className}__container__body`}>
+              <p className={`${className}__container__body__text`}>
+                {body}
+              </p>
+            </div>
+            <div className={`${className}__container__stats`} />
+            <div className={`${className}__container__instructions`}>
+              <Instructions className={`${className}__container__instructions`} id={`${id}__instructions`} instructions={instructions} loading={loading} />
+            </div>
+            <div className={`${className}__container__labels`}>
+              <Label labels={labels} />
+            </div>
+            <div className={`${className}__container__ingredients`}>
+              <Ingredients ingredients={ingredients} />
+            </div>
+            <div className={`${className}__container__buttons`}>
+              <RecipeButtons
+                source={source}
+                tag={tag}
+                reminder={reminder}
+                loading={loading}
+                current={curLoad}
+                favourite={favourite}
+                later={later}
+                calendar={calendar}
+              />
+            </div>
           </div>
         )}
     </div>
