@@ -1,7 +1,7 @@
-describe('Todays recipe statistics list tests', () => {
-  describe('Todays recipe statistics renders', () => {
+describe('Personal page statistics list tests', () => {
+  describe('Personal page statistics renders', () => {
     test('successful render works', () => {
-      const component = render(<Today id="test" />);
+      const component = render(<Personal id="test" />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();

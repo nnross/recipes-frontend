@@ -1,12 +1,12 @@
-describe('Todays recipe list tests', () => {
-  describe('Todays recipe list renders', () => {
+describe('Personal recipe list tests', () => {
+  describe('Personal recipe list renders', () => {
     test('successful render works', () => {
-      const component = render(<Today id="test" />);
+      const component = render(<Personal id="test" />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
       expect(container).toBeVisible();
-      expect(container.className).toBe('todaysList');
+      expect(container.className).toBe('personalList');
 
       expect(component.getByRole('button', { name: 'favourite' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'do later' })).toBeVisible();
@@ -20,7 +20,7 @@ describe('Todays recipe list tests', () => {
   });
   describe('functions work', () => {
     test('next and previous work', async () => {
-      const component = render(<Today id="test" />);
+      const component = render(<Personal id="test" />);
 
       expect(component.getByRole('button', { name: 'next' })).toBeVisible();
       expect(component.getByRole('button', { name: 'previous' })).toBeDisabled();
@@ -42,7 +42,7 @@ describe('Todays recipe list tests', () => {
       expect(component.getByRole('button', { name: 'previous' })).toBeVisible();
     });
     test('view switch works', async () => {
-      const component = render(<Today id="test" />);
+      const component = render(<Personal id="test" />);
 
       expect(component.getByRole('button', { name: 'favourite' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'do later' })).toBeVisible();
