@@ -2,7 +2,7 @@
  * Gets current week in sql Dates
  * @returns current weeks dates.
  */
-const getWeekDates = () => {
+export const getWeekDates = () => {
   const date = new Date();
   const dDay = date.getDay() > 0 ? date.getDay() : 7;
   const first = date.getDate() - dDay + 1;
@@ -13,4 +13,4 @@ const getWeekDates = () => {
   return week;
 };
 
-export default getWeekDates;
+export const getDate = () => new Date().toISOString().slice(0, 10).replace('T', ' ');

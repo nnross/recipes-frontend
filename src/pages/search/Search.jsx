@@ -158,7 +158,17 @@ const Search = ({ className, id }) => {
         </div>
       ) : (
         <div className={`${className}__results`}>
-          <Results items={items} loadMore={loadMore} moreResults={moreResults} loading={loading} />
+          {items.length > 0
+            ? (
+              <Results
+                items={items}
+                loadMore={loadMore}
+                moreResults={moreResults}
+                loading={loading}
+              />
+            )
+            : <p> no results </p>}
+
         </div>
       )}
       <button
