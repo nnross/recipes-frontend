@@ -7,6 +7,7 @@ import { getDate } from '../../helpers/dateHelpers';
 import { UseGetItems } from './personalHooks';
 import getTokenAndId from '../../helpers/getTokenAndId';
 import personalService from '../../services/personalService';
+import Load from '../../components/Load';
 
 const Personal = ({ className, id }) => {
   const date = getDate();
@@ -17,6 +18,10 @@ const Personal = ({ className, id }) => {
   const [isNext, setIsNext] = useState(true);
   const [isPrev, setIsPrev] = useState(false);
   const [view, setView] = useState('favourite');
+  const [doneCount, setDoneCount] = useState(0);
+  const [favouriteCount, setFavouriteCount] = useState(0);
+  const [doLaterCount, setDoLaterCount] = useState(0);
+  const [chart, setChart] = useState(null);
   const page = useRef(0);
 
   useEffect(() => {
@@ -28,6 +33,10 @@ const Personal = ({ className, id }) => {
       .then((res) => {
         setItems(res.items);
         setIsNext(res.moreItems);
+        setDoneCount(res.doneCount);
+        setFavouriteCount(res.favouriteCount);
+        setDoLaterCount(res.doLaterCount);
+        setChart(res.chart);
         setLoading(0);
       })
       .catch(() => {
@@ -61,26 +70,43 @@ const Personal = ({ className, id }) => {
 
   return (
     <div className={className} id={id}>
-      <div className={`${className}__calendar`}>
-        <Calendar />
-        <a href={`/today/${date}`}>
-          <button type="button" className={`${className}__calendar__btn`}> today&apos;s recipe </button>
-        </a>
-      </div>
+      {loading === 1
+        ? (
+          <div className={`${className}__calendar`}>
+            <Load />
+          </div>
+        )
+        : (
+          <div className={`${className}__calendar`}>
+            <Calendar />
+            <a href={`/today/${date}`}>
+              <button type="button" className={`${className}__calendar__btn`}> today&apos;s recipe </button>
+            </a>
+          </div>
+        )}
       <div className={`${className}__list`}>
-        <List
-          items={items}
-          changeView={changeView}
-          next={nextPage}
-          prev={prevPage}
-          isNext={isNext}
-          isPrev={isPrev}
-          view={view}
-          loading={loading}
-        />
+        {loading === 1 ? <Load /> : (
+          <List
+            items={items}
+            changeView={changeView}
+            next={nextPage}
+            prev={prevPage}
+            isNext={isNext}
+            isPrev={isPrev}
+            view={view}
+            loading={loading}
+          />
+        )}
       </div>
       <div className={`${className}__stats`}>
-        <Statistics />
+        {loading === 1 ? <Load /> : (
+          <Statistics
+            favouriteCount={favouriteCount}
+            doLaterCount={doLaterCount}
+            doneCount={doneCount}
+            chart={chart}
+          />
+        )}
       </div>
     </div>
   );

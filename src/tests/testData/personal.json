@@ -20,13 +20,19 @@
             {
             "id": 5,
             "title": "test title 5"
-            },
-            {
-            "id": 6,
-            "title": "test title 6"
             }
         ],
-        "moreItems": true
+        "moreItems": true,
+        "doLaterCount": 12,
+        "doneCount": 23,
+        "favouriteCount": 17,
+        "chart": 
+        [
+            {"name": "indian", "value": 12},
+            {"name": "chinese", "value": 6},
+            {"name": "asian", "value": 2},
+            {"name": "thai", "value": 8}
+        ]
     },
     "withNoMore": {
         "items": [
@@ -47,6 +53,16 @@
             "title": "test title 4"
             }
         ],
-        "moreItems": false
+        "moreItems": false,
+        "doLaterCount": 12,
+        "doneCount": 23,
+        "favouriteCount": 17,
+        "chart": 
+            [
+                {"name": "indian", "value": 12},
+                {"name": "chinese", "value": 6},
+                {"name": "asian", "value": 2},
+                {"name": "thai", "value": 8}
+            ]
     }
 }
