@@ -2,11 +2,10 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render } from '@testing-library/react/';
 import Calendar from '../../components/Calendar';
-import getWeekDates from '../../helpers/getWeekDates';
 
-jest.mock('../../helpers/getWeekDates.jsx', () => (
-  jest.fn(() => ['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', '2022-01-06', '2022-01-07'])
-));
+jest.mock('../../helpers/dateHelpers.jsx', () => ({
+  getWeekDates: jest.fn(() => ['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', '2022-01-06', '2022-01-07']),
+}));
 
 describe('Calendar tests', () => {
   test('Calendar renders', () => {

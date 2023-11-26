@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import getWeekDates from '../helpers/getWeekDates';
+import { getWeekDates } from '../helpers/dateHelpers';
 
 /**
  * Renders the calender component
