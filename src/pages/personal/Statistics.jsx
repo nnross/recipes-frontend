@@ -20,7 +20,7 @@ const Statistics = ({
           <PieChart className={`${className}__pieChart__container`}>
             <Pie data={chart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} fill="#8884d8" label={({ percent }) => `${(percent * 100).toFixed(0)}%`}>
               {chart.map((entry, index) => (
-                <Cell fill={colors[index]} />
+                <Cell key={`key-${entry}`} fill={colors[index]} />
               ))}
             </Pie>
             <Legend />

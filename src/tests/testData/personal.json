@@ -32,12 +32,21 @@
             {"name": "chinese", "value": 6},
             {"name": "asian", "value": 2},
             {"name": "thai", "value": 8}
-        ]
+        ],
+        "calendar": {
+            "monday": 0,
+            "tuesday": 2,
+            "wednesday": 2,
+            "thursday": 1,
+            "friday": 0,
+            "saturday": 0,
+            "sunday": 0
+        }
     },
-    "withNoMore": {
+    "personalNoMore": {
         "items": [
             {
-            "id": 91,
+            "id": 90,
             "title": "test title load 1"
             },
             {
@@ -63,6 +72,15 @@
                 {"name": "chinese", "value": 6},
                 {"name": "asian", "value": 2},
                 {"name": "thai", "value": 8}
-            ]
+            ],
+        "calendar": {
+            "monday": 0,
+            "tuesday": 2,
+            "wednesday": 2,
+            "thursday": 1,
+            "friday": 0,
+            "saturday": 0,
+            "sunday": 0
+        }
     }
 }

@@ -7,7 +7,7 @@ const RecipeListItem = ({
   <div className={className} id={id}>
     <h3>{title}</h3>
     <a href={`/recipe/${itemId}`} className={`${className}__link`}>
-      <p> go to recipe </p>
+      <p href={`/recipe/${itemId}`}> go to recipe </p>
       <div className={`${className}__link__arrow`} />
     </a>
   </div>

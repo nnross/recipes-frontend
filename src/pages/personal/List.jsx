@@ -19,7 +19,7 @@ const List = ({
       ) : <RecipeList items={items} />}
     </div>
     <div className={`${className}__pagination`}>
-      <button type="button" onClick={prev} disabled={!isPrev}> prev </button>
+      <button type="button" onClick={prev} disabled={!isPrev}> previous </button>
       <button type="button" onClick={next} disabled={!isNext}> next </button>
     </div>
   </div>
@@ -36,7 +36,7 @@ List.propTypes = {
   prev: propTypes.func,
   isNext: propTypes.bool,
   isPrev: propTypes.bool,
-  view: propTypes.bool,
+  view: propTypes.string,
   loading: propTypes.number,
 };
 
@@ -49,6 +49,6 @@ List.defaultProps = {
   prev: null,
   isNext: true,
   isPrev: false,
-  view: true,
+  view: null,
   loading: 0,
 };

@@ -22,6 +22,7 @@ const Personal = ({ className, id }) => {
   const [favouriteCount, setFavouriteCount] = useState(0);
   const [doLaterCount, setDoLaterCount] = useState(0);
   const [chart, setChart] = useState(null);
+  const [calendar, setCalendar] = useState(null);
   const page = useRef(0);
 
   useEffect(() => {
@@ -37,10 +38,11 @@ const Personal = ({ className, id }) => {
         setFavouriteCount(res.favouriteCount);
         setDoLaterCount(res.doLaterCount);
         setChart(res.chart);
+        setCalendar(res.calendar);
         setLoading(0);
       })
       .catch(() => {
-        setLoading(4);
+        setLoading(3);
       });
   }, []);
 
@@ -52,13 +54,13 @@ const Personal = ({ className, id }) => {
   const nextPage = () => {
     setLoading(2);
     page.current += 1;
-    UseGetItems(accountId, token, view, page + 1, setItems, setIsNext, setLoading);
+    UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
   const prevPage = () => {
     setLoading(2);
     page.current -= 1;
-    UseGetItems(accountId, token, view, page - 1, setItems, setIsNext, setLoading);
+    UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
   const changeView = (sel) => {
@@ -68,6 +70,13 @@ const Personal = ({ className, id }) => {
     UseGetItems(accountId, token, sel, 0, setItems, setIsNext, setLoading);
   };
 
+  if (loading === 3) {
+    return (
+      <div className={`${className}__error`} id={id}>
+        an error occurred
+      </div>
+    );
+  }
   return (
     <div className={className} id={id}>
       {loading === 1
@@ -78,9 +87,17 @@ const Personal = ({ className, id }) => {
         )
         : (
           <div className={`${className}__calendar`}>
-            <Calendar />
+            <Calendar
+              monday={calendar.monday}
+              tuesday={calendar.tuesday}
+              wednesday={calendar.wednesday}
+              thursday={calendar.thursday}
+              friday={calendar.friday}
+              saturday={calendar.saturday}
+              sunday={calendar.sunday}
+            />
             <a href={`/today/${date}`}>
-              <button type="button" className={`${className}__calendar__btn`}> today&apos;s recipe </button>
+              <button type="button" className={`${className}__calendar__btn`} href={`/today/${date}`}> today&apos;s recipe </button>
             </a>
           </div>
         )}

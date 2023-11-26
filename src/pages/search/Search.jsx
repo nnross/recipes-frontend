@@ -45,7 +45,7 @@ const Search = ({ className, id }) => {
         setLoading(0);
       })
       .catch(() => {
-        setLoading(4);
+        setLoading(3);
       });
   }, []);
 
@@ -126,6 +126,13 @@ const Search = ({ className, id }) => {
     if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
   };
 
+  if (loading === 3) {
+    return (
+      <div className={`${className}__error`} id={id}>
+        an error occurred
+      </div>
+    );
+  }
   return (
     <div className={className} id={id}>
       <div
