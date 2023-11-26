@@ -16,8 +16,8 @@ const Statistics = ({
     <div className={className} id={id}>
       <div className={`${className}__pieChart`}>
         <h3> Your favourite cuisines </h3>
-        <ResponsiveContainer width="100%" height="80%">
-          <PieChart width="100%" height="100%" className={`${className}__pieChart__container`}>
+        <ResponsiveContainer width="100%" height="90%">
+          <PieChart className={`${className}__pieChart__container`}>
             <Pie data={chart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} fill="#8884d8" label={({ percent }) => `${(percent * 100).toFixed(0)}%`}>
               {chart.map((entry, index) => (
                 <Cell fill={colors[index]} />

@@ -10,18 +10,19 @@
         height: 100%;
         width: 100%;
         position: relative;
-        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
+        box-sizing: border-box;
         & h3 {
             font-size: 28px;
         }
         &__container {
+            box-sizing: border-box;
+            height: 80%;
             & div {
-                display: flex;
-                width: 100%;
-                padding-left: 30px;
+                padding-left: 35px;
+                box-sizing: border-box;
                 & ul {
                     & li {
                         font-size: 24px;
@@ -67,6 +68,67 @@
                 width: 2px;
                 height: 50px;
                 background: $darkGrey;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+    .statistics {
+        display: flex;
+        flex-direction: row;
+        &__pieChart {
+            &__container {
+                & div {
+                    padding-left: 100px;
+                }
+            }
+        }
+        &__allTime {
+            height: 100%;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            & div {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 10px;
+                height: 100%;
+                text-align: center;
+                font-family: button;
+                & span {
+                    font-size: 24px;
+                    color: $darkGreen;
+                }
+            }
+            & :nth-child(2) {
+                position: relative;
+                &::before {
+                    bottom: 0;
+                    left: 25%;
+                    width: 100px;
+                    height: 2px;
+                }
+                &::after {
+                    top: 0;
+                    right: 25%;
+                    width: 100px;
+                    height: 2px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .statistics {
+        &__pieChart {
+            &__container {
+                & div {
+                    padding-left: 50px;
+                }
             }
         }
     }
