@@ -9,6 +9,12 @@ import { UseGetItems } from './personalHooks';
 import personalService from '../../services/personalService';
 import Load from '../../components/Load';
 
+/**
+ * renders the personal page
+ * @property {String} className - custom className if wanted. Default is personal.
+ * @property {String} id - custom id if wanted. Default is personal.
+ * @returns personal page
+ */
 const Personal = ({ className, id }) => {
   const accountId = useOutletContext()[2];
   const token = useOutletContext()[1];

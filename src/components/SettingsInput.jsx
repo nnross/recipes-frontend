@@ -1,6 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * Renders a single item in the recipeListItem format
+ * @propery {String} className - custom className if wanted. Default is settingsInput
+ * @propery {String} id - custom id if wanted. Default is settingsInput.
+ * @propery {String} title - title of the input.
+ * @propery {String} value - the value to be visible on the input.
+ * @propery {function} onChange - onChange function to be used on the input.
+ * @propery {Bool} disabled - if the input field is disabled or not.
+ * @propery {String} placeholder - if instead of value wanted to use placeholder.
+ * @returns List of items rendered.
+ */
 const SettingsInput = ({
   className, id, title, value, onChange, disabled, placeholder,
 }) => (

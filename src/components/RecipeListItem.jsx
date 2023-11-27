@@ -1,6 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * Renders a single item in the recipeListItem format
+ * @propery {String} className - custom className if wanted. Default is recipeListItem
+ * @propery {String} id - custom id if wanted. Default is recipeListItem.
+ * @propery {String} title - title of the item.
+ * @propery {number} itemId - id of the item.
+ * @returns List of items rendered.
+ */
 const RecipeListItem = ({
   className, id, title, itemId,
 }) => (

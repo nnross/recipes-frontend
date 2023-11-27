@@ -3,7 +3,11 @@ import { Navigate, Outlet } from 'react-router-dom';
 import propTypes from 'prop-types';
 /**
  * Checks if user is logged in when entering page and redirects to login if not.
- * @returns login page if not logged in, outlet page otherwise
+ * @property {Bool} loggedIn - if user is logged in or not.
+ * @property {number} scroll - current scroll on window.
+ * @property {String} token - Token of user.
+ * @property {String} accountId - accountId for user
+ * @returns home page if not logged in, outlet page otherwise
  */
 const GuardedRoute = ({
   loggedIn,
@@ -11,7 +15,7 @@ const GuardedRoute = ({
   token,
   accountId,
 }) => (
-  !loggedIn ? <Navigate to="/" /> : <Outlet context={[scroll, token, accountId, loggedIn]} />
+  loggedIn ? <Outlet context={[scroll, token, accountId, loggedIn]} /> : <Navigate to="/" />
 );
 
 export default GuardedRoute;

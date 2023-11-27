@@ -10,12 +10,14 @@ import GuardedRoute from '../helpers/guardedRoute';
  * Sets the header and footer to all pages automatically.
  * @property {String} className - Custom className if wanted. Default is layout.
  * @property {String} id - Custom id if wanted. Default is layout.
+ * @property {Bool} guarded - if route is guarded or not.
  * @returns full view
  */
 const Layout = ({ className, id, guarded }) => {
+  const loggedIn = window.localStorage.getItem('token') != null;
+
   const [scroll, setScroll] = useState(0);
   const [login, setLogin] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(null);
   const [accountId, setAccountId] = useState();
   const [token, setToken] = useState();
 
@@ -30,7 +32,6 @@ const Layout = ({ className, id, guarded }) => {
 
     setAccountId(window.localStorage.getItem('accountId'));
     setToken(window.localStorage.getItem('token'));
-    setLoggedIn(window.localStorage.getItem('token') != null);
   }, []);
 
   const openLogin = () => {

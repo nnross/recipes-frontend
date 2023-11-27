@@ -11,8 +11,6 @@ import propTypes from 'prop-types';
  * @returns Fitler
  */
 
-// TODO add mobile page support
-
 const Filter = ({
   className, id, filters, title, selectFilter,
 }) => {
