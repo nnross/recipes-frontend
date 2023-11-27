@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 import personService from '../../services/personService';
-import getTokenAndId from '../../helpers/getTokenAndId';
 import SettingsInput from '../../components/SettingsInput';
 import Load from '../../components/Load';
 
 const Settings = ({ className, id }) => {
+  const accountId = useOutletContext()[2];
+  const token = useOutletContext()[1];
+
   const [confirmation, setConfirmation] = useState(false);
   const [edit, setEdit] = useState(false);
   const [username, setUsername] = useState(null);
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
-  const [token, setToken] = useState(null);
-  const [accountId, setAccountId] = useState(null);
   const [loading, setLoading] = useState(1);
   const [originalUsername, setOriginalUsername] = useState(null);
   const [originalName, setOriginalName] = useState(null);
@@ -20,11 +21,7 @@ const Settings = ({ className, id }) => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    const storage = getTokenAndId();
-    setToken(storage.token);
-    setAccountId(storage.accountId);
-
-    personService.getAccountData(storage.accountId, storage.token)
+    personService.getAccountData(accountId, token)
       .then((res) => {
         setUsername(res.username);
         setName(res.name);
@@ -61,6 +58,13 @@ const Settings = ({ className, id }) => {
     setEmail(originalEmail);
   };
 
+  if (loading === 3) {
+    return (
+      <div className={`${className}__error`}>
+        an error occurred
+      </div>
+    );
+  }
   return (
     <div className={className} id={id}>
       <h3> user settings </h3>

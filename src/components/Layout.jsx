@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import Footer from './Footer';
 import Header from './Header';
 import Login from '../pages/login/Login';
+import GuardedRoute from '../helpers/guardedRoute';
 
 /**
  * Sets the header and footer to all pages automatically.
@@ -11,7 +12,7 @@ import Login from '../pages/login/Login';
  * @property {String} id - Custom id if wanted. Default is layout.
  * @returns full view
  */
-const Layout = ({ className, id }) => {
+const Layout = ({ className, id, guarded }) => {
   const [scroll, setScroll] = useState(0);
   const [login, setLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(null);
@@ -60,7 +61,16 @@ const Layout = ({ className, id }) => {
       ) : (null)}
 
       <div className={`${className}__content`}>
-        <Outlet context={[scroll, token, accountId, loggedIn]} />
+        {guarded
+          ? (
+            <GuardedRoute
+              loggedIn={loggedIn}
+              scroll={scroll}
+              token={token}
+              accountId={accountId}
+            />
+          )
+          : <Outlet context={[scroll, token, accountId, loggedIn]} />}
       </div>
       <div className={`${className}__footer`}>
         <Footer />
@@ -74,9 +84,11 @@ export default Layout;
 Layout.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
+  guarded: propTypes.bool,
 };
 
 Layout.defaultProps = {
   className: 'layout',
   id: 'layout',
+  guarded: true,
 };
