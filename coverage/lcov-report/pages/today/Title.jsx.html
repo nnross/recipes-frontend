@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Instructions.jsx</title>
+    <title>Code coverage report for pages/today/Title.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> Instructions.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/today</a> Title.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -99,7 +99,24 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,10 +126,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,13 +137,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,38 +160,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import propTypes from 'prop-types';
 &nbsp;
-/**
- * Renders the instructions for a recipe
- * @property {String} className - custom className if wanted. Default is instructions.
- * @property {String} id - custom id if wanted. Default is instructions
- * @property {String} instructions - the instructions to be displayed.
- * @returns instruction
- */
-const Instructions = ({
-  className, id, instructions,
+const Title = ({
+  className, id, title, time, servings, health,
 }) =&gt; (
-  &lt;div className={`${className}__info`} id={`${id}__info`}&gt;
-    &lt;h3 className={`${className}__info__title`}&gt;
-      Instructions
-    &lt;/h3&gt;
-    &lt;p className={`${className}__info__body`}&gt;
-      {instructions}
-    &lt;/p&gt;
+  &lt;div className={`${className}`} id={`${id}`}&gt;
+    &lt;h3 className={`${className}__name`}&gt;{title}&lt;/h3&gt;
+    &lt;div className={`${className}__info`}&gt;
+      &lt;p className={`${className}__info__time`}&gt;
+        {time}
+        {' '}
+        min
+      &lt;/p&gt;
+      &lt;p className={`${className}__info__servings`}&gt;
+        {servings}
+        {' '}
+        servings
+      &lt;/p&gt;
+      &lt;p className={`${className}__info__health`}&gt;
+        {health}
+        {' '}
+        health score
+      &lt;/p&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 );
 &nbsp;
-export default Instructions;
+export default Title;
 &nbsp;
-Instructions.propTypes = {
+Title.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  instructions: propTypes.string,
+  title: propTypes.string,
+  time: propTypes.number,
+  servings: propTypes.number,
+  health: propTypes.number,
 };
 &nbsp;
-Instructions.defaultProps = {
-  className: 'instructions',
-  id: 'instructions',
-  instructions: '',
+Title.defaultProps = {
+  className: 'title',
+  id: 'title',
+  title: '',
+  time: 0,
+  servings: 0,
+  health: 0,
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -180,14 +213,14 @@ Instructions.defaultProps = {
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2023-11-28T16:33:40.350Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

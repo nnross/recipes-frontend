@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+import React from 'react';
+import Calendar from '../../components/Calendar';
+
+const Personal = () => (
+  <div>
+    <Calendar monday={1} tuesday={2} />
+  </div>
+);
+=======
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 import List from './List';
@@ -128,6 +138,7 @@ const Personal = ({ className, id }) => {
     </div>
   );
 };
+>>>>>>> sprint3
 
 export default Personal;
 
