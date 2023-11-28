@@ -9,6 +9,14 @@ const getRecipe = (id) => (
   })
 );
 
+const getRecipeByDate = (date, accountId, token) => (
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(recipe1);
+    }, 1000);
+  })
+);
+
 const postCalendar = (recipeId, accountId, date, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
@@ -25,6 +33,14 @@ const postFavourite = (recipeId, accountId, token) => (
   })
 );
 
+const deleteFavourite = (recipeId, accountId, token) => (
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  })
+);
+
 const postDolater = (recipeId, accountId, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
@@ -33,6 +49,14 @@ const postDolater = (recipeId, accountId, token) => (
   })
 );
 
+const postFinished = (recipeId, accountId, date, token) => (
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  })
+);
+
 export default {
-  getRecipe, postCalendar, postFavourite, postDolater,
+  getRecipe, getRecipeByDate, postCalendar, postFavourite, deleteFavourite, postDolater, postFinished
 };
