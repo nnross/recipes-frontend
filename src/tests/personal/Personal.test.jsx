@@ -1,6 +1,58 @@
+import '@testing-library/jest-dom/extend-expect';
+import { render, waitFor } from '@testing-library/react/';
+import { useOutletContext } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import Search from '../../pages/search/Search';
+import { personal, personalNoMore } from '../testData/personal.json';
+import { withMore, withNoMore } from '../testData/itemList.json';
+import { getPersonal } from '../../services/personalService';
+import { UseGetItems } from '../../pages/personal/personalHooks';
+import Personal from '../../pages/personal/Personal';
+import { findWithTag } from '../testHelpers';
+
+jest.mock('../../pages/personal/List');
+jest.mock('../../pages/personal/Statistics');
+jest.mock('../../components/Calendar');
+jest.mock('../../helpers/dateHelpers.jsx', () => ({
+  getDate: jest.fn(() => '2022-02-02'),
+}));
+
+const getPersonalMock = () => Promise.resolve(personal);
+const getPersonalNoMoreMock = () => Promise.resolve(personalNoMore);
+const getPersonalRejectMock = () => Promise.reject();
+jest.mock('../../services/personalService', () => ({
+  getPersonal: jest.fn(),
+}));
+const mockUseGetItem = jest.fn();
+jest.mock('../../pages/personal/personalHooks', () => ({
+  UseGetItems: jest.fn(),
+}));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  getPersonal.mockImplementation(getPersonalMock);
+
+  UseGetItems.mockImplementation((
+    accountId,
+    token,
+    view,
+    page,
+    setItems,
+    setIsNext,
+    setLoading,
+  ) => {
+    mockUseGetItem(accountId, token, view, page);
+    setItems(withNoMore.items);
+    if (page === 1) setIsNext(false);
+    else setIsNext(true);
+    setLoading(0);
+  });
+});
+
 describe('Personal page tests', () => {
   describe('Personal page renders', () => {
-    test('successful render works', () => {
+    test('successful render works', async () => {
       const component = render(<Personal id="test" />);
 
       const container = component.container.querySelector('#test');
@@ -8,53 +60,85 @@ describe('Personal page tests', () => {
       expect(container).toBeVisible();
       expect(container.className).toBe('personal');
 
-      expect(component.getByRole('button', { name: 'M' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'T' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'W' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'T' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'F' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'S' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'S' })).toBeVisible();
+      await waitFor(() => {
+        expect(component.getByRole('button', { name: 'M0' })).toBeVisible();
+      });
+      expect(component.getByRole('button', { name: 'Tu2' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'W2' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Th1' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'F0' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Sa0' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Su0' })).toBeVisible();
 
-      expect(component.getByRole('button', { name: 'go to todays recipe' })).toHaveAttribute('href', 'TODO');
+      expect(component.getByRole('button', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today/2022-02-02');
 
-      expect(component.getByRole('button', { name: 'favourites' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'favourites' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'do later' })).toBeVisible();
 
-      expect(component.getByText('test recipe 1')).toBeVisible();
-      expect(component.getByText('go to recipe')).toHaveAttribute('href', 'todo');
+      expect(component.getByText('test title 11')).toBeVisible();
 
       expect(component.getByRole('button', { name: 'next' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'previous' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'previous' })).toBeDisabled();
 
-      expect(component.getByText('your favourite cuisine')).toBeVisible();
-      expect(component.getByText('21 finished recipes')).toBeVisible();
-      expect(component.getByText('9 favourite')).toBeVisible();
-      expect(component.getByText('10 saved to do later')).toBeVisible();
+      expect(component.getByText('Your favourite cuisines')).toBeVisible();
+      expect(component.getByText('indian12')).toBeVisible();
+      expect(component.getByText((content, node) => findWithTag(node, '23finished recipes'))).toBeVisible();
+      expect(component.getByText((content, node) => findWithTag(node, '17favourite recipes'))).toBeVisible();
+      expect(component.getByText((content, node) => findWithTag(node, '12saved to do later'))).toBeVisible();
     });
-    test('loading render works', () => {
+    test('loading render works', async () => {
       const component = render(<Personal id="test" />);
 
-      const load = component.container.querySelectorAll('#test');
-      expect(load).toHaveLength(3);
+      const load = component.container.querySelectorAll('#loading');
+      await waitFor(() => {
+        expect(load).toHaveLength(3);
+      });
     });
-    test('error render works', () => {
+    test('error render works', async () => {
+      getPersonal.mockImplementation(getPersonalRejectMock);
       const component = render(<Personal id="test" />);
 
-      expect(component.getByText('an error occurred'));
+      await waitFor(() => {
+        expect(component.getByText('an error occurred'));
+      });
     });
   });
   describe('functions work', () => {
     test('recipe view switch works', async () => {
       const component = render(<Personal id="test" />);
 
-      expect(component.getByText('test recipe 1')).toBeVisible();
-      expect(component.getByText('go to recipe')).toHaveAttribute('href', 'todo');
+      await waitFor(() => {
+        expect(component.getByText('test title 11')).toBeVisible();
+      });
 
       await userEvent.click(component.getByRole('button', { name: 'do later' }));
 
-      expect(component.getByText('test recipe 2')).toBeVisible();
-      expect(component.getByText('go to recipe')).toHaveAttribute('href', 'todo');
+      await waitFor(() => {
+        expect(component.getByText('test title load 191')).toBeVisible();
+      });
+    });
+    test('pagination works', async () => {
+      const component = render(<Personal id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByText('test title 11')).toBeVisible();
+      });
+
+      expect(component.getByRole('button', { name: 'previous' })).toBeDisabled();
+      await userEvent.click(component.getByRole('button', { name: 'next' }));
+
+      await waitFor(() => {
+        expect(component.getByText('test title load 191')).toBeVisible();
+      });
+      expect(component.getByRole('button', { name: 'previous' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'next' })).toBeDisabled();
+
+      await userEvent.click(component.getByRole('button', { name: 'previous' }));
+
+      await waitFor(() => {
+        expect(component.getByRole('button', { name: 'previous' })).toBeDisabled();
+        expect(component.getByRole('button', { name: 'next' })).toBeVisible();
+      });
     });
   });
 });
