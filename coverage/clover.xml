@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1701213994228" clover="3.2.0">
-  <project timestamp="1701213994228" name="All files">
-    <metrics statements="609" coveredstatements="522" conditionals="196" coveredconditionals="184" methods="202" coveredmethods="144" elements="1007" coveredelements="850" complexity="0" loc="609" ncloc="609" packages="11" files="40" classes="40"/>
+<coverage generated="1701214735811" clover="3.2.0">
+  <project timestamp="1701214735811" name="All files">
+    <metrics statements="609" coveredstatements="530" conditionals="194" coveredconditionals="186" methods="202" coveredmethods="147" elements="1005" coveredelements="863" complexity="0" loc="609" ncloc="609" packages="11" files="40" classes="40"/>
     <package name="components">
-      <metrics statements="129" coveredstatements="129" conditionals="52" coveredconditionals="51" methods="37" coveredmethods="37"/>
+      <metrics statements="129" coveredstatements="129" conditionals="52" coveredconditionals="52" methods="37" coveredmethods="37"/>
       <file name="Calendar.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Calendar.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="18" count="3" type="stmt"/>
@@ -96,41 +96,41 @@
       <file name="Instructions.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Instructions.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="11" count="4" type="stmt"/>
-        <line num="14" count="30" type="stmt"/>
+        <line num="14" count="31" type="stmt"/>
         <line num="26" count="4" type="stmt"/>
         <line num="32" count="4" type="stmt"/>
       </file>
       <file name="Label.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Label.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="10" count="4" type="stmt"/>
-        <line num="11" count="30" type="stmt"/>
-        <line num="13" count="90" type="stmt"/>
-        <line num="16" count="30" type="stmt"/>
+        <line num="11" count="31" type="stmt"/>
+        <line num="13" count="93" type="stmt"/>
+        <line num="16" count="31" type="stmt"/>
         <line num="25" count="4" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
       </file>
       <file name="Layout.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Layout.jsx">
-        <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="7" methods="6" coveredmethods="6"/>
+        <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
         <line num="16" count="1" type="stmt"/>
-        <line num="17" count="9" type="stmt"/>
-        <line num="19" count="9" type="stmt"/>
-        <line num="20" count="9" type="stmt"/>
-        <line num="21" count="9" type="stmt"/>
-        <line num="22" count="9" type="stmt"/>
-        <line num="28" count="9" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
-        <line num="34" count="3" type="stmt"/>
-        <line num="37" count="9" type="stmt"/>
+        <line num="17" count="11" type="stmt"/>
+        <line num="19" count="11" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="21" count="11" type="stmt"/>
+        <line num="22" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="37" count="11" type="stmt"/>
         <line num="38" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
-        <line num="48" count="9" type="stmt"/>
+        <line num="48" count="11" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
         <line num="60" count="1" type="stmt"/>
         <line num="85" count="1" type="stmt"/>
@@ -183,25 +183,25 @@
       </file>
     </package>
     <package name="helpers">
-      <metrics statements="13" coveredstatements="6" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="1"/>
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <file name="GuardedRoute.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/helpers/GuardedRoute.jsx">
-        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="18" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="23" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
       <file name="dateHelpers.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/helpers/dateHelpers.jsx">
-        <metrics statements="9" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
       </file>
     </package>
     <package name="pages.home">
@@ -364,30 +364,30 @@
       </file>
     </package>
     <package name="pages.recipe">
-      <metrics statements="83" coveredstatements="60" conditionals="42" coveredconditionals="36" methods="23" coveredmethods="12"/>
+      <metrics statements="83" coveredstatements="61" conditionals="42" coveredconditionals="36" methods="23" coveredmethods="13"/>
       <file name="Recipe.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/pages/recipe/Recipe.jsx">
-        <metrics statements="50" coveredstatements="49" conditionals="14" coveredconditionals="14" methods="7" coveredmethods="6"/>
+        <metrics statements="50" coveredstatements="50" conditionals="14" coveredconditionals="14" methods="7" coveredmethods="7"/>
         <line num="18" count="2" type="stmt"/>
-        <line num="20" count="18" type="stmt"/>
-        <line num="22" count="18" type="stmt"/>
-        <line num="23" count="18" type="stmt"/>
-        <line num="25" count="18" type="stmt"/>
-        <line num="26" count="18" type="stmt"/>
-        <line num="27" count="18" type="stmt"/>
-        <line num="29" count="18" type="stmt"/>
-        <line num="30" count="18" type="stmt"/>
-        <line num="31" count="18" type="stmt"/>
-        <line num="32" count="18" type="stmt"/>
-        <line num="33" count="18" type="stmt"/>
-        <line num="34" count="18" type="stmt"/>
-        <line num="35" count="18" type="stmt"/>
-        <line num="36" count="18" type="stmt"/>
-        <line num="37" count="18" type="stmt"/>
-        <line num="38" count="18" type="stmt"/>
-        <line num="39" count="18" type="stmt"/>
-        <line num="40" count="18" type="stmt"/>
-        <line num="41" count="18" type="stmt"/>
-        <line num="43" count="18" type="stmt"/>
+        <line num="20" count="19" type="stmt"/>
+        <line num="22" count="19" type="stmt"/>
+        <line num="23" count="19" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="26" count="19" type="stmt"/>
+        <line num="27" count="19" type="stmt"/>
+        <line num="29" count="19" type="stmt"/>
+        <line num="30" count="19" type="stmt"/>
+        <line num="31" count="19" type="stmt"/>
+        <line num="32" count="19" type="stmt"/>
+        <line num="33" count="19" type="stmt"/>
+        <line num="34" count="19" type="stmt"/>
+        <line num="35" count="19" type="stmt"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="19" type="stmt"/>
+        <line num="38" count="19" type="stmt"/>
+        <line num="39" count="19" type="stmt"/>
+        <line num="40" count="19" type="stmt"/>
+        <line num="41" count="19" type="stmt"/>
+        <line num="43" count="19" type="stmt"/>
         <line num="44" count="7" type="stmt"/>
         <line num="46" count="6" type="stmt"/>
         <line num="47" count="6" type="stmt"/>
@@ -401,20 +401,20 @@
         <line num="55" count="6" type="stmt"/>
         <line num="56" count="6" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
-        <line num="63" count="18" type="stmt"/>
+        <line num="63" count="19" type="stmt"/>
         <line num="64" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="65" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
         <line num="69" count="1" type="stmt"/>
         <line num="72" count="3" type="stmt"/>
         <line num="73" count="3" type="stmt"/>
         <line num="74" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="75" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="76" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="79" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="19" type="cond" truecount="2" falsecount="0"/>
         <line num="80" count="1" type="stmt"/>
-        <line num="88" count="17" type="stmt"/>
+        <line num="88" count="18" type="stmt"/>
         <line num="151" count="2" type="stmt"/>
         <line num="156" count="2" type="stmt"/>
       </file>

@@ -144,7 +144,7 @@ describe('Recipe tests', () => {
       expect(component.getByText('you need to be logged in')).toBeVisible();
 
       // TODO: better way to deal with setTimeout
-      act(async () => {
+      await act(async () => {
         await new Promise((res) => { setTimeout(res, 3100); });
       });
 
