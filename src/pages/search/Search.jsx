@@ -5,7 +5,6 @@ import { useOutletContext } from 'react-router-dom';
 import SearchField from '../../components/SearchField';
 import Load from '../../components/Load';
 import Results from './Results';
-import getTokenAndId from '../../helpers/getTokenAndId';
 import { UseSearch } from './searchHooks';
 import searchService from '../../services/searchService';
 import Filters from './Filters';
@@ -17,10 +16,11 @@ import Filters from './Filters';
  * @returns Search page.
  */
 const Search = ({ className, id }) => {
+  const accountId = useOutletContext()[2];
+  const token = useOutletContext()[1];
+
   const [items, setItems] = useState([]);
   const [moreResults, setMoreResults] = useState(false);
-  const [token, setToken] = useState(null);
-  const [accountId, setAccountId] = useState(null);
   const [loading, setLoading] = useState(1);
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState('');
@@ -35,9 +35,6 @@ const Search = ({ className, id }) => {
    * UseEffect to get token and id from storage and also to load initial data.
    */
   useEffect(() => {
-    const storage = getTokenAndId();
-    setToken(storage.token); setAccountId(storage.accountId);
-
     searchService.getSomeRecipes(token, accountId)
       .then((res) => {
         setItems(res.items);

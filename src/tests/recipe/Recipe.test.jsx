@@ -58,10 +58,8 @@ describe('Recipe tests', () => {
       expect(component.getByText('Ingredients')).toBeVisible();
       expect(component.getByText('5clovesgarlic')).toBeVisible();
 
-      expect(component.getByText('test body this is a text that tells more about this dish. Mmm yummy yummy you really should make this recipe as it sounds delicious wow yay. Um this needs to be a bit longer to be realistic so yap yap yap yap yap yap yap yap')).toBeVisible();
       expect(component.getByText('Instructions')).toBeVisible();
-      expect(component.getByText((content, node) => findWithTag(node, 'test instructions this is a text that tells more about this dish. Mmm yummy yummy you really should make this recipe as it sounds delicious wow yay. Um this needs to be a bit longer to be realistic so yap yap yap yap yap yap yap yap this is a text that tells more about this dish. Mmm yummy yummy you really should make this recipe as it sounds delicious wow yay. Um this needs to be a bit longer to be realistic so yap yap yap yap yap  yap yap yap'))).toBeVisible();
-
+      expect(component.getByText('test instructions this is a text that tells more about this dish.')).toBeVisible();
       expect(component.getByRole('button', { name: 'add to calendar' })).toBeVisible();
       expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
       expect(component.getByRole('button', { name: 'add to do later' })).toBeVisible();

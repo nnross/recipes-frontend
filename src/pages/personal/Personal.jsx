@@ -1,29 +1,26 @@
-<<<<<<< HEAD
-import React from 'react';
-import Calendar from '../../components/Calendar';
-
-const Personal = () => (
-  <div>
-    <Calendar monday={1} tuesday={2} />
-  </div>
-);
-=======
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 import List from './List';
 import Statistics from './Statistics';
 import Calendar from '../../components/Calendar';
 import { getDate } from '../../helpers/dateHelpers';
 import { UseGetItems } from './personalHooks';
-import getTokenAndId from '../../helpers/getTokenAndId';
 import personalService from '../../services/personalService';
 import Load from '../../components/Load';
 
+/**
+ * renders the personal page
+ * @property {String} className - custom className if wanted. Default is personal.
+ * @property {String} id - custom id if wanted. Default is personal.
+ * @returns personal page
+ */
 const Personal = ({ className, id }) => {
+  const accountId = useOutletContext()[2];
+  const token = useOutletContext()[1];
+
   const date = getDate();
   const [loading, setLoading] = useState(1);
-  const [accountId, setAccountId] = useState(null);
-  const [token, setToken] = useState(null);
   const [items, setItems] = useState([]);
   const [isNext, setIsNext] = useState(true);
   const [isPrev, setIsPrev] = useState(false);
@@ -36,11 +33,7 @@ const Personal = ({ className, id }) => {
   const page = useRef(0);
 
   useEffect(() => {
-    const storage = getTokenAndId();
-    setAccountId(storage.id);
-    setToken(storage.token);
-
-    personalService.getPersonal(storage.id, storage.token)
+    personalService.getPersonal(accountId, token)
       .then((res) => {
         setItems(res.items);
         setIsNext(res.moreItems);
@@ -138,7 +131,6 @@ const Personal = ({ className, id }) => {
     </div>
   );
 };
->>>>>>> sprint3
 
 export default Personal;
 

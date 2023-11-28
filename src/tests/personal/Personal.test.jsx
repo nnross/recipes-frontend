@@ -11,6 +11,11 @@ import { UseGetItems } from '../../pages/personal/personalHooks';
 import Personal from '../../pages/personal/Personal';
 import { findWithTag } from '../testHelpers';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useOutletContext: jest.fn(),
+}));
+
 jest.mock('../../pages/personal/List');
 jest.mock('../../pages/personal/Statistics');
 jest.mock('../../components/Calendar');
@@ -31,6 +36,7 @@ jest.mock('../../pages/personal/personalHooks', () => ({
 
 beforeEach(() => {
   jest.clearAllMocks();
+  useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
   getPersonal.mockImplementation(getPersonalMock);
 
   UseGetItems.mockImplementation((
