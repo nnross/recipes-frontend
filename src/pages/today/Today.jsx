@@ -9,6 +9,13 @@ import recipeService from '../../services/recipeService';
 import Load from '../../components/Load';
 import Title from './Title';
 
+/**
+ * Renders today page.
+ * @property {String} className - Custom class name if wanted, default today.
+ * @property {String} id - Custom id if wanted, default today.
+ * @returns today page
+ */
+
 const Today = ({ className, id }) => {
   const accountId = useOutletContext()[2];
   const token = useOutletContext()[1];
@@ -33,6 +40,9 @@ const Today = ({ className, id }) => {
   const [favourite, setFavourite] = useState(false);
   const [finished, setFinished] = useState(1);
 
+  /**
+   * Retrieves data for todays recipe
+   */
   useEffect(() => {
     recipeService.getRecipeByDate(date, accountId, token)
       .then((res) => {
@@ -54,6 +64,9 @@ const Today = ({ className, id }) => {
       });
   }, []);
 
+  /**
+  * Adds recipe to favourites
+  */
   const toFavourite = () => {
     recipeService.postFavourite(recipeId, accountId, token)
       .then(() => {
@@ -68,6 +81,9 @@ const Today = ({ className, id }) => {
       });
   };
 
+  /**
+   * Removes recipe from favourites
+   */
   const removeFavourite = () => {
     recipeService.deleteFavourite(recipeId, accountId, token)
       .then(() => {
@@ -82,6 +98,9 @@ const Today = ({ className, id }) => {
       });
   };
 
+  /**
+   * Marks recipe as finished
+   */
   const finishRecipe = () => {
     recipeService.postFinished(recipeId, accountId, date, token)
       .then(() => {

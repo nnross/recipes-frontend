@@ -6,6 +6,12 @@ import SettingsInput from '../../components/SettingsInput';
 import Load from '../../components/Load';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Renders settings page
+ * @property {String} className - Custom class name if wanted, default settings.
+ * @property {String} id - Custom id if wanted, default settings.
+ * @returns settings page
+ */
 const Settings = ({ className, id }) => {
   const accountId = useOutletContext()[2];
   const token = useOutletContext()[1];
@@ -22,6 +28,9 @@ const Settings = ({ className, id }) => {
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [password, setPassword] = useState('');
 
+  /**
+   * Retrieves users account data.
+   */
   useEffect(() => {
     personService.getAccountData(accountId, token)
       .then((res) => {
@@ -39,6 +48,9 @@ const Settings = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Deletes user's account.
+   */
   const deleteAccount = () => {
     setLoading(2);
     personService.deleteAccountData(accountId, token)
@@ -53,6 +65,9 @@ const Settings = ({ className, id }) => {
       });
   };
 
+  /**
+   * Saves changes made to account data.
+   */
   const saveChanges = () => {
     setLoading(2);
     personService.postAccountData(
@@ -77,6 +92,9 @@ const Settings = ({ className, id }) => {
       });
   };
 
+  /**
+   * Cancel's edits done to account data.
+   */
   const cancelEdit = () => {
     setEdit(false);
     setPassword('');

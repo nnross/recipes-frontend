@@ -40,6 +40,9 @@ const Recipe = ({ className, id }) => {
   const [later, setLater] = useState(false);
   const [calendar, setCalendar] = useState(false);
 
+  /**
+   * Retrieve the data for recipe.
+   */
   useEffect(() => {
     recipeService.getRecipe(recipeId)
       .then((res) => {
@@ -60,6 +63,11 @@ const Recipe = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Marks the recipe with correct tag, either favourite, do later or to calendar.
+   * @param {String} action - desired action either favourite, do later or to calendar.
+   * @param {Date} inputDate - for toCaledar the inputted date.
+   */
   const tag = (action, inputDate) => {
     if (loggedIn === false) {
       setReminder(true);

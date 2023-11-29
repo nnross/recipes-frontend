@@ -34,6 +34,9 @@ const Layout = ({ className, id, guarded }) => {
     setToken(window.localStorage.getItem('token'));
   }, []);
 
+  /**
+   * Opens and closes the login popup.
+   */
   const openLogin = () => {
     if (login) {
       setLogin(false);
