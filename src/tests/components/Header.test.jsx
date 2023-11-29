@@ -4,6 +4,10 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Header from '../../components/Header';
 
+jest.mock('../../helpers/dateHelpers.jsx', () => ({
+  getDate: jest.fn(() => '2022-02-02'),
+}));
+
 describe('header tests', () => {
   describe('render tests', () => {
     test('nav bar renders succesfully when logged out', () => {
@@ -78,7 +82,7 @@ describe('header tests', () => {
       expect(component.getByRole('link', { name: 'search' })).toHaveAttribute('href', '/search');
       expect(component.getByRole('link', { name: 'home' })).toHaveAttribute('href', '/home');
       expect(component.getByRole('link', { name: 'personal' })).toHaveAttribute('href', '/personal');
-      expect(component.getByRole('link', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today');
+      expect(component.getByRole('link', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today/2022-02-02');
       expect(component.getByRole('link', { name: 'settings' })).toHaveAttribute('href', '/settings');
 
       const close = component.container.querySelector('#test__nav__sidebar__close');
