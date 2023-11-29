@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import Footer from './Footer';
 import Header from './Header';
 import Login from '../pages/login/Login';
-import GuardedRoute from '../helpers/guardedRoute';
+import GuardedRoute from '../helpers/GuardedRoute';
 
 /**
  * Sets the header and footer to all pages automatically.
