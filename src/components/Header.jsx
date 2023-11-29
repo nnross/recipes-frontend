@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { getDate } from '../helpers/dateHelpers';
 
 /**
  * The Header component.
@@ -13,6 +14,7 @@ const Header = ({
   className, id, openLogin, loggedIn,
 }) => {
   const [nav, setNav] = useState(null);
+  const date = getDate();
 
   /**
    * Function to log out of the application. Done by removing the token and id from account.
@@ -33,7 +35,7 @@ const Header = ({
         <a className={`${className}__nav__sidebar__home`} href="/home"> home </a>
         <a className={`${className}__nav__sidebar__search`} href="/search"> search </a>
         {loggedIn
-          ? <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
+          ? <a className={`${className}__nav__sidebar__settings`} href={`/today/${date}`}> today&apos;s recipe </a>
           : null}
         {loggedIn
           ? <a className={`${className}__nav__sidebar__settings`} href="/personal"> personal </a>
