@@ -62,7 +62,7 @@ describe('header tests', () => {
       expect(window.location.reload).toHaveBeenCalledTimes(1);
     });
     test('nav bar opens and closes', async () => {
-      const component = render(<Header id="test" />);
+      const component = render(<Header id="test" loggedIn />);
 
       const hamburger = component.container.querySelector('#test__nav__button');
       await userEvent.click(hamburger);
@@ -91,6 +91,20 @@ describe('header tests', () => {
       expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
       expect(component.queryByRole('button', { name: 'LOG OUT' })).not.toBeInTheDocument();
       expect(component.queryByRole('button', { name: 'close' })).not.toBeInTheDocument();
+    });
+    test('nav bar opens and closes when logged out', async () => {
+      const component = render(<Header id="test" loggedIn={false} />);
+
+      const hamburger = component.container.querySelector('#test__nav__button');
+      await userEvent.click(hamburger);
+
+      expect(component.getByRole('link', { name: 'search' })).toBeVisible();
+      expect(component.getByRole('link', { name: 'home' })).toBeVisible();
+      expect(component.queryByRole('link', { name: 'personal' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'today\'s recipe' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'LOG OUT' })).not.toBeInTheDocument();
+      expect(component.getByRole('button', { name: 'close' })).toBeVisible();
     });
   });
 });

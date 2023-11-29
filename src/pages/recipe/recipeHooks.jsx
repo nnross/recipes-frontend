@@ -41,6 +41,7 @@ export const UseTag = (action, recipeId, accountId, date, token, setLoading, set
   } else if (action === 'toCalendar') {
     recipeService.postCalendar(recipeId, accountId, date, token)
       .then(() => {
+        console.log(date);
         setLoading(0);
         setSelected(true);
       })

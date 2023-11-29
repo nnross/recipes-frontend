@@ -2,6 +2,16 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * Renders an image list item
+ * @property {String} className - Custom class name if wanted, default imageListItem.
+ * @property {String} id - Custom id if wanted, default imageListItem.
+ * @property {String} src - Recipe's image's src, default null.
+ * @property {String} title - Recipe's title, default null.
+ * @property {String} body - Recipe's description, default null.
+ * @property {Number} itemId - Id of the item, default null.
+ * @returns image list item
+ */
 const ImageListItem = ({
   className, id, src, title, body, itemId,
 }) => {

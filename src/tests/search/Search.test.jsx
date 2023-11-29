@@ -309,5 +309,12 @@ describe('Search tests', () => {
       await userEvent.click(component.getByRole('button', { name: 'add' }));
       expect(component.getAllByText('addition')).toHaveLength(1);
     });
+    test('empty results work', async () => {
+      getSomeRecipes.mockImplementation(() => Promise.resolve({ items: [] }));
+      const component = render(<Search id="test" />);
+      await waitFor(() => {
+        expect(component.getByText('no results')).toBeVisible();
+      });
+    });
   });
 });

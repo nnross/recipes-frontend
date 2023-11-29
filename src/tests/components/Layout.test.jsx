@@ -8,12 +8,13 @@ import Layout from '../../components/Layout';
 jest.mock('../../components/Header');
 jest.mock('../../components/Footer');
 jest.mock('../../pages/login/Login');
+jest.mock('../../helpers/GuardedRoute');
 
 describe('Layout tests', () => {
   test('Layout renders', () => {
     const component = render(
       <BrowserRouter>
-        <Layout id="test" />
+        <Layout id="test" guarded={false} />
       </BrowserRouter>,
     );
     const container = component.container.querySelector('#test');
@@ -22,6 +23,15 @@ describe('Layout tests', () => {
     expect(container.className).toBe('layout');
 
     expect(container.children).toHaveLength(3);
+  });
+  test('Layout renders when guarded', () => {
+    const component = render(
+      <BrowserRouter>
+        <Layout id="test" guarded />
+      </BrowserRouter>,
+    );
+
+    expect(component.getByText('guarded')).toBeVisible();
   });
 
   test('Layout scroll reduces header size', () => {

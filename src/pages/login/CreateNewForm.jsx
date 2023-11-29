@@ -2,6 +2,16 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Renders create new form for login popup.
+ * @property {String} className - Custom class name if wanted, default createNewForm.
+ * @property {String} id - Custom id if wanted, default createNewForm.
+ * @property {function} switchView - Switches the view between login and create new account.
+ * @property {number} loading - State of loading, default 0.
+ * @property {function} handleCreate - Handles the creation of a new account.
+ * @property {String} error - Error message, default null.
+ * @returns createNewForm page
+ */
 const CreateNewForm = ({
   className, id, switchView, loading, handleCreate, error,
 }) => {
@@ -19,6 +29,10 @@ const CreateNewForm = ({
   const usernameRegex = /^(?=.{4,20})/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
+  /**
+   * Checks that the password matches confirm password and username,
+   * password and name are in the correct form.
+   */
   useEffect(() => {
     setWrongUsername(usernameRegex.test(username) === false && username !== '');
     setWrongPassword(passwordRegex.test(password) === false && password !== '');

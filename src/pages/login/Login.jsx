@@ -4,18 +4,30 @@ import LoginForm from './LoginForm';
 import CreateNewForm from './CreateNewForm';
 import { UseLogin, UseCreateAccount } from './loginHooks';
 
+/**
+ * Renders login popup
+ * @property {String} className - Custom class name if wanted, default login.
+ * @property {String} id - Custom id if wanted, default login.
+ * @property {function} closeLogin - Closes the login popup.
+ * @returns Login popup
+ */
 const Login = ({ className, id, closeLogin }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(0);
   const [login, setLogin] = useState(true);
 
+  /**
+   * Handles the login.
+   */
   const handleLogin = (e) => {
     setLoading(2);
     e.preventDefault();
     const values = e.target.elements;
     UseLogin(values[0].value, values[1].value, setLoading, setError);
   };
-
+  /**
+   * Handles the creation of a new account.
+   */
   const handleCreate = (e) => {
     setLoading(2);
     e.preventDefault();

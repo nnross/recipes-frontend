@@ -4,7 +4,7 @@ import { withMore, withNoMore } from '../tests/testData/imageListItems.json';
 
 // TODO: actual call to backend.
 const getSomeRecipes = (id, token) => (
-  new Promise((resolve) => {
+  new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(withMore);
     }, 1000);
