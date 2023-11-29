@@ -1,21 +1,20 @@
 import '@testing-library/jest-dom/extend-expect';
-import React from 'react';
 import { getWeekDates, getDate } from '../../helpers/dateHelpers';
 
 beforeAll(() => {
   jest.useFakeTimers('modern');
-  jest.setSystemTime(new Date(2022, 2, 2));
+  jest.setSystemTime(new Date(1091040026000));
 });
 
 describe('datehelper tests', () => {
   test('get week dates works', () => {
     const dates = getWeekDates();
 
-    expect(dates).toStrictEqual(['2022-02-27', '2022-01-31', '2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04', '2022-02-05']);
+    expect(dates).toStrictEqual(['2004-07-26', '2004-07-27', '2004-07-28', '2004-07-29', '2004-07-30', '2004-07-31', '2004-08-01']);
   });
   test('get date works', () => {
     const date = getDate();
 
-    expect(date).toBe('2022-03-01');
+    expect(date).toBe('2004-07-28');
   });
 });
