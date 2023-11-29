@@ -2,6 +2,13 @@ import React from 'react';
 import propTypes from 'prop-types';
 import RecipeListItem from './RecipeListItem';
 
+/**
+ * Renders a list of items in the recipeListItem format.
+ * @propery {String} className - custom className if wanted. Default is recipeList
+ * @propery {String} id - custom id if wanted. Default is recipeList.
+ * @propery {List<JSON>} items - the list of items to be rendered.
+ * @returns List of items rendered.
+ */
 const RecipeList = ({ className, id, items }) => {
   const itemList = [];
 

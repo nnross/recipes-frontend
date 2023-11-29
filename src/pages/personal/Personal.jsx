@@ -1,19 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 import List from './List';
 import Statistics from './Statistics';
 import Calendar from '../../components/Calendar';
 import { getDate } from '../../helpers/dateHelpers';
 import { UseGetItems } from './personalHooks';
-import getTokenAndId from '../../helpers/getTokenAndId';
 import personalService from '../../services/personalService';
 import Load from '../../components/Load';
 
+/**
+ * renders the personal page
+ * @property {String} className - custom className if wanted. Default is personal.
+ * @property {String} id - custom id if wanted. Default is personal.
+ * @returns personal page
+ */
 const Personal = ({ className, id }) => {
+  const accountId = useOutletContext()[2];
+  const token = useOutletContext()[1];
+
   const date = getDate();
   const [loading, setLoading] = useState(1);
-  const [accountId, setAccountId] = useState(null);
-  const [token, setToken] = useState(null);
   const [items, setItems] = useState([]);
   const [isNext, setIsNext] = useState(true);
   const [isPrev, setIsPrev] = useState(false);
@@ -25,12 +32,11 @@ const Personal = ({ className, id }) => {
   const [calendar, setCalendar] = useState(null);
   const page = useRef(0);
 
+  /**
+   * Loads the data for personal page.
+   */
   useEffect(() => {
-    const storage = getTokenAndId();
-    setAccountId(storage.id);
-    setToken(storage.token);
-
-    personalService.getPersonal(storage.id, storage.token)
+    personalService.getPersonal(accountId, token)
       .then((res) => {
         setItems(res.items);
         setIsNext(res.moreItems);
@@ -46,23 +52,35 @@ const Personal = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Checks if it's the last page of results.
+   */
   useEffect(() => {
     if (page.current <= 0) setIsPrev(false);
     else setIsPrev(true);
   }, [page.current]);
 
+  /**
+   * Loads the next page of results.
+   */
   const nextPage = () => {
     setLoading(2);
     page.current += 1;
     UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
+  /**
+   * Loads the previous page of results.
+   */
   const prevPage = () => {
     setLoading(2);
     page.current -= 1;
     UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
+  /**
+   * Switches the view between favourite and do later.
+   */
   const changeView = (sel) => {
     setLoading(2);
     setView(sel);

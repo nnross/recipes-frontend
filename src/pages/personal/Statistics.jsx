@@ -8,6 +8,15 @@ import {
   Cell,
 } from 'recharts';
 
+/**
+ * renders the statistics component for the personal page.
+ * @property {String} className - custom className if wanted. Default is statistics.
+ * @property {number} doneCount - count of done recipes
+ * @property {number} facouriteCount - count of favourited recipes
+ * @property {number} doLaterCount - count of recipes with do later.
+ * @property {List<JSON>} chart - data for piechart
+ * @returns statistics component.
+ */
 const Statistics = ({
   className, id, doneCount, favouriteCount, doLaterCount, chart,
 }) => {

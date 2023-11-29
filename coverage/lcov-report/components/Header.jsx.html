@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -139,7 +139,15 @@
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,12 +161,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -167,8 +175,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,11 +184,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,10 +265,18 @@ const Header = ({
         &lt;button className={`${className}__nav__sidebar__close`} id={`${id}__nav__sidebar__close`} onClick={() =&gt; setNav(null)} type="button" aria-label="close" /&gt;
         &lt;a className={`${className}__nav__sidebar__home`} href="/home"&gt; home &lt;/a&gt;
         &lt;a className={`${className}__nav__sidebar__search`} href="/search"&gt; search &lt;/a&gt;
-        &lt;a className={`${className}__nav__sidebar__settings`} href="/today"&gt; today&amp;apos;s recipe &lt;/a&gt;
-        &lt;a className={`${className}__nav__sidebar__settings`} href="/personal"&gt; personal &lt;/a&gt;
-        &lt;a className={`${className}__nav__sidebar__settings`} href="/settings"&gt; settings &lt;/a&gt;
-        &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={() =&gt; logOut()}&gt;LOG OUT&lt;/button&gt;
+        {loggedIn
+          ? &lt;a className={`${className}__nav__sidebar__settings`} href="/today"&gt; today&amp;apos;s recipe &lt;/a&gt;
+          : null}
+        {loggedIn
+          ? &lt;a className={`${className}__nav__sidebar__settings`} href="/personal"&gt; personal &lt;/a&gt;
+          : null}
+        {loggedIn
+          ? &lt;a className={`${className}__nav__sidebar__settings`} href="/settings"&gt; settings &lt;/a&gt;
+          : null}
+        {loggedIn
+          ? &lt;button className={`${className}__nav__sidebar__logout`} type="button" onClick={() =&gt; logOut()}&gt;LOG OUT&lt;/button&gt;
+          : null}
       &lt;/nav&gt;,
     );
   };
@@ -298,7 +322,7 @@ Header.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-26T17:33:09.989Z
+                at 2023-11-28T23:38:55.686Z
             </div>
         <script src="../prettify.js"></script>
         <script>

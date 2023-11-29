@@ -4,7 +4,7 @@
  */
 export const getWeekDates = () => {
   const date = new Date();
-  const dDay = date.getDay() > 0 ? date.getDay() : 7;
+  const dDay = date.getDay();
   const first = date.getDate() - dDay + 1;
   const week = [];
   for (let i = 0; i < 7; i += 1) {

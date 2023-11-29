@@ -32,10 +32,18 @@ const Header = ({
         <button className={`${className}__nav__sidebar__close`} id={`${id}__nav__sidebar__close`} onClick={() => setNav(null)} type="button" aria-label="close" />
         <a className={`${className}__nav__sidebar__home`} href="/home"> home </a>
         <a className={`${className}__nav__sidebar__search`} href="/search"> search </a>
-        <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
-        <a className={`${className}__nav__sidebar__settings`} href="/personal"> personal </a>
-        <a className={`${className}__nav__sidebar__settings`} href="/settings"> settings </a>
-        <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}>LOG OUT</button>
+        {loggedIn
+          ? <a className={`${className}__nav__sidebar__settings`} href="/today"> today&apos;s recipe </a>
+          : null}
+        {loggedIn
+          ? <a className={`${className}__nav__sidebar__settings`} href="/personal"> personal </a>
+          : null}
+        {loggedIn
+          ? <a className={`${className}__nav__sidebar__settings`} href="/settings"> settings </a>
+          : null}
+        {loggedIn
+          ? <button className={`${className}__nav__sidebar__logout`} type="button" onClick={() => logOut()}>LOG OUT</button>
+          : null}
       </nav>,
     );
   };
