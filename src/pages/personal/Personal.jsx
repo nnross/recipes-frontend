@@ -32,6 +32,9 @@ const Personal = ({ className, id }) => {
   const [calendar, setCalendar] = useState(null);
   const page = useRef(0);
 
+  /**
+   * Loads the data for personal page.
+   */
   useEffect(() => {
     personalService.getPersonal(accountId, token)
       .then((res) => {
@@ -49,23 +52,35 @@ const Personal = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Checks if it's the last page of results.
+   */
   useEffect(() => {
     if (page.current <= 0) setIsPrev(false);
     else setIsPrev(true);
   }, [page.current]);
 
+  /**
+   * Loads the next page of results.
+   */
   const nextPage = () => {
     setLoading(2);
     page.current += 1;
     UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
+  /**
+   * Loads the previous page of results.
+   */
   const prevPage = () => {
     setLoading(2);
     page.current -= 1;
     UseGetItems(accountId, token, view, page.current, setItems, setIsNext, setLoading);
   };
 
+  /**
+   * Switches the view between favourite and do later.
+   */
   const changeView = (sel) => {
     setLoading(2);
     setView(sel);

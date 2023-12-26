@@ -4,7 +4,14 @@ import { useOutletContext } from 'react-router-dom';
 import personService from '../../services/personService';
 import SettingsInput from '../../components/SettingsInput';
 import Load from '../../components/Load';
+import Spinner from '../../components/Spinner';
 
+/**
+ * Renders settings page
+ * @property {String} className - Custom class name if wanted, default settings.
+ * @property {String} id - Custom id if wanted, default settings.
+ * @returns settings page
+ */
 const Settings = ({ className, id }) => {
   const accountId = useOutletContext()[2];
   const token = useOutletContext()[1];
@@ -18,8 +25,12 @@ const Settings = ({ className, id }) => {
   const [originalUsername, setOriginalUsername] = useState(null);
   const [originalName, setOriginalName] = useState(null);
   const [originalEmail, setOriginalEmail] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
   const [password, setPassword] = useState('');
 
+  /**
+   * Retrieves users account data.
+   */
   useEffect(() => {
     personService.getAccountData(accountId, token)
       .then((res) => {
@@ -37,22 +48,56 @@ const Settings = ({ className, id }) => {
       });
   }, []);
 
+  /**
+   * Deletes user's account.
+   */
   const deleteAccount = () => {
-    console.log('deleted account');
-    console.log(token);
-    console.log(accountId);
+    setLoading(2);
+    personService.deleteAccountData(accountId, token)
+      .then(() => {
+        setLoading(0);
+      })
+      .catch(() => {
+        setLoading(4);
+        setTimeout(() => {
+          setLoading(0);
+        }, 1000);
+      });
   };
 
+  /**
+   * Saves changes made to account data.
+   */
   const saveChanges = () => {
-    console.log('saved changes');
-    console.log(name);
-    console.log(username);
-    console.log(email);
-    console.log(password);
+    setLoading(2);
+    personService.postAccountData(
+      accountId,
+      token,
+      username,
+      name,
+      email,
+      password,
+      confirmPassword,
+    )
+      .then(() => {
+        setLoading(0);
+        setEdit(false);
+        setPassword('');
+      })
+      .catch(() => {
+        setLoading(4);
+        setTimeout(() => {
+          setLoading(0);
+        }, 1000);
+      });
   };
 
+  /**
+   * Cancel's edits done to account data.
+   */
   const cancelEdit = () => {
     setEdit(false);
+    setPassword('');
     setUsername(originalUsername);
     setName(originalName);
     setEmail(originalEmail);
@@ -92,6 +137,7 @@ const Settings = ({ className, id }) => {
             <SettingsInput value={name} title="name" onChange={setName} disabled={!edit} />
             <SettingsInput value={email} title="email" onChange={setEmail} disabled={!edit} />
             <SettingsInput placeholder="••••••••" title="password" onChange={setPassword} disabled={!edit} />
+            {password !== '' ? <SettingsInput placeholder="" title="confirm with previous password" onChange={setConfirmPassword} disabled={!edit} /> : null}
           </div>
           {edit
             ? (
@@ -105,6 +151,19 @@ const Settings = ({ className, id }) => {
                 <button className={`${className}__container__buttons--delete`} type="button" onClick={() => { document.body.style.overflow = 'hidden'; setConfirmation(true); }}> delete account</button>
               </div>
             )}
+          { loading === 4 || loading === 2
+            ? (
+              <div className={`${className}__container__error`}>
+                {loading === 2
+                  ? <Spinner />
+                  : (
+                    <div className={`${className}__container__error__msg`}>
+                      <p>an error occurred</p>
+                    </div>
+                  )}
+              </div>
+            )
+            : null}
         </div>
       )}
     </div>

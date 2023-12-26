@@ -2,6 +2,16 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Renders login form for login popup.
+ * @property {String} className - Custom class name if wanted, default loginForm.
+ * @property {String} id - Custom id if wanted, default loginForm.
+ * @property {function} switchView - Switches the view between login and create new account.
+ * @property {function} handleLogin - Handles logging in.
+ * @property {number} loading - State of loading, default 0.
+ * @property {String} error - Error message, default null.
+ * @returns login form
+ */
 const LoginForm = ({
   className, id, switchView, handleLogin, loading, error,
 }) => (

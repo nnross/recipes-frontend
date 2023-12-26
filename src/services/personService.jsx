@@ -9,6 +9,22 @@ const getAccountData = (accountId, token) => (
   })
 );
 
+const postAccountData = (accountId, token, username, name, email, password) => (
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  })
+);
+
+const deleteAccountData = (accountId, token) => (
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  })
+);
+
 export default {
-  getAccountData,
+  getAccountData, postAccountData, deleteAccountData,
 };

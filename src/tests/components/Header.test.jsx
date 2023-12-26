@@ -4,6 +4,10 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Header from '../../components/Header';
 
+jest.mock('../../helpers/dateHelpers.jsx', () => ({
+  getDate: jest.fn(() => '2022-02-02'),
+}));
+
 describe('header tests', () => {
   describe('render tests', () => {
     test('nav bar renders succesfully when logged out', () => {
@@ -62,7 +66,7 @@ describe('header tests', () => {
       expect(window.location.reload).toHaveBeenCalledTimes(1);
     });
     test('nav bar opens and closes', async () => {
-      const component = render(<Header id="test" />);
+      const component = render(<Header id="test" loggedIn />);
 
       const hamburger = component.container.querySelector('#test__nav__button');
       await userEvent.click(hamburger);
@@ -78,7 +82,7 @@ describe('header tests', () => {
       expect(component.getByRole('link', { name: 'search' })).toHaveAttribute('href', '/search');
       expect(component.getByRole('link', { name: 'home' })).toHaveAttribute('href', '/home');
       expect(component.getByRole('link', { name: 'personal' })).toHaveAttribute('href', '/personal');
-      expect(component.getByRole('link', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today');
+      expect(component.getByRole('link', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today/2022-02-02');
       expect(component.getByRole('link', { name: 'settings' })).toHaveAttribute('href', '/settings');
 
       const close = component.container.querySelector('#test__nav__sidebar__close');
@@ -91,6 +95,20 @@ describe('header tests', () => {
       expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
       expect(component.queryByRole('button', { name: 'LOG OUT' })).not.toBeInTheDocument();
       expect(component.queryByRole('button', { name: 'close' })).not.toBeInTheDocument();
+    });
+    test('nav bar opens and closes when logged out', async () => {
+      const component = render(<Header id="test" loggedIn={false} />);
+
+      const hamburger = component.container.querySelector('#test__nav__button');
+      await userEvent.click(hamburger);
+
+      expect(component.getByRole('link', { name: 'search' })).toBeVisible();
+      expect(component.getByRole('link', { name: 'home' })).toBeVisible();
+      expect(component.queryByRole('link', { name: 'personal' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'today\'s recipe' })).not.toBeInTheDocument();
+      expect(component.queryByRole('link', { name: 'settings' })).not.toBeInTheDocument();
+      expect(component.queryByRole('button', { name: 'LOG OUT' })).not.toBeInTheDocument();
+      expect(component.getByRole('button', { name: 'close' })).toBeVisible();
     });
   });
 });

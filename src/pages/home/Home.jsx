@@ -1,6 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+/**
+ * Renders home page.
+ * @property {String} className - Custom class name if wanted, default home.
+ * @property {String} id - Custom id if wanted, default home.
+ * @returns home page
+ */
 const Home = ({ className, id }) => (
   <div className={className} id={id}>
     <div className={`${className}__titles`} id={`${id}__titles`}>
