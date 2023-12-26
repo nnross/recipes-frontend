@@ -9,4 +9,4 @@ const getPersonal = (id, token) => (
   })
 );
 
-export default { getPersonal };
+export default { getPersonalRecipes };

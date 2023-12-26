@@ -7,7 +7,7 @@ import searchService from '../../services/searchService';
  * @param {String} token  - token of the user trying to get recipes.
  * @param {String} search - search used for query.
  * @param {String} filters - filters used for query.
- * @param {String} page - page selected for query.
+ * @param {Integer} page - page selected for query.
  * @param {Function} setItems - function to set the recieved items.
  * @param {Function} setMoreItems - function to set the status of more results.
  * @param {Function} setLoading - function to set the loading state.
