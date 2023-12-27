@@ -37,7 +37,7 @@ const Search = ({ className, id }) => {
   useEffect(() => {
     searchService.getSomeRecipes(token, accountId)
       .then((res) => {
-        setItems(res.items);
+        setItems(res.recipes);
         setMoreResults(res.moreResults);
         setLoading(0);
       })

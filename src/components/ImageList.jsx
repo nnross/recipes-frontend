@@ -14,7 +14,7 @@ const ImageList = ({ className, id, items }) => {
 
   items.map((item) => itemList.push(
     <ImageListItem
-      src={item.src}
+      src={item.image}
       title={item.title}
       body={item.body}
       itemId={item.id}

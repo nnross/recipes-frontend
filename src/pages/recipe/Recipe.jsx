@@ -46,13 +46,13 @@ const Recipe = ({ className, id }) => {
   useEffect(() => {
     recipeService.getRecipe(recipeId)
       .then((res) => {
-        setSrc(res.src);
+        setSrc(res.image);
         setTitle(res.title);
-        setBody(res.body);
+        setBody(res.summary);
         setInstructions(res.instructions);
         setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
-        setLabels(res.labels);
+        setIngredients(res.measurements);
+        setLabels(res.diets);
         setFavourite(res.favourite);
         setLater(res.later);
         setCalendar(res.calendar);

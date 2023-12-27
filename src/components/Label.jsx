@@ -11,7 +11,7 @@ const Label = ({ className, id, labels }) => {
   const labelList = [];
 
   labels.map((label) => labelList.push(
-    <div className={`${className}__${label.type}`} id={`${id}__${label.type}`} key={label.id} />,
+    <div className={`${className}__${label}`} id={`${id}__${label}`} key={label} />,
   ));
   return (
     <div className={`${className}`} id={`${id}`}>

@@ -15,9 +15,9 @@ const Ingredients = ({
   ingredients.map((ingredient) => ingredientList.push(
     <li className={`${className}__body__item`} key={ingredient.id}>
       <span className={`${className}__body__item__1`}>
-        {ingredient.measures.metric.amount}
+        {ingredient.amount}
         {' '}
-        {ingredient.measures.metric.unitShort}
+        {ingredient.unit}
       </span>
       {ingredient.name}
     </li>,

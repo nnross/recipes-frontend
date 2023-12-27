@@ -1,15 +1,13 @@
 /* eslint-disable no-new */
 /* eslint-disable no-unused-vars */
+import axios from 'axios';
 import { withMore, withNoMore } from '../tests/testData/imageListItems.json';
 
 // TODO: actual call to backend.
-const getSomeRecipes = (id, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(withMore);
-    }, 1000);
-  })
-);
+const getSomeRecipes = async (id, token) => {
+  const res = await axios.get('http://localhost:8080/api/recipe/get/api/random');
+  return res.data;
+};
 
 // TODO: actual call to backend
 const getSearch = (id, token, search, filters, page) => (
