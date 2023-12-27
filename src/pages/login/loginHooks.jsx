@@ -2,13 +2,25 @@
 /* eslint-disable import/prefer-default-export */
 import loginService from '../../services/loginService';
 
-// TODO: preprocessing for actual call
-export const UseLogin = (username, password, setLoading, setError) => {
-  loginService.getAccount(username, password)
+/**
+ * Calls the service to login the user. Handles errors and success.
+ * @param {String} username - username of login.
+ * @param {String} password - password of login.
+ * @param {Func} setLoading - function to set loading state.
+ * @param {Func} setError - function to set error message.
+ * @param {Func} closeLogin - function to close the login view.
+ */
+export const UseLogin = (username, password, setLoading, setError, closeLogin) => {
+  const payload = {
+    username,
+    password,
+  };
+  loginService.getAccount(payload)
     .then((res) => {
-      setLoading(0);
       window.localStorage.setItem('token', res.token);
-      window.localStorage.setItem('accountId', res.id);
+      window.localStorage.setItem('accountId', res.accountId);
+      setLoading(0);
+      closeLogin();
     })
     .catch((exception) => {
       if (exception.response.status === 403) {
@@ -20,13 +32,30 @@ export const UseLogin = (username, password, setLoading, setError) => {
     });
 };
 
-// todo preprocessing for actual call
-export const UseCreateAccount = (name, email, username, password, confirm, setLoading, setError) => {
-  loginService.createAccount(name, email, username, password)
+/**
+ * Calls the service to create a new account for a user and handles all the errors and success.
+ * @param {String} name - name of the account
+ * @param {String} email - email of the account
+ * @param {String} username - username of the account
+ * @param {String} password - password of the account
+ * @param {Func} setLoading - function to set the loading state.
+ * @param {Func} setError - function to set the error message.
+ * @param {Func} closeLogin - function to close the login view.
+ */
+export const UseCreateAccount = (name, email, username, password, setLoading, setError, closeLogin) => {
+  const payload = {
+    name,
+    email,
+    username,
+    password,
+  };
+
+  loginService.createAccount(payload)
     .then((res) => {
-      setLoading(0);
       window.localStorage.setItem('token', res.token);
-      window.localStorage.setItem('accountId', res.id);
+      window.localStorage.setItem('accountId', res.accountId);
+      setLoading(0);
+      closeLogin();
     })
     .catch(() => {
       setError('An error has occurred');

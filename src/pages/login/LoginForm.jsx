@@ -19,7 +19,7 @@ const LoginForm = ({
     <h3 className={`${className}__title`}> Login </h3>
     <form className={`${className}__form`} id={`${id}__form`} onSubmit={handleLogin}>
       <input placeholder="username" />
-      <input placeholder="password" />
+      <input placeholder="password" type="password" />
     </form>
     <div className={`${className}__error`}>
       {error}
