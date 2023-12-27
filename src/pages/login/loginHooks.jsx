@@ -32,13 +32,30 @@ export const UseLogin = (username, password, setLoading, setError, closeLogin) =
     });
 };
 
-// todo preprocessing for actual call
-export const UseCreateAccount = (name, email, username, password, confirm, setLoading, setError) => {
-  loginService.createAccount(name, email, username, password)
+/**
+ * Calls the service to create a new account for a user and handles all the errors and success.
+ * @param {String} name - name of the account
+ * @param {String} email - email of the account
+ * @param {String} username - username of the account
+ * @param {String} password - password of the account
+ * @param {Func} setLoading - function to set the loading state.
+ * @param {Func} setError - function to set the error message.
+ * @param {Func} closeLogin - function to close the login view.
+ */
+export const UseCreateAccount = (name, email, username, password, setLoading, setError, closeLogin) => {
+  const payload = {
+    name,
+    email,
+    username,
+    password,
+  };
+
+  loginService.createAccount(payload)
     .then((res) => {
-      setLoading(0);
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('accountId', res.id);
+      setLoading(0);
+      closeLogin();
     })
     .catch(() => {
       setError('An error has occurred');

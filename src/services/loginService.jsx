@@ -13,22 +13,14 @@ const getAccount = async (payload) => {
   return res.data;
 };
 
-// TODO: actual call to backend
-const createAccount = (name, email, username, password) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ token: 'testToken', id: 'testId' });
-    }, 1000);
-  })
-);
+/**
+ * Calls the backend with axios to create a new user.
+ * @param {JSON} payload - payload with name, email, username and password.
+ * @returns data returned from the call.
+ */
+const createAccount = async (payload) => {
+  const res = await axios.post(`${baseUrl}/create`, payload);
+  return res.data;
+};
 
 export default { getAccount, createAccount };
-
-// error
-// new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     const error = new Error();
-//     error.response = { status: 403 };
-//     reject(error);
-//   }, 1000);
-// })

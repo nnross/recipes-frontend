@@ -37,9 +37,9 @@ const Login = ({ className, id, closeLogin }) => {
       values[1].value,
       values[2].value,
       values[3].value,
-      values[4].value,
       setLoading,
       setError,
+      closeLogin,
     );
   };
 
