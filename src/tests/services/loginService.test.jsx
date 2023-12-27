@@ -14,7 +14,7 @@ beforeEach(() => {
   });
 });
 
-describe('loginServiceTests', () => {
+describe('loginService tests', () => {
   test('login calls correctly', async () => {
     const payload = {
       username: 'username',
