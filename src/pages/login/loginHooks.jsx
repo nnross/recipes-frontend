@@ -53,7 +53,7 @@ export const UseCreateAccount = (name, email, username, password, setLoading, se
   loginService.createAccount(payload)
     .then((res) => {
       window.localStorage.setItem('token', res.token);
-      window.localStorage.setItem('accountId', res.id);
+      window.localStorage.setItem('accountId', res.accountId);
       setLoading(0);
       closeLogin();
     })
