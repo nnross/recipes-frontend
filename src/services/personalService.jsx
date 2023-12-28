@@ -1,12 +1,13 @@
-import { personal } from '../tests/testData/personal.json';
+import axios from 'axios';
 
-// TODO: actual call to backend
-const getPersonal = (id, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(personal);
-    }, 1000);
-  })
-);
+const baseUrl = 'http://localhost:8080/pages';
+
+const getPersonal = async (accountId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const res = await axios.get(`${baseUrl}/get/personal?accountId=${accountId}`, config);
+  return res.data;
+};
 
 export default { getPersonal };
