@@ -5,7 +5,7 @@ import { withMore, withNoMore } from '../tests/testData/imageListItems.json';
 
 // TODO: actual call to backend.
 const getSomeRecipes = async (id, token) => {
-  const res = await axios.get('http://localhost:8080/api/recipe/get/api/random');
+  const res = await axios.get('http://localhost:8080/recipe/get/api/random');
   return res.data;
 };
 

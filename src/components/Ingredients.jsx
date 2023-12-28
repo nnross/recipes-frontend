@@ -13,7 +13,7 @@ const Ingredients = ({
 }) => {
   const ingredientList = [];
   ingredients.map((ingredient) => ingredientList.push(
-    <li className={`${className}__body__item`} key={ingredient.id}>
+    <li className={`${className}__body__item`} key={(Math.random() * 1001)}>
       <span className={`${className}__body__item__1`}>
         {ingredient.amount}
         {' '}

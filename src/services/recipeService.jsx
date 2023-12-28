@@ -4,7 +4,7 @@ import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
 // TODO: actual call to backend.
 const getRecipe = async (id) => {
-  const res = await axios.get(`http://localhost:8080/api/recipe/get/api/id?id=${id}`);
+  const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
   return res.data;
 };
 
