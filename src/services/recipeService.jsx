@@ -62,6 +62,13 @@ const postFinished = (recipeId, accountId, date, token) => (
   })
 );
 
+/**
+ * Gets the favourite recipes for selected account.
+ * @param {Integer} accountId - id of the account.
+ * @param {String} token - token for the account.
+ * @param {Integer} page - selected page.
+ * @returns favourite recipes and data on if there is more results.
+ */
 const getFavourite = async (accountId, token, page) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -71,6 +78,13 @@ const getFavourite = async (accountId, token, page) => {
   return res.data;
 };
 
+/**
+ * Gets the doLater recipes for selected account.
+ * @param {Integer} accountId - id of the account.
+ * @param {String} token - token for the account.
+ * @param {Integer} page - selected page.
+ * @returns doLater recipes and data on if there is more results.
+ */
 const getDoLater = async (accountId, token, page) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },

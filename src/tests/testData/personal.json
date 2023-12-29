@@ -1,6 +1,6 @@
 {
     "personal": {
-        "items": [
+        "recipes": [
             {
             "id": 1,
             "title": "test title 1"
@@ -22,7 +22,7 @@
             "title": "test title 5"
             }
         ],
-        "moreItems": true,
+        "nextPage": true,
         "doLaterCount": 12,
         "doneCount": 23,
         "favouriteCount": 17,
@@ -44,7 +44,7 @@
         }
     },
     "personalNoMore": {
-        "items": [
+        "recipes": [
             {
             "id": 90,
             "title": "test title load 1"
@@ -62,7 +62,7 @@
             "title": "test title 4"
             }
         ],
-        "moreItems": false,
+        "nextPage": false,
         "doLaterCount": 12,
         "doneCount": 23,
         "favouriteCount": 17,
