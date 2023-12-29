@@ -1,17 +1,9 @@
 /* eslint-disable import/no-unresolved */
 import '@testing-library/jest-dom/extend-expect';
-import { render, waitFor } from '@testing-library/react/';
-import { useOutletContext } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react/';
 import React from 'react';
-import Search from '../../pages/search/Search';
-import { personal, personalNoMore } from '../testData/personal.json';
-import { withMore, withNoMore } from '../testData/itemList.json';
-import { getPersonal } from '../../services/personalService';
-import { UseGetItems } from '../../pages/personal/personalHooks';
-import Personal from '../../pages/personal/Personal';
+import { personal } from '../testData/personal.json';
 import { findWithTag } from '../testHelpers';
-import List from '../../pages/personal/List';
 import Statistics from '../../pages/personal/Statistics';
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -36,7 +28,7 @@ jest.mock('recharts', () => {
 describe('Personal page statistics list tests', () => {
   describe('Personal page statistics renders', () => {
     test('successful render works', () => {
-      const component = render(<Statistics id="test" chart={personal.chart} doneCount={21} doLaterCount={10} favouriteCount={9} />);
+      const component = render(<Statistics id="test" chart={personal.stats.chart} doneCount={21} doLaterCount={10} favouriteCount={9} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();

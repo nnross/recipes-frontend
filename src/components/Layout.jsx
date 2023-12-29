@@ -26,6 +26,11 @@ const Layout = ({ className, id, guarded }) => {
    * Also gets if user is logged in or not.
    */
   useEffect(() => {
+    if (window.localStorage.getItem('expiration') < Date.now()) {
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('accountId');
+    }
+
     const onScroll = () => setScroll(window.scrollY);
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);

@@ -1,24 +1,29 @@
 import * as axios from 'axios';
 import '@testing-library/jest-dom/extend-expect';
 import { waitFor } from '@testing-library/react';
-import {
-  getRecipe, postCalendar, postFavourite, postDoLater, getFavourite, getDoLater,
-} from '../../services/recipeService';
+import recipeService from '../../services/recipeService';
 import { user } from '../testData/account.json';
 import { recipe } from '../testData/recipe.json';
 
-const mockPost = jest.fn();
+const mock = jest.fn();
 
 jest.mock('axios');
 
 beforeEach(() => {
+  jest.clearAllMocks();
+
   axios.post.mockImplementation((url, config) => {
-    mockPost(url, config);
+    mock(url, config);
     Promise.resolve(recipe);
   });
 
+  axios.get.mockImplementation((url, config) => {
+    mock(url, config);
+    return Promise.resolve({ date: recipe });
+  });
+
   axios.put.mockImplementation((url, config) => {
-    mockPost(url, config);
+    mock(url, config);
     Promise.resolve();
   });
 });
@@ -40,7 +45,7 @@ describe('recipeService tests', () => {
   });
 
   test('getFavourite calls correctly', async () => {
-    const res = getFavourite(0, 'token');
+    const res = await recipeService.getFavourite(0, 'token', 0);
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -48,14 +53,14 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(recipe);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/favourite?accountId=0&page=0');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 
   test('getDoLater calls correctly', async () => {
-    const res = getDoLater(0, 'token');
+    const res = await recipeService.getDoLater(0, 'token', 0);
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -63,9 +68,9 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(recipe);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/doLater?accountId=0&page=0');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 

@@ -19,6 +19,7 @@ export const UseLogin = (username, password, setLoading, setError, closeLogin) =
     .then((res) => {
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('accountId', res.accountId);
+      window.localStorage.setItem('expiration', Date.now() + 1000 * 60 * 120);
       setLoading(0);
       closeLogin();
     })

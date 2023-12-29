@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -147,11 +147,7 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,9 +163,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,7 +173,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,9 +208,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -228,7 +220,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,7 +233,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import propTypes from 'prop-types';
-import { getWeekDates } from '../helpers/dateHelpers';
 &nbsp;
 /**
  * Renders the calender component
@@ -266,66 +257,63 @@ const Calendar = ({
   friday,
   saturday,
   sunday,
-}) =&gt; {
-  const dates = getWeekDates();
-  return (
-    &lt;div className={className} id={id}&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[0]}`}&gt;
-        &lt;button className={`${className}__date__btn--${monday}`} type="button" aria-label="monday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; M &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[1]}`}&gt;
-        &lt;button className={`${className}__date__btn--${tuesday}`} type="button" aria-label="tuesday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; Tu &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[2]}`}&gt;
-        &lt;button className={`${className}__date__btn--${wednesday}`} type="button" aria-label="wednesday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; W &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[3]}`}&gt;
-        &lt;button className={`${className}__date__btn--${thursday}`} type="button" aria-label="thursday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; Th &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[4]}`}&gt;
-        &lt;button className={`${className}__date__btn--${friday}`} type="button" aria-label="friday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; F &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[5]}`}&gt;
-        &lt;button className={`${className}__date__btn--${saturday}`} type="button" aria-label="saturday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; Sa &lt;/p&gt;
-      &lt;/a&gt;
-      &lt;a className={`${className}__date`} type="button" href={`/today/${dates[6]}`}&gt;
-        &lt;button className={`${className}__date__btn--${sunday}`} type="button" aria-label="sunday" /&gt;
-        &lt;p className={`${className}__date__label`}&gt; Su &lt;/p&gt;
-      &lt;/a&gt;
-    &lt;/div&gt;
-  );
-};
+}) =&gt; (
+  &lt;div className={className} id={id}&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${monday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${monday.state}`} type="button" aria-label="monday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; M &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${tuesday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${tuesday.state}`} type="button" aria-label="tuesday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; Tu &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${wednesday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${wednesday.state}`} type="button" aria-label="wednesday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; W &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${thursday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${thursday.state}`} type="button" aria-label="thursday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; Th &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${friday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${friday.state}`} type="button" aria-label="friday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; F &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${saturday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${saturday.state}`} type="button" aria-label="saturday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; Sa &lt;/p&gt;
+    &lt;/a&gt;
+    &lt;a className={`${className}__date`} type="button" href={`/today/${sunday.date}`}&gt;
+      &lt;button className={`${className}__date__btn--${sunday.state}`} type="button" aria-label="sunday" /&gt;
+      &lt;p className={`${className}__date__label`}&gt; Su &lt;/p&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+);
 &nbsp;
 export default Calendar;
 &nbsp;
 Calendar.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  monday: propTypes.number,
-  tuesday: propTypes.number,
-  wednesday: propTypes.number,
-  thursday: propTypes.number,
-  friday: propTypes.number,
-  saturday: propTypes.number,
-  sunday: propTypes.number,
+  monday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  tuesday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  wednesday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  thursday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  friday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  saturday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
+  sunday: propTypes.objectOf(propTypes.oneOfType([propTypes.string, propTypes.number])),
 };
 &nbsp;
 Calendar.defaultProps = {
   className: 'calendar',
   id: 'calendar',
-  monday: 0,
-  tuesday: 0,
-  wednesday: 0,
-  thursday: 0,
-  friday: 0,
-  saturday: 0,
-  sunday: 0,
+  monday: { state: 0, date: null },
+  tuesday: { state: 0, date: null },
+  wednesday: { state: 0, date: null },
+  thursday: { state: 0, date: null },
+  friday: { state: 0, date: null },
+  saturday: { state: 0, date: null },
+  sunday: { state: 0, date: null },
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -334,7 +322,7 @@ Calendar.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-29T00:35:20.080Z
+                at 2023-12-29T11:21:57.141Z
             </div>
         <script src="../prettify.js"></script>
         <script>

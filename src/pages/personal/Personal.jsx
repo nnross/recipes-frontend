@@ -36,14 +36,14 @@ const Personal = ({ className, id }) => {
    * Loads the data for personal page.
    */
   useEffect(() => {
-    personalService.getPersonal(accountId, token)
+    personalService.getPersonal(window.localStorage.getItem('accountId'), window.localStorage.getItem('token'))
       .then((res) => {
-        setItems(res.items);
-        setIsNext(res.moreItems);
-        setDoneCount(res.doneCount);
-        setFavouriteCount(res.favouriteCount);
-        setDoLaterCount(res.doLaterCount);
-        setChart(res.chart);
+        setItems(res.recipes.recipes);
+        setIsNext(res.recipes.nextPage);
+        setDoneCount(res.stats.done);
+        setFavouriteCount(res.stats.favourite);
+        setDoLaterCount(res.stats.doLater);
+        setChart(res.stats.chart);
         setCalendar(res.calendar);
         setLoading(0);
       })
@@ -106,13 +106,13 @@ const Personal = ({ className, id }) => {
         : (
           <div className={`${className}__calendar`}>
             <Calendar
-              monday={calendar.monday}
-              tuesday={calendar.tuesday}
-              wednesday={calendar.wednesday}
-              thursday={calendar.thursday}
-              friday={calendar.friday}
-              saturday={calendar.saturday}
-              sunday={calendar.sunday}
+              monday={calendar.Monday}
+              tuesday={calendar.Tuesday}
+              wednesday={calendar.Wednesday}
+              thursday={calendar.Thursday}
+              friday={calendar.Friday}
+              saturday={calendar.Saturday}
+              sunday={calendar.Sunday}
             />
             <a href={`/today/${date}`}>
               <button type="button" className={`${className}__calendar__btn`} href={`/today/${date}`}> today&apos;s recipe </button>
