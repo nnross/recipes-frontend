@@ -5,8 +5,9 @@ export const UseGetItems = (id, token, selection, page, setItems, setNextPage, s
   if (selection === 'favourite') {
     recipeService.getFavourite(id, token, page)
       .then((res) => {
-        setItems(res.items);
-        setNextPage(res.moreItems);
+        console.log(res);
+        setItems(res.recipes);
+        setNextPage(res.nextPage);
         setLoading(0);
       })
       .catch(() => {
@@ -15,8 +16,8 @@ export const UseGetItems = (id, token, selection, page, setItems, setNextPage, s
   } else {
     recipeService.getDoLater(id, token, page)
       .then((res) => {
-        setItems(res.items);
-        setNextPage(res.moreItems);
+        setItems(res.recipes);
+        setNextPage(res.nextPage);
         setLoading(0);
       })
       .catch(() => {

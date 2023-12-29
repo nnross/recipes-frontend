@@ -1,6 +1,10 @@
 import { recipe1 } from '../tests/testData/recipe.json';
 import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
+import axios from 'axios';
+
+const baseUrl = 'http://localhost:8080/recipe';
+
 // TODO: actual call to backend.
 const getRecipe = (id) => (
   new Promise((resolve, reject) => {
@@ -57,24 +61,24 @@ const postFinished = (recipeId, accountId, date, token) => (
     }, 1000);
   })
 );
-// TODO: actual call to backend
-const getFavourite = (id, token, page) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(withMore);
-    }, 1000);
-  })
-);
 
-/* eslint-disable no-unused-vars */
-// TODO: actual call to backend
-const getDoLater = (id, token, page) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(withNoMore);
-    }, 1000);
-  })
-);
+const getFavourite = async (accountId, token, page) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.get(`${baseUrl}/get/favourite?accountId=${accountId}&page=${page}`, config);
+  return res.data;
+};
+
+const getDoLater = async (accountId, token, page) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.get(`${baseUrl}/get/doLater?accountId=${accountId}&page=${page}`, config);
+  return res.data;
+};
 
 export default {
   getRecipe,
