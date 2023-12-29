@@ -8,6 +8,8 @@ const mockPost = jest.fn();
 jest.mock('axios');
 
 beforeEach(() => {
+  jest.clearAllMocks();
+
   axios.post.mockImplementation((url, payload) => {
     mockPost(url, payload);
     return Promise.resolve({ data: { token: 'testToken', id: 'testId' } });
