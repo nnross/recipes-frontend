@@ -32,7 +32,10 @@ const Settings = ({ className, id }) => {
    * Retrieves users account data.
    */
   useEffect(() => {
-    personService.getAccountData(accountId, token)
+    personService.getAccountData(
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) => {
         setUsername(res.username);
         setName(res.name);
