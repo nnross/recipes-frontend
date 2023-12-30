@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 import '@testing-library/jest-dom/extend-expect';
 import { waitFor } from '@testing-library/react';
-import { getAccountData, postAccountData, deleteAccountData } from '../../services/personService';
+import personService from '../../services/personService';
 import { user } from '../testData/account.json';
 
 const mockPost = jest.fn();
@@ -9,25 +9,26 @@ const mockPost = jest.fn();
 jest.mock('axios');
 
 beforeEach(() => {
-  axios.post.mockImplementation((url, config) => {
+  jest.clearAllMocks();
+  axios.get.mockImplementation((url, config) => {
     mockPost(url, config);
-    Promise.resolve(user);
+    return Promise.resolve({ data: user });
   });
 
-  axios.put.mockImplementation((url, config) => {
-    mockPost(url, config);
-    Promise.resolve(user);
+  axios.put.mockImplementation((url, payload, config) => {
+    mockPost(url, payload, config);
+    return Promise.resolve({ data: true });
   });
 
   axios.delete.mockImplementation((url, config) => {
     mockPost(url, config);
-    Promise.resolve(user);
+    return Promise.resolve({ data: true });
   });
 });
 
 describe('person tests', () => {
   test('getAccountData calls correctly', async () => {
-    const res = getAccountData(0, 'token');
+    const res = await personService.getAccountData(0, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -36,38 +37,42 @@ describe('person tests', () => {
       expect(res).toBe(user);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mockPost.mock.calls[0][0]).toBe('http://localhost:8080/account/get?accountId=0');
+      expect(mockPost.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 
   test('postAccountData calls correctly', async () => {
-    const res = postAccountData(0, 'token');
+    const payload = {
+      test: 'testing',
+    };
+    const res = await personService.postAccountData(0, 'token', payload);
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
 
     await waitFor(() => {
-      expect(res).toBe(user);
+      expect(res).toBe(true);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mockPost.mock.calls[0][0]).toBe('http://localhost:8080/account/update?accountId=0');
+      expect(mockPost.mock.calls[0][2]).toStrictEqual(config);
+      expect(mockPost.mock.calls[0][1]).toStrictEqual(payload);
     });
   });
 
   test('deleteAccountData calls correctly', async () => {
-    const res = deleteAccountData(0, 'token');
+    const res = await personService.deleteAccountData(0, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
 
     await waitFor(() => {
-      expect(res).toBe(user);
+      expect(res).toBe(true);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mockPost.mock.calls[0][0]).toBe('http://localhost:8080/account/delete?accountId=0');
+      expect(mockPost.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 });

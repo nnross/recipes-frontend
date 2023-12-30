@@ -1,9 +1,14 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
-import { user } from '../tests/testData/account.json';
 
 const baseUrl = 'http://localhost:8080/account';
 
+/**
+ * Gets account data from the database.
+ * @param {Sting} accountId - wanted account id
+ * @param {String} token - token for account
+ * @returns data for account
+ */
 const getAccountData = async (accountId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -13,21 +18,36 @@ const getAccountData = async (accountId, token) => {
   return res.data;
 };
 
-const postAccountData = (accountId, token, username, name, email, password) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+/**
+ * updates account data to the database.
+ * @param {Sting} accountId - wanted account id
+ * @param {String} token - token for account
+ * @param {payload} payload - data to be updated
+ * @returns true if successful, error otherwise.
+ */
+const postAccountData = async (accountId, token, payload) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-const deleteAccountData = (accountId, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+  const res = await axios.put(`${baseUrl}/update?accountId=${accountId}`, payload, config);
+  return res.data;
+};
+
+/**
+ * deletes account from the database.
+ * @param {Sting} accountId - wanted account id
+ * @param {String} token - token for account
+ * @returns true if successful, error otherwise.
+ */
+const deleteAccountData = async (accountId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.delete(`${baseUrl}/delete?accountId=${accountId}`, config);
+  return res.data;
+};
 
 export default {
   getAccountData, postAccountData, deleteAccountData,
