@@ -3,13 +3,18 @@ import React from 'react';
 import { render } from '@testing-library/react/';
 import Calendar from '../../components/Calendar';
 
-jest.mock('../../helpers/dateHelpers.jsx', () => ({
-  getWeekDates: jest.fn(() => ['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', '2022-01-06', '2022-01-07']),
-}));
-
 describe('Calendar tests', () => {
   test('Calendar renders', () => {
-    const component = render(<Calendar id="test" />);
+    const component = render(<Calendar
+      id="test"
+      monday={{ state: 0, date: '2022-01-01' }}
+      tuesday={{ state: 0, date: '2022-01-02' }}
+      wednesday={{ state: 0, date: '2022-01-03' }}
+      thursday={{ state: 0, date: '2022-01-04' }}
+      friday={{ state: 0, date: '2022-01-05' }}
+      saturday={{ state: 0, date: '2022-01-06' }}
+      sunday={{ state: 0, date: '2022-01-07' }}
+    />);
 
     const container = component.container.querySelector('#test');
     expect(container).not.toBeNull();
@@ -25,7 +30,16 @@ describe('Calendar tests', () => {
     expect(component.getByRole('link', { name: 'Su' })).toHaveAttribute('href', '/today/2022-01-07');
   });
   test('recipe shows as filled or done or empty renders', () => {
-    const component = render(<Calendar id="test" monday={2} tuesday={1} wednesday={0} />);
+    const component = render(<Calendar
+      id="test"
+      monday={{ state: 2, date: '2022-01-01' }}
+      tuesday={{ state: 1, date: '2022-01-02' }}
+      wednesday={{ state: 0, date: '2022-01-03' }}
+      thursday={{ state: 0, date: '2022-01-04' }}
+      friday={{ state: 0, date: '2022-01-05' }}
+      saturday={{ state: 0, date: '2022-01-06' }}
+      sunday={{ state: 0, date: '2022-01-07' }}
+    />);
 
     const container = component.container.querySelector('#test');
     expect(container).not.toBeNull();

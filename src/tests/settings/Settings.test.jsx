@@ -14,6 +14,11 @@ jest.mock('react-router-dom', () => ({
   useOutletContext: jest.fn(),
 }));
 
+Object.defineProperty(window, 'location', {
+  configurable: true,
+  value: { reload: jest.fn() },
+});
+
 const mockGetAccountData = () => Promise.resolve(user);
 const mockGetAccountDataFail = () => Promise.reject();
 const mockPostAccountData = () => Promise.resolve();
@@ -106,7 +111,7 @@ describe('Settings tests', () => {
 
       const password = component.getByPlaceholderText('••••••••');
       await userEvent.type(password, 'test');
-      expect(component.getByText('confirm with previous password')).toBeVisible();
+      expect(component.getByText('confirm with current password')).toBeVisible();
     });
     test('save button works', async () => {
       const component = render(<Settings id="test" />);
@@ -127,9 +132,9 @@ describe('Settings tests', () => {
 
       // mock actual call
       expect(postAccountData.mock.calls).toHaveLength(1);
-      expect(postAccountData.mock.calls[0][2]).toBe('test username new');
-      expect(postAccountData.mock.calls[0][3]).toBe('test name new');
-      expect(postAccountData.mock.calls[0][4]).toBe('test email new');
+      expect(postAccountData.mock.calls[0][2].account.username).toBe('test username new');
+      expect(postAccountData.mock.calls[0][2].account.name).toBe('test name new');
+      expect(postAccountData.mock.calls[0][2].account.email).toBe('test email new');
 
       expect(component.getByDisplayValue('test username new')).toBeVisible();
       expect(component.getByDisplayValue('test name new')).toBeVisible();

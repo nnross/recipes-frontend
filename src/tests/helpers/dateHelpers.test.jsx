@@ -7,11 +7,6 @@ beforeAll(() => {
 });
 
 describe('datehelper tests', () => {
-  test('get week dates works', () => {
-    const dates = getWeekDates();
-
-    expect(dates).toStrictEqual(['2004-07-26', '2004-07-27', '2004-07-28', '2004-07-29', '2004-07-30', '2004-07-31', '2004-08-01']);
-  });
   test('get date works', () => {
     const date = getDate();
 
