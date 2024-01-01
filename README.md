@@ -1,13 +1,14 @@
 # Recipes-frontend
 Frontend for the recipes application.
 
-**!! this application is still in the final stages of the developmen, versions in the main branch will pass all the tests and be stable versions, other branches might not pass all the tests!!**
+**!! this application is still in the final stages of development, versions in the main branch will pass all the tests and be stable versions, other branches might not pass all the tests!!**
 
 [backend](https://github.com/nnross/recipes-backend)
-Link to application coming
+
+Link to the application coming
 
 ## About
-This is the frontend and also the main repository for this project. This is an application that is built around recipes. It includes pages for searching recipes that we get from a third party API and then you can interact with these recipes, you can add them to your favourites, to a list of recipes to do later or to your own calendar for a specific date. To use these you need to be logged in but otherwise you can search the recipes without logging.
+This is the frontend and also the main repository for this project. This is an application that is built around recipes. It includes pages for searching recipes that we get from a third-party API and then you can interact with these recipes: you can add them to your favorites, to a list of recipes to do later, or to your calendar for a specific date. To use these you need to be logged in but otherwise, you can search the recipes without logging in.
 
 ## Prerequisites
 To run and test you will need Java and Maven installed.
@@ -22,7 +23,7 @@ The tests can be run without this file.
 
 ## Running
 ### Build
-To run this application you will need to fulfill configuration, prerequisites and clone the repository.
+To run this application you will need to fulfill the configuration, prerequisites, and clone the repository.
 
 You can run the application from the command line. You just need to run from the root directory `npm install` in the terminal. Then run `npm start`
 ### Test
