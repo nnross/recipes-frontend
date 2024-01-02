@@ -58,10 +58,13 @@ const Search = ({ className, id }) => {
    * Searches new results from the form call that is made.
    * @param {*} e - event called with
    */
-  const searchResults = (e) => {
+  const searchResults = (e, isFilter) => {
     setLoading(1);
     e.preventDefault();
-    const input = e.target.elements[0].value;
+    let input;
+    if (!isFilter) input = e.target.elements[0].value;
+    else input = search;
+    page.current = 0;
     setSearch(input);
     UseSearch(
       accountId,
@@ -139,7 +142,7 @@ const Search = ({ className, id }) => {
           <SearchField
             placeholder="Search"
             id={`${id}__filters__search__container`}
-            onSubmit={(e) => searchResults(e)}
+            onSubmit={(e) => searchResults(e, false)}
             width={windowWidth > 600 ? '500px' : '85vw'}
           />
         </div>
@@ -150,6 +153,7 @@ const Search = ({ className, id }) => {
             removeFilter={(filter) => removeFilter(filter)}
             setFilter={(filter) => updateFilters(filter)}
             windowWidth={windowWidth}
+            searchResults={(e) => searchResults(e, true)}
           />
         </div>
       </div>

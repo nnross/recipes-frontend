@@ -18,7 +18,8 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
   let diet = '';
   let intolerances = '';
   let type = '';
-  let sort = '';
+  let sort = [];
+  let sortType = '';
   let direction = '';
   let intPage = 0;
 
@@ -40,15 +41,13 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
     } else if (filter.includes('type')) {
       type = filter.replace('type-', '');
     } else if (filter.includes('sort')) {
-      sort = filter.replace('sort-', '');
-    } else if (filter.includes('direction')) {
-      direction = filter.replace('direction-', '');
+      sort = filter.replace('sort-', '').split(' ');
+      [sortType, direction] = sort;
     }
   });
-
   searchService
     // eslint-disable-next-line max-len
-    .getSearch(id, token, search, ingredients, cuisine, diet, intolerances, type, sort, direction, intPage)
+    .getSearch(id, token, search, ingredients, cuisine, diet, intolerances, type, sortType, direction, intPage)
     .then((res) => {
       setItems(res.recipes);
       setMoreItems(res.nextPage);

@@ -13,7 +13,7 @@ import Filter from '../../components/Filter';
  * @returns Filters component for search page.
  */
 const Filters = ({
-  className, id, resetFilters, selected, removeFilter, setFilter, windowWidth,
+  className, id, resetFilters, selected, removeFilter, setFilter, windowWidth, searchResults,
 }) => {
   const selectedFilters = [];
   const [open, setOpen] = useState(false);
@@ -54,8 +54,7 @@ const Filters = ({
             close filters
           </button>
         )}
-        <Filter title="sort" filters={['time', 'price', 'popularity']} selectFilter={setFilter} />
-        <Filter title="direction" filters={['asc', 'desc']} selectFilter={setFilter} />
+        <Filter title="sort" filters={['time asc', 'time desc', 'price asc', 'price desc', 'popularity asc', 'popularity desc']} selectFilter={setFilter} />
         <Filter title="ingredients" filters={['pork', 'chicken', 'beef', 'lamb', 'fish', 'tofu', 'beans', 'chickpeas', 'lentils', 'cheese', 'pasta', 'potato', 'rice']} selectFilter={setFilter} />
         <Filter title="cuisine" filters={['african', 'asian', 'american', 'british', 'chinese', 'indian', 'italian', 'japanese', 'korean', 'mexican']} selectFilter={setFilter} />
         <Filter title="diet" filters={['gluten free', 'vegetarian', 'vegan', 'pescetarian']} selectFilter={setFilter} />
@@ -66,6 +65,14 @@ const Filters = ({
         {selectedFilters}
       </div>
       <div className={`${className}__reset`}>
+        <button
+          className={`${className}__reset__apply`}
+          onClick={(e) => searchResults(e)}
+          type="button"
+          style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
+        >
+          apply
+        </button>
         <button
           className={`${className}__reset__button`}
           onClick={resetFilters}
@@ -89,6 +96,7 @@ Filters.propTypes = {
   removeFilter: propTypes.func,
   setFilter: propTypes.func,
   windowWidth: propTypes.number,
+  searchResults: propTypes.func,
 };
 
 Filters.defaultProps = {
@@ -99,4 +107,5 @@ Filters.defaultProps = {
   removeFilter: null,
   setFilter: null,
   windowWidth: 0,
+  searchResults: null,
 };
