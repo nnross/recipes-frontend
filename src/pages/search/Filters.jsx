@@ -54,12 +54,13 @@ const Filters = ({
             close filters
           </button>
         )}
-        <Filter title="sort" filters={['date ascending', 'date descending']} selectFilter={setFilter} />
-        <Filter title="ingredients" filters={['beef', 'chicken', 'tofu']} selectFilter={setFilter} />
-        <Filter title="cuisine" filters={['italian', 'asian']} selectFilter={setFilter} />
-        <Filter title="diet" filters={['vegan', 'vegetarian', 'keto']} selectFilter={setFilter} />
-        <Filter title="intolerances" filters={['dairy free', 'gluten free']} selectFilter={setFilter} />
-        <Filter title="type" filters={['main', 'breakfast']} selectFilter={setFilter} />
+        <Filter title="sort" filters={['time', 'price', 'popularity']} selectFilter={setFilter} />
+        <Filter title="direction" filters={['asc', 'desc']} selectFilter={setFilter} />
+        <Filter title="ingredients" filters={['pork', 'chicken', 'beef', 'lamb', 'fish', 'tofu', 'beans', 'chickpeas', 'lentils', 'cheese', 'pasta', 'potato', 'rice']} selectFilter={setFilter} />
+        <Filter title="cuisine" filters={['african', 'asian', 'american', 'british', 'chinese', 'indian', 'italian', 'japanese', 'korean', 'mexican']} selectFilter={setFilter} />
+        <Filter title="diet" filters={['gluten free', 'vegetarian', 'vegan', 'pescetarian']} selectFilter={setFilter} />
+        <Filter title="intolerances" filters={['dairy', 'egg', 'gluten', 'grain', 'peanut', 'seafood']} selectFilter={setFilter} />
+        <Filter title="type" filters={['dessert', 'fingerfood', 'snack', 'appetizer', 'breakfast', 'main course']} selectFilter={setFilter} />
       </div>
       <div className={`${className}__selected`}>
         {selectedFilters}

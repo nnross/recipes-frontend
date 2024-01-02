@@ -90,7 +90,7 @@ const Search = ({ className, id }) => {
       token,
       search,
       filters,
-      page + 1,
+      page.current += 1,
       updateItems,
       setMoreResults,
       setLoading,
