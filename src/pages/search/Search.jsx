@@ -58,19 +58,43 @@ const Search = ({ className, id }) => {
    * Searches new results from the form call that is made.
    * @param {*} e - event called with
    */
-  const searchResults = (e, isFilter) => {
+  const searchResults = (e) => {
     setLoading(1);
     e.preventDefault();
-    let input;
-    if (!isFilter) input = e.target.elements[0].value;
-    else input = search;
+
+    const input = e.target.elements[0].value;
+
     page.current = 0;
     setSearch(input);
+
     UseSearch(
       accountId,
       token,
       input,
       filters,
+      page,
+      setItems,
+      setMoreResults,
+      setLoading,
+    );
+    setMessage('results');
+    window.scrollTo({
+      top: 220,
+      behavior: 'smooth',
+    });
+  };
+
+  const changeFilters = (isReset) => {
+    setLoading(1);
+    if (isReset) setFilters([]);
+    page.current = 0;
+
+    const newFilters = isReset ? [] : filters;
+    UseSearch(
+      accountId,
+      token,
+      search,
+      newFilters,
       page,
       setItems,
       setMoreResults,
@@ -98,6 +122,11 @@ const Search = ({ className, id }) => {
       setMoreResults,
       setLoading,
     );
+  };
+
+  const resetFilters = (e) => {
+    setFilters([]);
+    searchResults(e, true);
   };
 
   /**
@@ -149,11 +178,11 @@ const Search = ({ className, id }) => {
         <div className={`${className}__filters__selectors`}>
           <Filters
             selected={filters}
-            resetFilters={() => setFilters([])}
+            resetFilters={(e) => changeFilters(true)}
             removeFilter={(filter) => removeFilter(filter)}
             setFilter={(filter) => updateFilters(filter)}
             windowWidth={windowWidth}
-            searchResults={(e) => searchResults(e, true)}
+            searchResults={(e) => changeFilters(false)}
           />
         </div>
       </div>

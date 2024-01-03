@@ -13,10 +13,10 @@ import searchService from '../../services/searchService';
  * @param {Function} setLoading - function to set the loading state.
  */
 export const UseSearch = (id, token, search, filters, page, setItems, setMoreItems, setLoading) => {
-  let ingredients = '';
-  let cuisine = '';
-  let diet = '';
-  let intolerances = '';
+  const ingredients = [];
+  const cuisine = [];
+  const diet = [];
+  const intolerances = [];
   let type = '';
   let sort = [];
   let sortType = '';
@@ -31,13 +31,13 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
 
   filters.forEach((filter) => {
     if (filter.includes('ingredients')) {
-      ingredients = filter.replace('ingredients-', '');
+      ingredients.push(filter.replace('ingredients-', ''));
     } else if (filter.includes('cuisine')) {
-      cuisine = filter.replace('cuisine-', '');
+      cuisine.push(filter.replace('cuisine-', ''));
     } else if (filter.includes('diet')) {
-      diet = filter.replace('diet-', '');
+      diet.push(filter.replace('diet-', ''));
     } else if (filter.includes('intolerances')) {
-      intolerances = filter.replace('intolerances-', '');
+      intolerances.push(filter.replace('intolerances-', ''));
     } else if (filter.includes('type')) {
       type = filter.replace('type-', '');
     } else if (filter.includes('sort')) {

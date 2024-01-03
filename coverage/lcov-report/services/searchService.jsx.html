@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/8</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/8</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -83,18 +83,8 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,33 +93,34 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-new */
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-plusplus */
+/* eslint-disable no-new */
 /* eslint-disable no-unused-vars */
+import axios from 'axios';
 import { withMore, withNoMore } from '../tests/testData/imageListItems.json';
 &nbsp;
 // TODO: actual call to backend.
-const getSomeRecipes = <span class="fstat-no" title="function not covered" >(i</span>d, token) =&gt; (
-<span class="cstat-no" title="statement not covered" >  new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      resolve(withMore);</span>
-    }, 1000);
-  })
-);
+const getSomeRecipes = <span class="fstat-no" title="function not covered" >as</span>ync (id, token) =&gt; {
+  const res = <span class="cstat-no" title="statement not covered" >await axios.get('http://localhost:8080/recipe/get/api/random');</span>
+<span class="cstat-no" title="statement not covered" >  return res.data;</span>
+};
 &nbsp;
 // TODO: actual call to backend
-const getSearch = <span class="fstat-no" title="function not covered" >(i</span>d, token, search, filters, page) =&gt; (
-<span class="cstat-no" title="statement not covered" >  new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      resolve(withNoMore);</span>
-    }, 1000);
-  })
-);
+// eslint-disable-next-line max-len
+const getSearch = <span class="fstat-no" title="function not covered" >as</span>ync (id, token, search, ingredients, cuisine, diet, intolerances, type, sort, direction, page) =&gt; {
+  const res = <span class="cstat-no" title="statement not covered" >await axios.get(`http://localhost:8080/recipe/get/api/search?search=${search}&amp;ingredients=${ingredients}&amp;cuisine=${cuisine}&amp;diet=${diet}&amp;intolerances=${intolerances}&amp;type=${type}&amp;sort=${sort}&amp;sortDirection=${direction}&amp;page=${page}`);</span>
+<span class="cstat-no" title="statement not covered" >  return res.data;</span>
+};
 &nbsp;
 export default { getSomeRecipes, getSearch };
 &nbsp;</pre></td></tr></table></pre>
@@ -139,7 +130,7 @@ export default { getSomeRecipes, getSearch };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-29T00:35:20.080Z
+                at 2024-01-03T16:27:04.637Z
             </div>
         <script src="../prettify.js"></script>
         <script>
