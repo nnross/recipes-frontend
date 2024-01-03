@@ -10,8 +10,18 @@ jest.mock('../../components/Footer');
 jest.mock('../../pages/login/Login');
 jest.mock('../../helpers/GuardedRoute');
 
+global.localStorage.setItem('expiration', 1703903883116);
+
+afterEach(() => {
+  jest.useRealTimers();
+});
+
 describe('Layout tests', () => {
   test('Layout renders', () => {
+    jest
+      .useFakeTimers()
+      .setSystemTime(new Date('2010-01-01'));
+
     const component = render(
       <BrowserRouter>
         <Layout id="test" guarded={false} />
@@ -64,5 +74,18 @@ describe('Layout tests', () => {
     await userEvent.click(component.getByRole('button', { name: 'close login' }));
 
     expect(component.queryByRole('Login')).not.toBeInTheDocument();
+  });
+  test('Layout expired works', async () => {
+    jest
+      .useFakeTimers()
+      .setSystemTime(new Date('2020-01-01'));
+
+    render(
+      <BrowserRouter>
+        <Layout id="test" />
+      </BrowserRouter>,
+    );
+
+    expect(window.localStorage.getItem('token')).toBe(null);
   });
 });

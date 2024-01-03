@@ -1,11 +1,11 @@
+/* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
 import { useOutletContext } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import Search from '../../pages/search/Search';
-import { personal, personalNoMore } from '../testData/personal.json';
-import { withMore, withNoMore } from '../testData/itemList.json';
+import { personal } from '../testData/personal.json';
+import { withNoMore } from '../testData/itemList.json';
 import { getPersonal } from '../../services/personalService';
 import { UseGetItems } from '../../pages/personal/personalHooks';
 import Personal from '../../pages/personal/Personal';
@@ -24,7 +24,6 @@ jest.mock('../../helpers/dateHelpers.jsx', () => ({
 }));
 
 const getPersonalMock = () => Promise.resolve(personal);
-const getPersonalNoMoreMock = () => Promise.resolve(personalNoMore);
 const getPersonalRejectMock = () => Promise.reject();
 jest.mock('../../services/personalService', () => ({
   getPersonal: jest.fn(),
@@ -49,7 +48,7 @@ beforeEach(() => {
     setLoading,
   ) => {
     mockUseGetItem(accountId, token, view, page);
-    setItems(withNoMore.items);
+    setItems(withNoMore.recipes);
     if (page === 1) setIsNext(false);
     else setIsNext(true);
     setLoading(0);
@@ -67,14 +66,14 @@ describe('Personal page tests', () => {
       expect(container.className).toBe('personal');
 
       await waitFor(() => {
-        expect(component.getByRole('button', { name: 'M0' })).toBeVisible();
+        expect(component.getByRole('button', { name: 'M' })).toBeVisible();
       });
-      expect(component.getByRole('button', { name: 'Tu2' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'W2' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Th1' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'F0' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Sa0' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Su0' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Tu' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'W' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Th' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'F' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Sa' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'Su' })).toBeVisible();
 
       expect(component.getByRole('button', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today/2022-02-02');
 

@@ -1,15 +1,8 @@
 import '@testing-library/jest-dom/extend-expect';
-import { render, waitFor } from '@testing-library/react/';
-import { useOutletContext } from 'react-router-dom';
+import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import Search from '../../pages/search/Search';
-import { personal, personalNoMore } from '../testData/personal.json';
-import { withMore, withNoMore } from '../testData/itemList.json';
-import { getPersonal } from '../../services/personalService';
-import { UseGetItems } from '../../pages/personal/personalHooks';
-import Personal from '../../pages/personal/Personal';
-import { findWithTag } from '../testHelpers';
+import { withMore } from '../testData/itemList.json';
 import List from '../../pages/personal/List';
 
 jest.mock('../../components/RecipeList');
@@ -17,7 +10,7 @@ jest.mock('../../components/RecipeList');
 describe('Personal recipe list tests', () => {
   describe('Personal recipe list renders', () => {
     test('successful render works', () => {
-      const component = render(<List id="test" items={withMore.items} />);
+      const component = render(<List id="test" items={withMore.recipes} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -33,26 +26,26 @@ describe('Personal recipe list tests', () => {
       expect(component.getByRole('button', { name: 'previous' })).toBeVisible();
     });
     test('disables buttons works', () => {
-      const component = render(<List id="test" items={withMore.items} isNext={false} isPrev={false} />);
+      const component = render(<List id="test" items={withMore.recipes} isNext={false} isPrev={false} />);
 
       expect(component.getByRole('button', { name: 'next' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'previous' })).toBeDisabled();
     });
 
     test('favourite view works', () => {
-      const component = render(<List id="test" items={withMore.items} view="favourite" />);
+      const component = render(<List id="test" items={withMore.recipes} view="favourite" />);
 
       expect(component.getByRole('button', { name: 'favourite' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'do later' })).toBeVisible();
     });
     test('do later view works', () => {
-      const component = render(<List id="test" items={withMore.items} view="doLater" />);
+      const component = render(<List id="test" items={withMore.recipes} view="doLater" />);
 
       expect(component.getByRole('button', { name: 'do later' })).toBeDisabled();
       expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
     });
     test('loading works', () => {
-      const component = render(<List id="test" items={withMore.items} loading={2} />);
+      const component = render(<List id="test" items={withMore.recipes} loading={2} />);
 
       expect(component.getByText('loading')).toBeVisible();
     });
@@ -61,7 +54,7 @@ describe('Personal recipe list tests', () => {
     test('next and previous work', async () => {
       const next = jest.fn();
       const prev = jest.fn();
-      const component = render(<List id="test" items={withMore.items} next={next} prev={prev} isPrev />);
+      const component = render(<List id="test" items={withMore.recipes} next={next} prev={prev} isPrev />);
 
       await userEvent.click(component.getByRole('button', { name: 'next' }));
 
@@ -72,7 +65,7 @@ describe('Personal recipe list tests', () => {
     });
     test('view switch works', async () => {
       const mock = jest.fn();
-      const component = render(<List id="test" items={withMore.items} changeView={mock} />);
+      const component = render(<List id="test" items={withMore.recipes} changeView={mock} />);
 
       await userEvent.click(component.getByRole('button', { name: 'do later' }));
       await userEvent.click(component.getByRole('button', { name: 'favourite' }));

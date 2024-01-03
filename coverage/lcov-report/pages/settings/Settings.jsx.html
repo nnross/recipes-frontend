@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>59/59</span>
+                <span class='fraction'>64/64</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>57/57</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -246,7 +246,19 @@
 <a name='L181'></a><a href='#L181'>181</a>
 <a name='L182'></a><a href='#L182'>182</a>
 <a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,6 +294,9 @@
 <span class="cline-any cline-yes">67x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
@@ -304,6 +319,10 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -323,6 +342,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -457,13 +481,16 @@ const Settings = ({ className, id }) =&gt; {
   const [originalName, setOriginalName] = useState(null);
   const [originalEmail, setOriginalEmail] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('null');
 &nbsp;
   /**
    * Retrieves users account data.
    */
   useEffect(() =&gt; {
-    personService.getAccountData(accountId, token)
+    personService.getAccountData(
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) =&gt; {
         setUsername(res.username);
         setName(res.name);
@@ -487,6 +514,10 @@ const Settings = ({ className, id }) =&gt; {
     personService.deleteAccountData(accountId, token)
       .then(() =&gt; {
         setLoading(0);
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('accountId');
+        window.localStorage.removeItem('expiration');
+        window.location.reload();
       })
       .catch(() =&gt; {
         setLoading(4);
@@ -501,14 +532,19 @@ const Settings = ({ className, id }) =&gt; {
    */
   const saveChanges = () =&gt; {
     setLoading(2);
+    const payload = {
+      account: {
+        username,
+        name,
+        email,
+        password,
+      },
+      confirmation: confirmPassword,
+    };
     personService.postAccountData(
       accountId,
       token,
-      username,
-      name,
-      email,
-      password,
-      confirmPassword,
+      payload,
     )
       .then(() =&gt; {
         setLoading(0);
@@ -567,8 +603,8 @@ const Settings = ({ className, id }) =&gt; {
             &lt;SettingsInput value={username} title="username" onChange={setUsername} disabled={!edit} /&gt;
             &lt;SettingsInput value={name} title="name" onChange={setName} disabled={!edit} /&gt;
             &lt;SettingsInput value={email} title="email" onChange={setEmail} disabled={!edit} /&gt;
-            &lt;SettingsInput placeholder="••••••••" title="password" onChange={setPassword} disabled={!edit} /&gt;
-            {password !== '' ? &lt;SettingsInput placeholder="" title="confirm with previous password" onChange={setConfirmPassword} disabled={!edit} /&gt; : null}
+            &lt;SettingsInput password placeholder="••••••••" title="password" onChange={setPassword} disabled={!edit} /&gt;
+            {edit ? &lt;SettingsInput password placeholder="" title="confirm with current password" onChange={setConfirmPassword} disabled={!edit} /&gt; : null}
           &lt;/div&gt;
           {edit
             ? (
@@ -619,7 +655,7 @@ Settings.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-03T16:27:04.637Z
+                at 2023-12-30T19:23:06.698Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
