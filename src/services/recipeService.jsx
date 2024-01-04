@@ -2,8 +2,6 @@ import axios from 'axios';
 import { recipe1 } from '../tests/testData/recipe.json';
 import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
-import axios from 'axios';
-
 const baseUrl = 'http://localhost:8080/recipe';
 
 // TODO: actual call to backend.

@@ -9,7 +9,6 @@ import Recipe from '../../pages/recipe/Recipe';
 import { recipe1 } from '../testData/recipe.json';
 import { getRecipe } from '../../services/recipeService';
 import { UseTag } from '../../pages/recipe/recipeHooks';
-import { findWithTag } from '../testHelpers';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -56,7 +55,7 @@ describe('Recipe tests', () => {
 
       expect(component.getByText('Chocolate cake')).toBeVisible();
       expect(component.getByText('Ingredients')).toBeVisible();
-      expect(component.getByText('5clovesgarlic')).toBeVisible();
+      expect(component.getByText('2Tbspscheese')).toBeVisible();
 
       expect(component.getByText('Instructions')).toBeVisible();
       expect(component.getByText('test instructions this is a text that tells more about this dish.')).toBeVisible();

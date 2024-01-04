@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import propTypes from 'prop-types';
 
 const Ingredients = ({
   className, id, ingredients,
@@ -8,8 +8,8 @@ const Ingredients = ({
   ingredients.map((ingredient) => ingredientList.push(
     <li className={`${className}__body__item`} key={ingredient.id}>
       <p>
-        {ingredient.measures.metric.amount}
-        {ingredient.measures.metric.unitShort}
+        {ingredient.amount}
+        {ingredient.unit}
         {ingredient.name}
       </p>
     </li>,
@@ -27,15 +27,3 @@ const Ingredients = ({
 };
 
 export default Ingredients;
-
-Ingredients.propTypes = {
-  className: propTypes.string,
-  id: propTypes.string,
-  ingredients: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
-};
-
-Ingredients.defaultProps = {
-  className: 'ingredients',
-  id: 'ingredients',
-  ingredients: [],
-};
