@@ -172,6 +172,7 @@ const Search = ({ className, id }) => {
             placeholder="Search"
             id={`${id}__filters__search__container`}
             onSubmit={(e) => searchResults(e, false)}
+            onChange={(e) => setSearch(e.target.value)}
             width={windowWidth > 600 ? '500px' : '85vw'}
           />
         </div>
