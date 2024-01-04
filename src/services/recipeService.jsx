@@ -27,10 +27,8 @@ const postCalendar = (recipeId, accountId, date, token) => (
 );
 
 const postFavourite = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+  new Promise((resolve, reject) => {
+    reject();
   })
 );
 

@@ -64,9 +64,9 @@ const Filters = ({
       <div className={`${className}__selected`}>
         {selectedFilters}
       </div>
-      <div className={`${className}__reset`}>
+      <div className={`${className}__buttons`}>
         <button
-          className={`${className}__reset__apply`}
+          className={`${className}__buttons__apply`}
           onClick={(e) => searchResults(e)}
           type="button"
           style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
@@ -74,7 +74,7 @@ const Filters = ({
           apply
         </button>
         <button
-          className={`${className}__reset__button`}
+          className={`${className}__buttons__reset`}
           onClick={resetFilters}
           type="button"
           style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
