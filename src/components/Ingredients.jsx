@@ -17,9 +17,9 @@ const Ingredients = ({
       <span className={`${className}__body__item__1`}>
         {ingredient.amount}
         {' '}
-        {ingredient.unit}
+        {ingredient.unit.name}
       </span>
-      {ingredient.name}
+      {ingredient.name.name}
     </li>,
   ));
   return (

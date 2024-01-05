@@ -4,21 +4,12 @@ import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
 const baseUrl = 'http://localhost:8080/recipe';
 
-// TODO: actual call to backend.
 const getRecipe = async (id) => {
   const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
   return res.data;
 };
 
-const getRecipeByDate = (date, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(recipe1);
-    }, 1000);
-  })
-);
-
-const postCalendar = (recipeId, accountId, date, token) => (
+const putCalendar = (recipeId, accountId, date, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
@@ -26,13 +17,16 @@ const postCalendar = (recipeId, accountId, date, token) => (
   })
 );
 
-const postFavourite = (recipeId, accountId, token) => (
-  new Promise((resolve, reject) => {
-    reject();
-  })
-);
+const putFavourite = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-const deleteFavourite = (recipeId, accountId, token) => (
+  const res = await axios.put(`${baseUrl}/set/favourite?recipeId=${recipeId}`, config);
+  return res.data;
+};
+
+const putDolater = (recipeId, accountId, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
@@ -40,7 +34,7 @@ const deleteFavourite = (recipeId, accountId, token) => (
   })
 );
 
-const postDolater = (recipeId, accountId, token) => (
+const putFinished = (recipeId, accountId, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
@@ -48,13 +42,14 @@ const postDolater = (recipeId, accountId, token) => (
   })
 );
 
-const postFinished = (recipeId, accountId, date, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+const postRecipe = async (token, payload) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.post(`${baseUrl}/add`, payload, config);
+  return res.data;
+};
 
 /**
  * Gets the favourite recipes for selected account.
@@ -90,12 +85,11 @@ const getDoLater = async (accountId, token, page) => {
 
 export default {
   getRecipe,
-  getRecipeByDate,
-  postCalendar,
-  postFavourite,
-  deleteFavourite,
-  postDolater,
-  postFinished,
+  postRecipe,
+  putFinished,
   getDoLater,
   getFavourite,
+  putFavourite,
+  putDolater,
+  putCalendar,
 };
