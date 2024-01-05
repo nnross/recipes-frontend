@@ -25,7 +25,6 @@ const Today = ({ className, id }) => {
   const weekday = new Date(date).toLocaleDateString('en-us', { weekday: 'long' });
   const asDate = new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' });
 
-
   const [loading, setLoading] = useState(1);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');

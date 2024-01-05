@@ -13,11 +13,48 @@ import searchService from '../../services/searchService';
  * @param {Function} setLoading - function to set the loading state.
  */
 export const UseSearch = (id, token, search, filters, page, setItems, setMoreItems, setLoading) => {
-  // TODO: preprocessing for actual call
-  searchService.getSearch(id, token, search, filters, page)
+  const ingredients = [];
+  const cuisine = [];
+  const diet = [];
+  const intolerances = [];
+  let type = '';
+  let sort = [];
+  let sortType = '';
+  let direction = '';
+
+  filters.forEach((filter) => {
+    if (filter.includes('ingredients')) {
+      ingredients.push(filter.replace('ingredients-', ''));
+    } else if (filter.includes('cuisine')) {
+      cuisine.push(filter.replace('cuisine-', ''));
+    } else if (filter.includes('diet')) {
+      diet.push(filter.replace('diet-', ''));
+    } else if (filter.includes('intolerances')) {
+      intolerances.push(filter.replace('intolerances-', ''));
+    } else if (filter.includes('type')) {
+      type = filter.replace('type-', '');
+    } else if (filter.includes('sort')) {
+      sort = filter.replace('sort-', '').split(' ');
+      [sortType, direction] = sort;
+    }
+  });
+  searchService
+    .getSearch(
+      id,
+      token,
+      search,
+      ingredients,
+      cuisine,
+      diet,
+      intolerances,
+      type,
+      sortType,
+      direction,
+      page,
+    )
     .then((res) => {
-      setItems(res.items);
-      setMoreItems(res.moreItems);
+      setItems(res.recipes);
+      setMoreItems(res.nextPage);
       setLoading(0);
     })
     .catch(() => {

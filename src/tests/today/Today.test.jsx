@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
 import React from 'react';
@@ -34,12 +35,13 @@ jest.mock('../../services/recipeService', () => ({
   postFavourite: jest.fn(),
 }));
 
-delete window.location;
-window.location = new URL('https://www.example.com/today/02-02-2022');
-
 beforeEach(() => {
+  delete window.location;
+  window.location = new URL('https://www.example.com/today/02-02-2022');
+
   jest.useRealTimers();
   useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
+
   getRecipeByDate.mockImplementation(mockGetRecipeByDate);
   postFavourite.mockImplementation(mockPostFavourite);
   postFinished.mockImplementation(mockPostFinished);

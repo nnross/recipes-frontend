@@ -30,7 +30,7 @@ const Recipe = ({ className, id }) => {
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState([]);
   const [source, setSource] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [labels, setLabels] = useState([]);
@@ -46,13 +46,13 @@ const Recipe = ({ className, id }) => {
   useEffect(() => {
     recipeService.getRecipe(recipeId)
       .then((res) => {
-        setSrc(res.src);
+        setSrc(res.image);
         setTitle(res.title);
-        setBody(res.body);
+        setBody(res.summary);
         setInstructions(res.instructions);
         setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
-        setLabels(res.labels);
+        setIngredients(res.measurements);
+        setLabels(res.diets);
         setFavourite(res.favourite);
         setLater(res.later);
         setCalendar(res.calendar);
@@ -128,7 +128,7 @@ const Recipe = ({ className, id }) => {
             </div>
             <div className={`${className}__container__stats`} />
             <div className={`${className}__container__instructions`}>
-              <Instructions className={`${className}__container__instructions`} id={`${id}__instructions`} instructions={instructions} loading={loading} />
+              <Instructions instructions={instructions} />
             </div>
             <div className={`${className}__container__labels`}>
               <Label labels={labels} />

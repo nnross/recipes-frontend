@@ -9,7 +9,7 @@ jest.mock('../../components/ImageListItem.jsx');
 describe('imageList tests', () => {
   describe('render tests', () => {
     test('imageList renders', () => {
-      const component = render(<ImageList id="test" items={withMore.items} />);
+      const component = render(<ImageList id="test" items={withMore.recipes} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();

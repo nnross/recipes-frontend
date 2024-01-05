@@ -30,7 +30,7 @@ beforeEach(() => {
 
 describe('recipeService tests', () => {
   test('getRecipe calls correctly', async () => {
-    const res = getRecipe(0, 'token');
+    const res = recipeService.getRecipe(0, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };

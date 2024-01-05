@@ -6,7 +6,7 @@ import Instructions from '../../components/Instructions';
 describe('Instructions tests', () => {
   describe('render tests', () => {
     test('instructions render succesfully', () => {
-      const component = render(<Instructions id="test" instructions="do this and that" />);
+      const component = render(<Instructions id="test" instructions={['do this and that', 'then do this']} />);
 
       const container = component.container.querySelector('#test__info');
       expect(container).not.toBeNull();

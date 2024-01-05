@@ -1,23 +1,23 @@
-/* eslint-disable no-new */
-/* eslint-disable no-unused-vars */
-import { withMore, withNoMore } from '../tests/testData/imageListItems.json';
+import axios from 'axios';
 
-// TODO: actual call to backend.
-const getSomeRecipes = (id, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(withMore);
-    }, 1000);
-  })
-);
+const getSomeRecipes = async () => {
+  const res = await axios.get('http://localhost:8080/recipe/get/api/random');
+  return res.data;
+};
 
-// TODO: actual call to backend
-const getSearch = (id, token, search, filters, page) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(withNoMore);
-    }, 1000);
-  })
-);
+const getSearch = async (
+  search,
+  ingredients,
+  cuisine,
+  diet,
+  intolerances,
+  type,
+  sort,
+  direction,
+  page,
+) => {
+  const res = await axios.get(`http://localhost:8080/recipe/get/api/search?search=${search}&ingredients=${ingredients}&cuisine=${cuisine}&diet=${diet}&intolerances=${intolerances}&type=${type}&sort=${sort}&sortDirection=${direction}&page=${page}`);
+  return res.data;
+};
 
 export default { getSomeRecipes, getSearch };

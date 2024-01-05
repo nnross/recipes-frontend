@@ -10,7 +10,7 @@ jest.mock('../../components/ImageList');
 describe('Results tests', () => {
   describe('render tests', () => {
     test('render with more results works succesfully', () => {
-      const component = render(<Results id="test" items={withMore.items} moreResults />);
+      const component = render(<Results id="test" items={withMore.recipes} moreResults />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -25,17 +25,17 @@ describe('Results tests', () => {
       expect(component.getByRole('button', { name: 'load more results' })).toBeVisible();
     });
     test('render with no more results works succesfully', () => {
-      const component = render(<Results id="test" items={withNoMore.items} moreResults={false} />);
+      const component = render(<Results id="test" items={withNoMore.recipes} moreResults={false} />);
 
       expect(component.queryByRole('button', { name: 'load more results' })).not.toBeInTheDocument();
     });
     test('loading state works succesfully', () => {
-      const component = render(<Results id="test" items={withNoMore.items} moreResults loading={2} />);
+      const component = render(<Results id="test" items={withNoMore.recipes} moreResults loading={2} />);
 
       expect(component.getByText('loading')).toBeVisible();
     });
     test('error state works succesfully', () => {
-      const component = render(<Results id="test" items={withNoMore.items} moreResults loading={4} />);
+      const component = render(<Results id="test" items={withNoMore.recipes} moreResults loading={4} />);
 
       expect(component.getByText('an error occurred')).toBeVisible();
     });
@@ -43,7 +43,7 @@ describe('Results tests', () => {
   describe('functions work', () => {
     test('load more works', async () => {
       const mockLoadMore = jest.fn();
-      const component = render(<Results id="test" items={withMore.items} loadMore={mockLoadMore} moreResults />);
+      const component = render(<Results id="test" items={withMore.recipes} loadMore={mockLoadMore} moreResults />);
 
       await userEvent.click(component.getByRole('button', { name: 'load more results' }));
 

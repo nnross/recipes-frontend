@@ -1,18 +1,14 @@
+import axios from 'axios';
 import { recipe1 } from '../tests/testData/recipe.json';
 import { withMore, withNoMore } from '../tests/testData/itemList.json';
-
-import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080/recipe';
 
 // TODO: actual call to backend.
-const getRecipe = (id) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(recipe1);
-    }, 1000);
-  })
-);
+const getRecipe = async (id) => {
+  const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
+  return res.data;
+};
 
 const getRecipeByDate = (date, accountId, token) => (
   new Promise((resolve) => {
@@ -31,10 +27,8 @@ const postCalendar = (recipeId, accountId, date, token) => (
 );
 
 const postFavourite = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+  new Promise((resolve, reject) => {
+    reject();
   })
 );
 
