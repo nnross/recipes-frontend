@@ -48,7 +48,7 @@ beforeEach(() => {
     setLoading,
   ) => {
     mockUseSearch(id, token, search, filters, page);
-    setItems(withNoMore.items);
+    setItems(withNoMore.recipes);
     setMoreItems(false);
     setLoading(0);
   });
@@ -161,7 +161,7 @@ describe('Search tests', () => {
         setLoading,
       ) => {
         mockUseSearch(id, token, search, filters, page);
-        setItems(withNoMore.items);
+        setItems(withNoMore.recipes);
         setMoreItems(false);
         setLoading(4);
       });
@@ -188,7 +188,7 @@ describe('Search tests', () => {
         setMoreItems,
       ) => {
         mockUseSearch(id, token, search, filters, page);
-        setItems(withNoMore.items);
+        setItems(withNoMore.recipes);
         setMoreItems(false);
       });
       const component = render(<Search id="test" />);
@@ -229,7 +229,7 @@ describe('Search tests', () => {
         setLoading,
       ) => {
         mockUseSearch(id, token, search, filters, page);
-        setItems(withNoMore.items);
+        setItems(withNoMore.recipes);
         setMoreItems(false);
         setLoading(4);
       });
@@ -254,7 +254,7 @@ describe('Search tests', () => {
         setMoreItems,
       ) => {
         mockUseSearch(id, token, search, filters, page);
-        setItems(withNoMore.items);
+        setItems(withNoMore.recipes);
         setMoreItems(false);
       });
       const component = render(<Search id="test" />);
@@ -310,7 +310,7 @@ describe('Search tests', () => {
       expect(component.getAllByText('addition')).toHaveLength(1);
     });
     test('empty results work', async () => {
-      getSomeRecipes.mockImplementation(() => Promise.resolve({ items: [] }));
+      getSomeRecipes.mockImplementation(() => Promise.resolve({ recipes: [] }));
       const component = render(<Search id="test" />);
       await waitFor(() => {
         expect(component.getByText('no results')).toBeVisible();

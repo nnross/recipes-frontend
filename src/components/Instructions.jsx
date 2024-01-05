@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
  * Renders the instructions for a recipe
  * @property {String} className - custom className if wanted. Default is instructions.
  * @property {String} id - custom id if wanted. Default is instructions
- * @property {String} instructions - the instructions to be displayed.
+ * @property {List<String>} instructions - the instructions to be displayed.
  * @returns instruction
  */
 const Instructions = ({

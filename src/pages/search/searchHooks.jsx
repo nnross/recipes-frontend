@@ -21,13 +21,6 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
   let sort = [];
   let sortType = '';
   let direction = '';
-  let intPage = 0;
-
-  if (page.current !== undefined) {
-    intPage = page.current;
-  } else {
-    intPage = page;
-  }
 
   filters.forEach((filter) => {
     if (filter.includes('ingredients')) {
@@ -46,8 +39,19 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
     }
   });
   searchService
-    // eslint-disable-next-line max-len
-    .getSearch(id, token, search, ingredients, cuisine, diet, intolerances, type, sortType, direction, intPage)
+    .getSearch(
+      id,
+      token,
+      search,
+      ingredients,
+      cuisine,
+      diet,
+      intolerances,
+      type,
+      sortType,
+      direction,
+      page,
+    )
     .then((res) => {
       setItems(res.recipes);
       setMoreItems(res.nextPage);

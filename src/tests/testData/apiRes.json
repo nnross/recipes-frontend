@@ -1,5 +1,5 @@
 {
-    "withMore": {
+    "response": {
         "recipes": [
             {
             "id": 1,
@@ -74,35 +74,6 @@
             "body": "test body 12"
             }
         ],
-        "moreResults": true
-    },
-    "withNoMore": {
-        "recipes": [
-            {
-            "id": 91,
-            "image": "https://spoonacular.com/recipeImages/716429-636x393.jpg",
-            "title": "test title load 1",
-            "body": "test body 1"
-            },
-            {
-                "id": 92,
-            "image": "https://spoonacular.com/recipeImages/90629-636x393.jpg",
-            "title": "test title 2",
-            "body": "test body 2"
-            },
-            {
-            "id": 93,
-            "image": "https://spoonacular.com/recipeImages/90629-636x393.jpg",
-            "title": "test title 3",
-            "body": "test body 3"
-            },
-            {
-            "id": 94,
-            "image": "https://spoonacular.com/recipeImages/90629-636x393.jpg",
-            "title": "test title 4",
-            "body": "test body 4"
-            }
-        ],
-        "moreResults": false
+        "nextPage": true
     }
 }
