@@ -28,7 +28,7 @@ const Today = ({ className, id }) => {
   const [loading, setLoading] = useState(1);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState([]);
   const [source, setSource] = useState('');
   const [time, setTime] = useState(null);
   const [servings, setServings] = useState(null);
@@ -37,19 +37,22 @@ const Today = ({ className, id }) => {
   const [labels, setLabels] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [favourite, setFavourite] = useState(false);
-  const [finished, setFinished] = useState(1);
-
+  const [finished, setFinished] = useState({ state: 1, date: asDate });
   /**
    * Retrieves data for todays recipe
    */
   useEffect(() => {
-    recipeService.getRecipeByDate(date, accountId, token)
+    recipeService.getRecipeByDate(
+      date,
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) => {
-        setSrc(res.src);
+        setSrc(res.image);
         setTitle(res.title);
         setInstructions(res.instructions);
         setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
+        setIngredients(res.measurements);
         setLabels(res.labels);
         setTime(res.readyInMinutes);
         setServings(res.servings);
@@ -62,7 +65,6 @@ const Today = ({ className, id }) => {
         setLoading(3);
       });
   }, []);
-
   /**
   * Adds recipe to favourites
   */
