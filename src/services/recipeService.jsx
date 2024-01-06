@@ -9,30 +9,32 @@ const getRecipe = async (id) => {
   return res.data;
 };
 
-const putCalendar = (recipeId, accountId, date, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+const putCalendar = async (recipeId, date, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/calendar?recipeId=${recipeId}&date=${date}`, {}, config);
+  return res.data;
+};
 
 const putFavourite = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const res = await axios.put(`${baseUrl}/set/favourite?recipeId=${recipeId}`, config);
+  const res = await axios.put(`${baseUrl}/set/favourite?recipeId=${recipeId}`, {}, config);
   return res.data;
 };
 
-const putDolater = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+const putDolater = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/doLater?recipeId=${recipeId}`, {}, config);
+  return res.data;
+};
 
 const putFinished = (recipeId, accountId, token) => (
   new Promise((resolve) => {

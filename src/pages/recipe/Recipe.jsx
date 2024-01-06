@@ -86,8 +86,8 @@ const Recipe = ({ className, id }) => {
     setLoading(2);
 
     if (isInDatabase) {
-      if (action === 'favourite') UseTag(action, recipeId, null, token, setLoading, setFavourite);
-      if (action === 'doLater') UseTag(action, recipeId, null, token, setLoading, setLater);
+      if (action === 'favourite') UseTag(action, recipeId, null, token, setLoading, setFavourite, favourite);
+      if (action === 'doLater') UseTag(action, recipeId, null, token, setLoading, setLater, later);
       if (action === 'toCalendar') UseTag(action, recipeId, inputDate, token, setLoading, setCalendar);
     } else {
       if (action === 'favourite') addToDb(action, accountId, token, recipe, null, setLoading, setFavourite);

@@ -40,8 +40,6 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
   });
   searchService
     .getSearch(
-      id,
-      token,
       search,
       ingredients,
       cuisine,

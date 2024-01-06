@@ -58,12 +58,12 @@ export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, 
  * @param {Function} setLoading - the set loading function.
  * @param {Function} setSelected - the setSelected function to set selected.
  */
-export const UseTag = (action, recipeId, date, token, setLoading, setSelected) => {
+export const UseTag = (action, recipeId, date, token, setLoading, setSelected, current) => {
   if (action === 'favourite') {
     recipeService.putFavourite(recipeId, token)
       .then(() => {
         setLoading(0);
-        setSelected(true);
+        setSelected(!current);
       })
       .catch(() => {
         setLoading(4);
@@ -75,7 +75,7 @@ export const UseTag = (action, recipeId, date, token, setLoading, setSelected) =
     recipeService.putDolater(recipeId, token)
       .then(() => {
         setLoading(0);
-        setSelected(true);
+        setSelected(!current);
       })
       .catch(() => {
         setLoading(4);
@@ -86,7 +86,6 @@ export const UseTag = (action, recipeId, date, token, setLoading, setSelected) =
   } else if (action === 'toCalendar') {
     recipeService.putCalendar(recipeId, date, token)
       .then(() => {
-        console.log(date);
         setLoading(0);
         setSelected(true);
       })
