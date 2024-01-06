@@ -3,6 +3,7 @@ import recipeService from '../../services/recipeService';
 
 export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, setSelected) => {
   const measurementList = [];
+  const instructionList = [];
 
   for (let i = 0; i < recipe.measurements.length; i += 1) {
     measurementList.push(
@@ -10,6 +11,14 @@ export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, 
         unit: { id: recipe.measurements[i].unit.id },
         ingredient: { id: recipe.measurements[i].name.id },
         amount: recipe.measurements[i].amount,
+      },
+    );
+  }
+
+  for (let i = 0; i < recipe.instructions.length; i += 1) {
+    instructionList.push(
+      {
+        body: recipe.instructions[i],
       },
     );
   }
@@ -26,7 +35,7 @@ export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, 
     doLater: action === 'doLater',
     finished: false,
     toDoDate: action === 'toCalendar' ? toDoDate : null,
-    instructions: recipe.instructions,
+    instructions: instructionList,
     healthScore: recipe.healthScore,
     category: recipe.diets,
     type: recipe.dishTypes,
@@ -72,7 +81,7 @@ export const UseTag = (action, recipeId, date, token, setLoading, setSelected, c
         }, 1000);
       });
   } else if (action === 'doLater') {
-    recipeService.putDolater(recipeId, token)
+    recipeService.putDoLater(recipeId, token)
       .then(() => {
         setLoading(0);
         setSelected(!current);
@@ -83,7 +92,7 @@ export const UseTag = (action, recipeId, date, token, setLoading, setSelected, c
           setLoading(0);
         }, 1000);
       });
-  } else if (action === 'toCalendar') {
+  } else {
     recipeService.putCalendar(recipeId, date, token)
       .then(() => {
         setLoading(0);

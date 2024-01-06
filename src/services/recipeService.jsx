@@ -27,7 +27,7 @@ const putFavourite = async (recipeId, token) => {
   return res.data;
 };
 
-const putDolater = async (recipeId, token) => {
+const putDoLater = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -92,6 +92,6 @@ export default {
   getDoLater,
   getFavourite,
   putFavourite,
-  putDolater,
+  putDoLater,
   putCalendar,
 };

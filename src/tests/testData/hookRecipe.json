@@ -1,0 +1,86 @@
+{
+    "recipe":
+    {
+        "cuisines": [],
+        "diets": [{"id": 1, "name": "vegetarian"}],
+        "dishTypes": [{"id": 1, "name": "lunch"}],
+        "healthScore": 2,
+        "id": 12,
+        "image": "test src",
+        "instructions": ["test instructions"],
+        "measurements": 
+        [{
+                "amount": 12,
+                "unit": {"id": 2, "name": "test unit"},
+                "name": {"id": 1, "name": "test ingredient"}
+        }],
+        "readyInMinutes": 20,
+        "servings": 4,
+        "sourceUrl": "test url",
+        "summary": "summary",
+        "title": "test title"
+    },
+    "favouriteFormatted":
+    {
+      "id": 12,
+      "title": "test title",
+      "description": "summary",
+      "original": "test url",
+      "time": 20,
+      "servings": 4,
+      "image": "test src",
+      "favourite": true,
+      "doLater": false,
+      "finished": false,
+      "toDoDate": null,
+      "instructions": [ { "body": "test instructions" } ],
+      "healthScore": 2,
+      "category": [ { "id": 1, "name": "vegetarian" } ],
+      "type": [ { "id": 1, "name": "lunch" } ],
+      "country": [],
+      "account": { "id": 2 },
+      "measurements": [ { "unit": {"id": 2}, "ingredient": {"id": 1}, "amount": 12 } ]
+    },
+    "doLaterFormatted":
+    {
+      "id": 12,
+      "title": "test title",
+      "description": "summary",
+      "original": "test url",
+      "time": 20,
+      "servings": 4,
+      "image": "test src",
+      "favourite": false,
+      "doLater": true,
+      "finished": false,
+      "toDoDate": null,
+      "instructions": [ { "body": "test instructions" } ],
+      "healthScore": 2,
+      "category": [ { "id": 1, "name": "vegetarian" } ],
+      "type": [ { "id": 1, "name": "lunch" } ],
+      "country": [],
+      "account": { "id": 2 },
+      "measurements": [ { "unit": {"id": 2}, "ingredient": {"id": 1}, "amount": 12 } ]
+    },
+    "calendarFormatted":
+    {
+      "id": 12,
+      "title": "test title",
+      "description": "summary",
+      "original": "test url",
+      "time": 20,
+      "servings": 4,
+      "image": "test src",
+      "favourite": false,
+      "doLater": false,
+      "finished": false,
+      "toDoDate": "2022-12-12",
+      "instructions": [ { "body": "test instructions" } ],
+      "healthScore": 2,
+      "category": [ { "id": 1, "name": "vegetarian" } ],
+      "type": [ { "id": 1, "name": "lunch" } ],
+      "country": [],
+      "account": { "id": 2 },
+      "measurements": [ { "unit": {"id": 2}, "ingredient": {"id": 1}, "amount": 12 } ]
+    }
+}
