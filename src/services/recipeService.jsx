@@ -1,14 +1,24 @@
 import axios from 'axios';
-import { recipe1 } from '../tests/testData/recipe.json';
-import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
 const baseUrl = 'http://localhost:8080/recipe';
 
+/**
+ * Gets recipe with id from the API.
+ * @param {Int} id - id of recipe
+ * @returns recipe from API.
+ */
 const getRecipe = async (id) => {
   const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
   return res.data;
 };
 
+/**
+ * sets recipes calendar date.
+ * @param {Int} recipeId - recipes is.
+ * @param {String} date - date to be used.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
 const putCalendar = async (recipeId, date, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -18,6 +28,12 @@ const putCalendar = async (recipeId, date, token) => {
   return res.data;
 };
 
+/**
+ * toggles recipes favourite state.
+ * @param {Int} recipeId - recipes id.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
 const putFavourite = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -27,6 +43,12 @@ const putFavourite = async (recipeId, token) => {
   return res.data;
 };
 
+/**
+ * toggles recipes doLater state.
+ * @param {Int} recipeId - recipes id.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
 const putDoLater = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -44,6 +66,12 @@ const putFinished = (recipeId, accountId, token) => (
   })
 );
 
+/**
+ * Adds recipe to the database.
+ * @param {String} token - token of user.
+ * @param {JSON} payload - recipe to be added.
+ * @returns true if successful.
+ */
 const postRecipe = async (token, payload) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },

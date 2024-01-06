@@ -9,6 +9,12 @@ import Load from '../../components/Load';
 import RecipeButtons from './RecipeButtons';
 import { UseTag } from './recipeHooks';
 
+/**
+ * Renders the own recipe from database page.
+ * @param {String} className - custom className if wanted. Default is Recipe
+  * @param {String} id - custom id if wanted. Default is Recipe
+ * @returns recipe for database recipes
+ */
 const OwnRecipe = ({ className, id }) => {
   function getCurrentURL() {
     return window.location.href;

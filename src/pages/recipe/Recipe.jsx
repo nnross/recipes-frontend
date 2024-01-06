@@ -10,7 +10,7 @@ import RecipeButtons from './RecipeButtons';
 import { UseTag, addToDb } from './recipeHooks';
 
 /**
- * Renders the recipe page.
+ * Renders the api recipe page.
  * @property {String} className - custom className if wanted. Default is recipe.
  * @property {String} id - custom id if wanted. Default is recipe
  * @returns recipe page.

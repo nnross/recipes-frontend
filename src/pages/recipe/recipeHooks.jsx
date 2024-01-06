@@ -1,6 +1,16 @@
 /* eslint-disable import/prefer-default-export */
 import recipeService from '../../services/recipeService';
 
+/**
+ * Adds recipe to database with selected action
+ * @param {String} action - what action to be user, either toFavourite, toDoLater or toCalendar.
+ * @param {Int} accountId - id of user.
+ * @param {String} token - token of user.
+ * @param {JSON} recipe - recipe to be added.
+ * @param {String} toDoDate - date to be used if adding to calendar.
+ * @param {Func} setLoading - function to set the loading state.
+ * @param {Func} setSelected - function to set the selected button as selected.
+ */
 export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, setSelected) => {
   const measurementList = [];
   const instructionList = [];
