@@ -3,7 +3,7 @@
 .today {
   display: grid;
   grid-template-columns: auto 260px 300px 40px 300px auto;
-  grid-template-rows: 100px 100px auto 100px 50px;
+  grid-template-rows: auto 100px auto 100px 50px;
   height: 100%;
   width: 100%;
   padding-bottom: 50px;
@@ -149,6 +149,10 @@
   }
   &__recipeError {
     color: $red;
+    display: flex;
+    justify-content: center;
+  }
+  &__noRecipe {
     display: flex;
     justify-content: center;
   }

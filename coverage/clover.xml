@@ -13,7 +13,7 @@
         <line num="36" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
       </file>
-      <file name="Label.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Label.jsx">
+      <file name="Label.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Label.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="11" type="stmt"/>
@@ -22,7 +22,7 @@
         <line num="25" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
       </file>
-      <file name="Load.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Load.jsx">
+      <file name="Load.jsx" path="/Users/nellirossi/Documents/recipes/recipes-frontend/src/components/Load.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="14" type="stmt"/>

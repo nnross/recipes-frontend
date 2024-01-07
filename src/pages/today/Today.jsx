@@ -26,9 +26,10 @@ const Today = ({ className, id }) => {
   const asDate = new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' });
 
   const [loading, setLoading] = useState(1);
+  const [recipe, setRecipe] = useState([]);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState([]);
   const [source, setSource] = useState('');
   const [time, setTime] = useState(null);
   const [servings, setServings] = useState(null);
@@ -37,32 +38,38 @@ const Today = ({ className, id }) => {
   const [labels, setLabels] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [favourite, setFavourite] = useState(false);
-  const [finished, setFinished] = useState(1);
-
+  const [finished, setFinished] = useState(false);
+  const [calendar, setCalendar] = useState(null);
   /**
    * Retrieves data for todays recipe
    */
   useEffect(() => {
-    recipeService.getRecipeByDate(date, accountId, token)
+    recipeService.getTodays(
+      date,
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) => {
-        setSrc(res.src);
-        setTitle(res.title);
-        setInstructions(res.instructions);
-        setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
-        setLabels(res.labels);
-        setTime(res.readyInMinutes);
-        setServings(res.servings);
-        setHealth(res.healthScore);
-        setRecipeId(res.id);
-        setFavourite(res.favourite);
+        setRecipe(res.recipe);
+        setCalendar(res.calendar);
+        setSrc(res.recipe.image);
+        setTitle(res.recipe.title);
+        setInstructions(res.recipe.instructions);
+        setSource(res.recipe.sourceUrl);
+        setIngredients(res.recipe.measurements);
+        setLabels(res.recipe.labels);
+        setTime(res.recipe.readyInMinutes);
+        setServings(res.recipe.servings);
+        setHealth(res.recipe.healthScore);
+        setRecipeId(res.recipe.id);
+        setFavourite(res.recipe.favourite);
+        setFinished(res.recipe.finished);
         setLoading(2);
       })
       .catch(() => {
         setLoading(3);
       });
   }, []);
-
   /**
   * Adds recipe to favourites
   */
@@ -104,7 +111,7 @@ const Today = ({ className, id }) => {
     recipeService.postFinished(recipeId, accountId, date, token)
       .then(() => {
         setLoading(0);
-        setFinished(2);
+        setFinished(true);
       })
       .catch(() => {
         setLoading(4);
@@ -116,8 +123,29 @@ const Today = ({ className, id }) => {
 
   if (loading === 3) {
     return (
-      <div className={`${className}__recipeError`}>
-        <h3> an error occurred :( </h3>
+      <div>
+        <div className={`${className}__calendar`}>
+          <Calendar
+            monday={calendar.Monday}
+            tuesday={calendar.Tuesday}
+            wednesday={calendar.Wednesday}
+            thursday={calendar.Thursday}
+            friday={calendar.Friday}
+            saturday={calendar.Saturday}
+            sunday={calendar.Sunday}
+          />
+        </div>
+        { recipe === null
+          ? (
+            <div className={`${className}__noRecipe`}>
+              <h3> no recipe for this date yet </h3>
+            </div>
+          )
+          : (
+            <div className={`${className}__recipeError`}>
+              <h3> an error occurred :( </h3>
+            </div>
+          )}
       </div>
     );
   }
@@ -146,7 +174,15 @@ const Today = ({ className, id }) => {
         : (
           <>
             <div className={`${className}__calendar`}>
-              <Calendar sunday={finished} />
+              <Calendar
+                monday={calendar.Monday}
+                tuesday={calendar.Tuesday}
+                wednesday={calendar.Wednesday}
+                thursday={calendar.Thursday}
+                friday={calendar.Friday}
+                saturday={calendar.Saturday}
+                sunday={calendar.Sunday}
+              />
             </div>
             <div className={`${className}__background`} />
             {title === null
@@ -166,7 +202,7 @@ const Today = ({ className, id }) => {
                     <a className={`${className}__original__link`} href={source}>original recipe</a>
                   </div>
                   <div className={`${className}__buttons`}>
-                    {finished === 1
+                    {finished === false
                       ? <button className={`${className}__buttons__finished`} onClick={() => finishRecipe()} type="button">finished</button>
                       : <div />}
                     {favourite === false

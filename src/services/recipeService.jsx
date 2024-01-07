@@ -8,10 +8,32 @@ const baseUrl = 'http://localhost:8080/recipe';
  * @returns recipe from API.
  */
 const getRecipe = async (id) => {
-  const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
+  const res = await axios.get(`${baseUrl}/get/api/id?id=${id}`);
   return res.data;
 };
 
+/**
+ * The call to backend to get a recipe from the database
+ * @param {*} date date the recipe is wanted for
+ * @param {*} accountId id of the account
+ * @param {*} token token for the account
+ * @returns data for the recipe
+ */
+const getRecipeByDate = async (date, accountId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const res = await axios.get(`${baseUrl}/get/date?accountId=${accountId}&date=${date}`, config);
+  return res.data;
+};
+
+const getTodays = async (date, accountId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const res = await axios.get(`http://localhost:8080/pages/get/todays?accountId=${accountId}&date=${date}`, config);
+  return res.data;
+};
 const getRecipeFromDb = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -124,6 +146,8 @@ const getDoLater = async (accountId, token, page) => {
 
 export default {
   getRecipe,
+  getRecipeByDate,
+  getTodays,
   postRecipe,
   putFinished,
   getDoLater,
