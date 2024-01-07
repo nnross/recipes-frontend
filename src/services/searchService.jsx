@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+/**
+ * Gets some recepies from the API.
+ * @returns some recipes from API.
+ */
 const getSomeRecipes = async () => {
   const res = await axios.get('http://localhost:8080/recipe/get/api/random');
   return res.data;

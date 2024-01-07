@@ -9,8 +9,8 @@ const Ingredients = ({
     <li className={`${className}__body__item`} key={ingredient.id}>
       <p>
         {ingredient.amount}
-        {ingredient.unit}
-        {ingredient.name}
+        {ingredient.unit.name}
+        {ingredient.name.name}
       </p>
     </li>,
   ));

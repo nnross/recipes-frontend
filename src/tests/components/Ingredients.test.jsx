@@ -3,12 +3,12 @@ import React from 'react';
 import { render } from '@testing-library/react/';
 import Ingredients from '../../components/Ingredients';
 import { findWithTag } from '../testHelpers';
-import { recipe1 } from '../testData/recipe';
+import { recipe1 } from '../testData/recipe.json';
 
 describe('Ingredients tests', () => {
   describe('render tests', () => {
     test('ingredients render succesfully', () => {
-      const component = render(<Ingredients id="test" ingredients={recipe1.ingredients} />);
+      const component = render(<Ingredients id="test" ingredients={recipe1.measurements} />);
 
       const container = component.container.querySelector('#test');
       expect(container).not.toBeNull();
@@ -16,7 +16,7 @@ describe('Ingredients tests', () => {
       expect(container.className).toBe('ingredients');
 
       expect(component.getByText('Ingredients')).toBeVisible();
-      expect(component.getByText((content, node) => findWithTag(node, '5 clovesgarlic'))).toBeVisible();
+      expect(component.getByText((content, node) => findWithTag(node, '2 Tbspscheese'))).toBeVisible();
     });
   });
 });
