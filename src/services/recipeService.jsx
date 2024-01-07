@@ -27,6 +27,14 @@ const getRecipeByDate = async (date, accountId, token) => {
   return res.data;
 };
 
+const getTodays = async (date, accountId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const res = await axios.get(`http://localhost:8080/pages/get/todays?accountId=${accountId}&date=${date}`, config);
+  return res.data;
+};
+
 const postCalendar = (recipeId, accountId, date, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
@@ -100,6 +108,7 @@ const getDoLater = async (accountId, token, page) => {
 export default {
   getRecipe,
   getRecipeByDate,
+  getTodays,
   postCalendar,
   postFavourite,
   deleteFavourite,
