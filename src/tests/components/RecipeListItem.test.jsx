@@ -13,6 +13,6 @@ describe('recipeListItem tests', () => {
     expect(container.className).toBe('recipeListItem');
 
     expect(component.getByText('test title')).toBeVisible();
-    expect(component.getByText('go to recipe')).toHaveAttribute('href', '/recipe/2');
+    expect(component.getByText('go to recipe')).toHaveAttribute('href', '/ownRecipe/2');
   });
 });

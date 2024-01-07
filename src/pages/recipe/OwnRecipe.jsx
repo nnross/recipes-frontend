@@ -7,23 +7,22 @@ import Ingredients from '../../components/Ingredients';
 import Label from '../../components/Label';
 import Load from '../../components/Load';
 import RecipeButtons from './RecipeButtons';
-import { UseTag, addToDb } from './recipeHooks';
+import { UseTag } from './recipeHooks';
 
 /**
- * Renders the api recipe page.
- * @property {String} className - custom className if wanted. Default is recipe.
- * @property {String} id - custom id if wanted. Default is recipe
- * @returns recipe page.
+ * Renders the own recipe from database page.
+ * @param {String} className - custom className if wanted. Default is Recipe
+  * @param {String} id - custom id if wanted. Default is Recipe
+ * @returns recipe for database recipes
  */
-const Recipe = ({ className, id }) => {
+const OwnRecipe = ({ className, id }) => {
   function getCurrentURL() {
     return window.location.href;
   }
   const url = getCurrentURL();
-  const recipeId = Number(url.substring(29));
+  const recipeId = Number(url.substring(32));
 
   const token = useOutletContext()[1];
-  const accountId = useOutletContext()[2];
   const loggedIn = useOutletContext()[3];
 
   const [loading, setLoading] = useState(1);
@@ -39,17 +38,13 @@ const Recipe = ({ className, id }) => {
   const [favourite, setFavourite] = useState(false);
   const [later, setLater] = useState(false);
   const [calendar, setCalendar] = useState(false);
-  const [isInDatabase, setIsInDatabase] = useState(false);
-  const [recipe, setRecipe] = useState(null);
 
   /**
    * Retrieve the data for recipe.
    */
   useEffect(() => {
-    recipeService.getRecipe(recipeId)
+    recipeService.getRecipeFromDb(recipeId, window.localStorage.getItem('token'))
       .then((res) => {
-        if (res === '') window.location.replace(`/ownRecipe/${recipeId}`);
-
         setSrc(res.image);
         setTitle(res.title);
         setBody(res.summary);
@@ -57,7 +52,9 @@ const Recipe = ({ className, id }) => {
         setSource(res.sourceUrl);
         setIngredients(res.measurements);
         setLabels(res.diets);
-        setRecipe(res);
+        setFavourite(res.favourite);
+        setLater(res.doLater);
+        setCalendar(res.date);
         setLoading(2);
       })
       .catch(() => {
@@ -81,17 +78,9 @@ const Recipe = ({ className, id }) => {
 
     setCurLoad(action);
     setLoading(2);
-
-    if (isInDatabase) {
-      if (action === 'favourite') UseTag(action, recipeId, null, token, setLoading, setFavourite, favourite);
-      if (action === 'doLater') UseTag(action, recipeId, null, token, setLoading, setLater, later);
-      if (action === 'toCalendar') UseTag(action, recipeId, inputDate, token, setLoading, setCalendar);
-    } else {
-      if (action === 'favourite') addToDb(action, accountId, token, recipe, null, setLoading, setFavourite);
-      if (action === 'doLater') addToDb(action, accountId, token, recipe, null, setLoading, setLater);
-      if (action === 'toCalendar') addToDb(action, accountId, token, recipe, inputDate, setLoading, setCalendar);
-      setIsInDatabase(true);
-    }
+    if (action === 'favourite') UseTag(action, recipeId, inputDate, token, setLoading, setFavourite, favourite);
+    if (action === 'doLater') UseTag(action, recipeId, inputDate, token, setLoading, setLater, later);
+    if (action === 'toCalendar') UseTag(action, recipeId, inputDate, token, setLoading, setCalendar, calendar);
   };
 
   if (loading === 4) {
@@ -164,14 +153,14 @@ const Recipe = ({ className, id }) => {
   );
 };
 
-export default Recipe;
+export default OwnRecipe;
 
-Recipe.propTypes = {
+OwnRecipe.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
 };
 
-Recipe.defaultProps = {
+OwnRecipe.defaultProps = {
   className: 'recipe',
   id: 'recipe',
 };

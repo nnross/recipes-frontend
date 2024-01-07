@@ -12,25 +12,51 @@ jest.mock('axios');
 beforeEach(() => {
   jest.clearAllMocks();
 
-  axios.post.mockImplementation((url, config) => {
-    mock(url, config);
-    Promise.resolve(recipe);
+  axios.post.mockImplementation((url, payload, config) => {
+    mock(url, payload, config);
+    return Promise.resolve({ data: true });
   });
 
   axios.get.mockImplementation((url, config) => {
     mock(url, config);
-    return Promise.resolve({ date: recipe });
+    return Promise.resolve({ data: recipe });
   });
 
-  axios.put.mockImplementation((url, config) => {
+  axios.put.mockImplementation((url, payload, config) => {
     mock(url, config);
-    Promise.resolve();
+    return Promise.resolve({ data: true });
   });
 });
 
 describe('recipeService tests', () => {
+  test('post recipe calls correctly', async () => {
+    const res = await recipeService.postRecipe('token', { data: 'test' });
+    const config = {
+      headers: { Authorization: 'Bearer token' },
+    };
+
+    await waitFor(() => {
+      expect(res).toBe(true);
+
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/add');
+      expect(mock.mock.calls[0][1]).toStrictEqual({ data: 'test' });
+      expect(mock.mock.calls[0][2]).toStrictEqual(config);
+    });
+  });
   test('getRecipe calls correctly', async () => {
-    const res = recipeService.getRecipe(0, 'token');
+    const res = await recipeService.getRecipe(0);
+
+    await waitFor(() => {
+      expect(res).toBe(recipe);
+
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/api/id?id=0');
+    });
+  });
+
+  test('getRecipeFromDb calls correctly', async () => {
+    const res = await recipeService.getRecipeFromDb(0, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -38,9 +64,9 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(recipe);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/db?recipeId=0');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 
@@ -74,8 +100,8 @@ describe('recipeService tests', () => {
     });
   });
 
-  test('postFavourite calls correctly', async () => {
-    const res = postFavourite(1, 0, 'token');
+  test('putFavourite calls correctly', async () => {
+    const res = await recipeService.putFavourite(1, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -83,14 +109,14 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(true);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/favourite?recipeId=1');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 
-  test('postDoLater calls correctly', async () => {
-    const res = postDoLater(1, 0, 'token');
+  test('putDoLater calls correctly', async () => {
+    const res = await recipeService.putDoLater(1, 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -98,14 +124,14 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(true);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/doLater?recipeId=1');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 
-  test('postCalendar calls correctly', async () => {
-    const res = getRecipe(1, 0, '2022-12-12', 'token');
+  test('putCalendar calls correctly', async () => {
+    const res = await recipeService.putCalendar(1, '2022-12-12', 'token');
     const config = {
       headers: { Authorization: 'Bearer token' },
     };
@@ -113,9 +139,9 @@ describe('recipeService tests', () => {
     await waitFor(() => {
       expect(res).toBe(true);
 
-      expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('URL');
-      expect(mockPost.mock.calls[0][1]).toBe(config);
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/calendar?recipeId=1&date=2022-12-12');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
 });

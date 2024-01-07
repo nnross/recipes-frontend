@@ -2,7 +2,7 @@
 
 .recipe {
   display: grid;
-  grid-template-columns: auto 340px 50px 700px auto;
+  grid-template-columns: auto 340px 50px 750px auto;
   grid-template-rows: 300px auto;
   height: 100%;
   width: 100%;
@@ -94,7 +94,8 @@
     }
     &__ingredients {
         padding-top: 10px;
-        padding-left: 10px;
+        padding-left: 20px;
+        padding-right: 30px;
         grid-column: 3;
         grid-row: 2/4;
         height: 100%;

@@ -1,24 +1,73 @@
 import axios from 'axios';
-import { recipe1 } from '../tests/testData/recipe.json';
-import { withMore, withNoMore } from '../tests/testData/itemList.json';
 
 const baseUrl = 'http://localhost:8080/recipe';
 
-// TODO: actual call to backend.
+/**
+ * Gets recipe with id from the API.
+ * @param {Int} id - id of recipe
+ * @returns recipe from API.
+ */
 const getRecipe = async (id) => {
   const res = await axios.get(`http://localhost:8080/recipe/get/api/id?id=${id}`);
   return res.data;
 };
 
-const getRecipeByDate = (date, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(recipe1);
-    }, 1000);
-  })
-);
+const getRecipeFromDb = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-const postCalendar = (recipeId, accountId, date, token) => (
+  const res = await axios.get(`http://localhost:8080/recipe/get/db?recipeId=${recipeId}`, config);
+  return res.data;
+};
+
+/**
+ * sets recipes calendar date.
+ * @param {Int} recipeId - recipes is.
+ * @param {String} date - date to be used.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
+const putCalendar = async (recipeId, date, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/calendar?recipeId=${recipeId}&date=${date}`, {}, config);
+  return res.data;
+};
+
+/**
+ * toggles recipes favourite state.
+ * @param {Int} recipeId - recipes id.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
+const putFavourite = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/favourite?recipeId=${recipeId}`, {}, config);
+  return res.data;
+};
+
+/**
+ * toggles recipes doLater state.
+ * @param {Int} recipeId - recipes id.
+ * @param {String} token - token of user
+ * @returns true if successful.
+ */
+const putDoLater = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/doLater?recipeId=${recipeId}`, {}, config);
+  return res.data;
+};
+
+const putFinished = (recipeId, accountId, token) => (
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
@@ -26,35 +75,20 @@ const postCalendar = (recipeId, accountId, date, token) => (
   })
 );
 
-const postFavourite = (recipeId, accountId, token) => (
-  new Promise((resolve, reject) => {
-    reject();
-  })
-);
+/**
+ * Adds recipe to the database.
+ * @param {String} token - token of user.
+ * @param {JSON} payload - recipe to be added.
+ * @returns true if successful.
+ */
+const postRecipe = async (token, payload) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-const deleteFavourite = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
-
-const postDolater = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
-
-const postFinished = (recipeId, accountId, date, token) => (
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+  const res = await axios.post(`${baseUrl}/add`, payload, config);
+  return res.data;
+};
 
 /**
  * Gets the favourite recipes for selected account.
@@ -90,12 +124,12 @@ const getDoLater = async (accountId, token, page) => {
 
 export default {
   getRecipe,
-  getRecipeByDate,
-  postCalendar,
-  postFavourite,
-  deleteFavourite,
-  postDolater,
-  postFinished,
+  postRecipe,
+  putFinished,
   getDoLater,
   getFavourite,
+  putFavourite,
+  putDoLater,
+  putCalendar,
+  getRecipeFromDb,
 };

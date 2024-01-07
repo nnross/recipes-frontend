@@ -13,9 +13,9 @@ const RecipeListItem = ({
   className, id, title, itemId,
 }) => (
   <div className={className} id={id}>
-    <h3>{title}</h3>
-    <a href={`/recipe/${itemId}`} className={`${className}__link`}>
-      <p href={`/recipe/${itemId}`}> go to recipe </p>
+    <h3 style={title.length > 37 ? { fontSize: '20px' } : {}}>{title}</h3>
+    <a href={`/ownRecipe/${itemId}`} className={`${className}__link`}>
+      <p href={`/ownRecipe/${itemId}`}> go to recipe </p>
       <div className={`${className}__link__arrow`} />
     </a>
   </div>

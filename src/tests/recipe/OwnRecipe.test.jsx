@@ -5,10 +5,10 @@ import { useOutletContext } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import Recipe from '../../pages/recipe/Recipe';
+import OwnRecipe from '../../pages/recipe/OwnRecipe';
 import { recipe1 } from '../testData/recipe.json';
-import { getRecipe } from '../../services/recipeService';
-import { UseTag, addToDb } from '../../pages/recipe/recipeHooks';
+import { getRecipeFromDb } from '../../services/recipeService';
+import { UseTag } from '../../pages/recipe/recipeHooks';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -18,13 +18,11 @@ jest.mock('react-router-dom', () => ({
 const mockGetRecipe = () => Promise.resolve(recipe1);
 const mockGetRecipeReject = () => Promise.reject();
 jest.mock('../../services/recipeService', () => ({
-  getRecipe: jest.fn(),
+  getRecipeFromDb: jest.fn(),
 }));
 
 const mockUseTag = jest.fn();
-const mockToDb = jest.fn();
 jest.mock('../../pages/recipe/recipeHooks', () => ({
-  addToDb: jest.fn(),
   UseTag: jest.fn(),
 }));
 
@@ -32,27 +30,20 @@ jest.mock('../../pages/recipe/RecipeButtons');
 jest.mock('../../components/Ingredients');
 
 beforeEach(() => {
-  jest.useRealTimers();
   jest.clearAllMocks();
   useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
-  getRecipe.mockImplementation(mockGetRecipe);
+  getRecipeFromDb.mockImplementation(mockGetRecipe);
 
-  addToDb.mockImplementation((action, accountId, token, recipe, date, setLoading, setSelected) => {
-    mockToDb(action, accountId, recipe, date, token);
-    setLoading(0);
-    setSelected(true);
-  });
-
-  UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected, selected) => {
+  UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected) => {
     mockUseTag(action, recipeId, date, token);
     setLoading(0);
     setSelected(true);
   });
 });
-describe('Recipe tests', () => {
+describe('OwnRecipe tests', () => {
   describe('render tests', () => {
     test('render works succesfully', async () => {
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         const container = component.container.querySelector('#test');
@@ -74,15 +65,15 @@ describe('Recipe tests', () => {
       expect(component.getByRole('link', { name: 'original recipe' })).toHaveAttribute('href', 'http://fullbellysisters.blogspot.com/2012/06/pasta-with-garlic-scallions-cauliflower.html');
     });
     test('render fail works', async () => {
-      getRecipe.mockImplementation(mockGetRecipeReject);
-      const component = render(<Recipe id="test" />);
+      getRecipeFromDb.mockImplementation(mockGetRecipeReject);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByText('error whilst loading')).toBeVisible();
       });
     });
     test('render load works', async () => {
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       const load = component.container.querySelector('#loading');
       expect(load).not.toBeNull();
@@ -93,22 +84,21 @@ describe('Recipe tests', () => {
   });
   describe('Functionality tests', () => {
     test('favourite works', async () => {
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
       });
       await userEvent.click(component.getByRole('button', { name: 'favourite' }));
 
-      expect(mockToDb.mock.calls).toHaveLength(1);
-      expect(mockToDb.mock.calls[0][0]).toBe('favourite');
-      expect(mockToDb.mock.calls[0][1]).toBe('testAccountId');
-      expect(mockToDb.mock.calls[0][2]).toBe(recipe1);
-      expect(mockToDb.mock.calls[0][3]).toBe(null);
-      expect(mockToDb.mock.calls[0][4]).toBe('testToken');
+      expect(mockUseTag.mock.calls).toHaveLength(1);
+      expect(mockUseTag.mock.calls[0][0]).toBe('favourite');
+      expect(mockUseTag.mock.calls[0][1]).toBe(0);
+      expect(mockUseTag.mock.calls[0][2]).toBe(null);
+      expect(mockUseTag.mock.calls[0][3]).toBe('testToken');
     });
     test('do later works', async () => {
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
@@ -116,15 +106,14 @@ describe('Recipe tests', () => {
 
       await userEvent.click(component.getByRole('button', { name: 'add to do later' }));
 
-      expect(mockToDb.mock.calls).toHaveLength(1);
-      expect(mockToDb.mock.calls[0][0]).toBe('doLater');
-      expect(mockToDb.mock.calls[0][1]).toBe('testAccountId');
-      expect(mockToDb.mock.calls[0][2]).toBe(recipe1);
-      expect(mockToDb.mock.calls[0][3]).toBe(null);
-      expect(mockToDb.mock.calls[0][4]).toBe('testToken');
+      expect(mockUseTag.mock.calls).toHaveLength(1);
+      expect(mockUseTag.mock.calls[0][0]).toBe('doLater');
+      expect(mockUseTag.mock.calls[0][1]).toBe(0);
+      expect(mockUseTag.mock.calls[0][2]).toBe(null);
+      expect(mockUseTag.mock.calls[0][3]).toBe('testToken');
     });
     test('add to calender works', async () => {
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
@@ -132,46 +121,16 @@ describe('Recipe tests', () => {
 
       await userEvent.click(component.getByRole('button', { name: 'add to calendar' }));
 
-      expect(mockToDb.mock.calls).toHaveLength(1);
-      expect(mockToDb.mock.calls[0][0]).toBe('toCalendar');
-      expect(mockToDb.mock.calls[0][1]).toBe('testAccountId');
-      expect(mockToDb.mock.calls[0][2]).toBe(recipe1);
-      expect(mockToDb.mock.calls[0][3]).toBe('20-12-2022');
-      expect(mockToDb.mock.calls[0][4]).toBe('testToken');
-    });
-
-    test('tag works after addingToDb', async () => {
-      const component = render(<Recipe id="test" />);
-
-      await waitFor(() => {
-        expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
-      });
-
-      await userEvent.click(component.getByRole('button', { name: 'add to calendar' }));
-      await userEvent.click(component.getByRole('button', { name: 'add to calendar' }));
-      await userEvent.click(component.getByRole('button', { name: 'favourite' }));
-      await userEvent.click(component.getByRole('button', { name: 'add to do later' }));
-
-      expect(mockUseTag.mock.calls).toHaveLength(3);
+      expect(mockUseTag.mock.calls).toHaveLength(1);
       expect(mockUseTag.mock.calls[0][0]).toBe('toCalendar');
       expect(mockUseTag.mock.calls[0][1]).toBe(0);
       expect(mockUseTag.mock.calls[0][2]).toBe('20-12-2022');
       expect(mockUseTag.mock.calls[0][3]).toBe('testToken');
-
-      expect(mockUseTag.mock.calls[1][0]).toBe('favourite');
-      expect(mockUseTag.mock.calls[1][1]).toBe(0);
-      expect(mockUseTag.mock.calls[1][2]).toBe(null);
-      expect(mockUseTag.mock.calls[1][3]).toBe('testToken');
-
-      expect(mockUseTag.mock.calls[2][0]).toBe('doLater');
-      expect(mockUseTag.mock.calls[2][1]).toBe(0);
-      expect(mockUseTag.mock.calls[2][2]).toBe(null);
-      expect(mockUseTag.mock.calls[2][3]).toBe('testToken');
     });
 
     test('logged out favourite doesn\'t work', async () => {
       useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', false]);
-      const component = render(<Recipe id="test" />);
+      const component = render(<OwnRecipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();

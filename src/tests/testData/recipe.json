@@ -15,18 +15,8 @@
       "measurements": [
         {
         "amount": 2.0,
-        "unit": "Tbsps",
-        "name": "cheese"
-        },
-        {
-          "amount": 3.0,
-          "unit": "g",
-          "name": "sugar"
-        },
-        {
-          "amount": 5.0,
-          "unit": "Tbsps",
-          "name": "parmesan"
+        "unit": {"name": "Tbsps", "id": 1},
+        "name": {"name": "cheese", "id": 2}
         }
       ],
       "diets": [
