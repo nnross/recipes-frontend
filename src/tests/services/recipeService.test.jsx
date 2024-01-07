@@ -55,6 +55,21 @@ describe('recipeService tests', () => {
     });
   });
 
+  test('getRecipeFromDb calls correctly', async () => {
+    const res = await recipeService.getRecipeFromDb(0, 'token');
+    const config = {
+      headers: { Authorization: 'Bearer token' },
+    };
+
+    await waitFor(() => {
+      expect(res).toBe(recipe);
+
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/db?recipeId=0');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
+    });
+  });
+
   test('getFavourite calls correctly', async () => {
     const res = await recipeService.getFavourite(0, 'token', 0);
     const config = {

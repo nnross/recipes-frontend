@@ -12,6 +12,15 @@ const getRecipe = async (id) => {
   return res.data;
 };
 
+const getRecipeFromDb = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.get(`http://localhost:8080/recipe/get/db?recipeId=${recipeId}`, config);
+  return res.data;
+};
+
 /**
  * sets recipes calendar date.
  * @param {Int} recipeId - recipes is.
@@ -122,4 +131,5 @@ export default {
   putFavourite,
   putDoLater,
   putCalendar,
+  getRecipeFromDb,
 };

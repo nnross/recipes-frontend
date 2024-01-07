@@ -20,10 +20,9 @@ const OwnRecipe = ({ className, id }) => {
     return window.location.href;
   }
   const url = getCurrentURL();
-  const recipeId = Number(url.substring(29));
+  const recipeId = Number(url.substring(32));
 
   const token = useOutletContext()[1];
-  const accountId = useOutletContext()[2];
   const loggedIn = useOutletContext()[3];
 
   const [loading, setLoading] = useState(1);
@@ -44,7 +43,7 @@ const OwnRecipe = ({ className, id }) => {
    * Retrieve the data for recipe.
    */
   useEffect(() => {
-    recipeService.getRecipe(recipeId)
+    recipeService.getRecipeFromDb(recipeId, window.localStorage.getItem('token'))
       .then((res) => {
         setSrc(res.image);
         setTitle(res.title);
@@ -54,8 +53,8 @@ const OwnRecipe = ({ className, id }) => {
         setIngredients(res.measurements);
         setLabels(res.diets);
         setFavourite(res.favourite);
-        setLater(res.later);
-        setCalendar(res.calendar);
+        setLater(res.doLater);
+        setCalendar(res.date);
         setLoading(2);
       })
       .catch(() => {
@@ -79,9 +78,9 @@ const OwnRecipe = ({ className, id }) => {
 
     setCurLoad(action);
     setLoading(2);
-    if (action === 'favourite') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setFavourite);
-    if (action === 'doLater') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setLater);
-    if (action === 'toCalendar') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setCalendar);
+    if (action === 'favourite') UseTag(action, recipeId, inputDate, token, setLoading, setFavourite, favourite);
+    if (action === 'doLater') UseTag(action, recipeId, inputDate, token, setLoading, setLater, later);
+    if (action === 'toCalendar') UseTag(action, recipeId, inputDate, token, setLoading, setCalendar, calendar);
   };
 
   if (loading === 4) {

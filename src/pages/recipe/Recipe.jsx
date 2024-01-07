@@ -57,9 +57,6 @@ const Recipe = ({ className, id }) => {
         setSource(res.sourceUrl);
         setIngredients(res.measurements);
         setLabels(res.diets);
-        setFavourite(res.favourite);
-        setLater(res.later);
-        setCalendar(res.calendar);
         setRecipe(res);
         setLoading(2);
       })
