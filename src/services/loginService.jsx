@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080/account';
