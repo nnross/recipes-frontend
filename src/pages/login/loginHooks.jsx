@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable import/prefer-default-export */
 import loginService from '../../services/loginService';
 
 /**
@@ -43,7 +41,15 @@ export const UseLogin = (username, password, setLoading, setError, closeLogin) =
  * @param {Func} setError - function to set the error message.
  * @param {Func} closeLogin - function to close the login view.
  */
-export const UseCreateAccount = (name, email, username, password, setLoading, setError, closeLogin) => {
+export const UseCreateAccount = (
+  name,
+  email,
+  username,
+  password,
+  setLoading,
+  setError,
+  closeLogin,
+) => {
   const payload = {
     name,
     email,

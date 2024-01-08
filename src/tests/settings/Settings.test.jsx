@@ -1,10 +1,11 @@
+/* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import Settings from '../../pages/settings/Settings';
 import { useOutletContext } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
+import Settings from '../../pages/settings/Settings';
 import { user } from '../testData/account.json';
 import { getAccountData, postAccountData, deleteAccountData } from '../../services/personService';
 import { findWithTag } from '../testHelpers';
