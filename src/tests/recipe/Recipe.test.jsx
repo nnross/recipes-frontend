@@ -10,9 +10,12 @@ import { recipe1 } from '../testData/recipe.json';
 import { getRecipe } from '../../services/recipeService';
 import { UseTag, addToDb } from '../../pages/recipe/recipeHooks';
 
+const mockedUsedNavigate = jest.fn();
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useOutletContext: jest.fn(),
+  useNavigate: () => mockedUsedNavigate,
 }));
 
 const mockGetRecipe = () => Promise.resolve(recipe1);
@@ -43,7 +46,7 @@ beforeEach(() => {
     setSelected(true);
   });
 
-  UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected, selected) => {
+  UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected) => {
     mockUseTag(action, recipeId, date, token);
     setLoading(0);
     setSelected(true);
@@ -88,6 +91,16 @@ describe('Recipe tests', () => {
       expect(load).not.toBeNull();
       await waitFor(() => {
         expect(load).toBeVisible();
+      });
+    });
+
+    test('already own recipe redirects', async () => {
+      getRecipe.mockImplementation(() => Promise.resolve(''));
+
+      render(<Recipe id="test" />);
+
+      await waitFor(() => {
+        expect(mockedUsedNavigate).toHaveBeenCalledTimes(1);
       });
     });
   });

@@ -2,7 +2,6 @@ import * as axios from 'axios';
 import '@testing-library/jest-dom/extend-expect';
 import { waitFor } from '@testing-library/react';
 import recipeService from '../../services/recipeService';
-import { user } from '../testData/account.json';
 import { recipe } from '../testData/recipe.json';
 
 const mock = jest.fn();
@@ -155,6 +154,22 @@ describe('recipeService tests', () => {
 
       expect(mock.mock.calls).toHaveLength(1);
       expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/finished?recipeId=1');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
+    });
+  });
+
+  test('getRecipeByDate calls correctly', async () => {
+    const res = await recipeService.getTodays('2022-12-12', 2, 'token');
+
+    const config = {
+      headers: { Authorization: 'Bearer token' },
+    };
+
+    await waitFor(() => {
+      expect(res).toBe(recipe);
+
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/pages/get/todays?accountId=2&date=2022-12-12');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });

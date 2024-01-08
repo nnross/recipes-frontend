@@ -9,6 +9,19 @@ const getSomeRecipes = async () => {
   return res.data;
 };
 
+/**
+ * Gets search from the API.
+ * @param {String} search - search to be used.
+ * @param {List<String>} ingredients - indgredients to be used.
+ * @param {List<String>} cuisine - cuisine to be used.
+ * @param {List<String>} diet - diets to be used.
+ * @param {List<String>} intolerances - intolerances to be used.
+ * @param {List<String>} type - types to be used.
+ * @param {String} sort - sort to be used.
+ * @param {String} direction - sort direction to be used.
+ * @param {Int} page - page to be used.
+ * @returns results based on filters.
+ */
 const getSearch = async (
   search,
   ingredients,
