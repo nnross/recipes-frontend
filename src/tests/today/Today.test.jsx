@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
 import React from 'react';
@@ -5,10 +6,11 @@ import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import { useOutletContext } from 'react-router-dom';
 import Today from '../../pages/today/Today';
-import { recipe1 } from '../testData/recipe.json';
+import { today } from '../testData/today.json';
 import {
-  getRecipeByDate, postFavourite, postFinished, deleteFavourite,
+  getTodays, putFinished,
 } from '../../services/recipeService';
+import { UseTag } from '../../pages/recipe/recipeHooks';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -18,43 +20,67 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../../components/Calendar');
 jest.mock('../../components/Ingredients');
 
-const mockGetRecipeByDate = () => Promise.resolve(recipe1);
-const mockGetRecipeByDateFail = () => Promise.reject();
-const mockGetRecipeNoRecipe = () => Promise.resolve({ title: null });
-const mockPostFinished = () => Promise.resolve();
-const mockPostFinishedFail = () => Promise.reject();
-const mockDeleteFavourite = () => Promise.resolve();
-const mockDeleteFavouriteFail = () => Promise.reject();
-const mockPostFavourite = () => Promise.resolve();
-const mockPostFavouriteFail = () => Promise.reject();
+const mockGetTodays = () => Promise.resolve(today);
+const mockGetTodaysFail = () => Promise.reject();
+const mockGetRecipeNoRecipe = () => Promise.resolve({
+  recipe: null,
+  calendar: {
+    Monday: {
+      date: '2024-01-08',
+      state: 0,
+    },
+    Thursday: {
+      date: '2024-01-11',
+      state: 0,
+    },
+    Friday: {
+      date: '2024-01-12',
+      state: 0,
+    },
+    Sunday: {
+      date: '2024-01-14',
+      state: 0,
+    },
+    Wednesday: {
+      date: '2024-01-10',
+      state: 0,
+    },
+    Tuesday: {
+      date: '2024-01-09',
+      state: 0,
+    },
+    Saturday: {
+      date: '2024-01-13',
+      state: 0,
+    },
+  },
+});
+const mockPutFinished = () => Promise.resolve();
+const mockPutFinishedFail = () => Promise.reject();
+const mockUseTag = jest.fn();
 jest.mock('../../services/recipeService', () => ({
-  getRecipeByDate: jest.fn(),
-  postFinished: jest.fn(),
-  deleteFavourite: jest.fn(),
-  postFavourite: jest.fn(),
+  getTodays: jest.fn(),
+  putFinished: jest.fn(),
+}));
+jest.mock('../../pages/recipe/recipeHooks', () => ({
+  UseTag: jest.fn(),
 }));
 
-delete window.location;
-window.location = new URL('https://www.example.com/today/02-02-2022');
-
 beforeEach(() => {
+  delete window.location;
+  window.location = new URL('https://www.example.com/today/2024-01-07');
+
   jest.useRealTimers();
   useOutletContext.mockImplementation(() => [0, 'testToken', 'testAccountId', true]);
-  getRecipeByDate.mockImplementation(mockGetRecipeByDate);
-  postFavourite.mockImplementation(mockPostFavourite);
-  postFinished.mockImplementation(mockPostFinished);
-  deleteFavourite.mockImplementation(mockDeleteFavourite);
+
+  putFinished.mockImplementation(mockPutFinished);
+  getTodays.mockImplementation(mockGetTodays);
+  UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected, selected) => {
+    mockUseTag(action, recipeId, date, token);
+    setLoading(0);
+    setSelected(!selected);
+  });
 });
-
-// tee error viesti
-// tee mockit kaikista mistä tarvii
-
-// kaikki renderöityy testaa
-// lataukset (harmaat laatikot) renderöityy (jätä vain await waitFor pois)
-// epäonnistunut lataus toimii (kysy ipeltä)
-// ei reseptiä lataus toimii (kysy ipeltä)
-
-// kaikki funktiot kun onnistuu ja kun epäonnistuu (epäonnistuminen ipeltä)
 
 describe('todays recipe page tests', () => {
   describe('Render tests', () => {
@@ -67,36 +93,36 @@ describe('todays recipe page tests', () => {
       expect(container.className).toBe('today');
 
       await waitFor(() => {
-        expect(component.getByRole('button', { name: 'M' })).toBeVisible();
+        expect(component.getByRole('button', { name: 'monday' })).toBeVisible();
       });
-      expect(component.getByRole('button', { name: 'Tu' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'W' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Th' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'F' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Sa' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Su1' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'tuesday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'wednesday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'thursday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'friday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'saturday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'sunday' })).toBeVisible();
 
-      expect(component.getByText('Chocolate cake')).toBeVisible();
+      expect(component.getByText('Spinach pie with home made dough')).toBeVisible();
       expect(component.getByText('Ingredients')).toBeVisible();
-      expect(component.getByText('2Tbspscheese')).toBeVisible();
+      expect(component.getByText('250gall purpose flour')).toBeVisible();
       expect(component.getByText('Instructions')).toBeVisible();
-      expect(component.getByText('test instructions this is a text that tells more about this dish.')).toBeVisible();
-      expect(component.getByText('Wednesday')).toBeVisible();
-      expect(component.getByText('February 2, 2022')).toBeVisible();
+      expect(component.getByText('In a large bowl mix the butter and flour together until crumble (the butter must be at room temperature).')).toBeVisible();
+      expect(component.getByText('Sunday')).toBeVisible();
+      expect(component.getByText('January 7, 2024')).toBeVisible();
       expect(component.getByText('45 min')).toBeVisible();
-      expect(component.getByText('2 servings')).toBeVisible();
-      expect(component.getByText('19 health score')).toBeVisible();
+      expect(component.getByText('10 servings')).toBeVisible();
+      expect(component.getByText('24 health score')).toBeVisible();
 
-      expect(component.container.querySelector('#label').children).toHaveLength(3);
+      expect(component.container.querySelector('#label').children).toHaveLength(1);
 
       expect(component.getByAltText('icon')).toBeVisible();
 
-      expect(component.getByRole('link', { name: 'original recipe' })).toHaveAttribute('href', 'http://fullbellysisters.blogspot.com/2012/06/pasta-with-garlic-scallions-cauliflower.html');
+      expect(component.getByRole('link', { name: 'original recipe' })).toHaveAttribute('href', 'http://www.foodista.com/recipe/47F2GTPW/spinach-pie-with-home-made-dough');
       expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
       expect(component.getByRole('button', { name: 'finished' })).toBeVisible();
     });
     test('initial load error renders correctly', async () => {
-      getRecipeByDate.mockImplementation(mockGetRecipeByDateFail);
+      getTodays.mockImplementation(mockGetTodaysFail);
 
       const component = render(<Today id="test" />);
 
@@ -111,11 +137,11 @@ describe('todays recipe page tests', () => {
       });
     });
     test('no recipe renders correctly', async () => {
-      getRecipeByDate.mockImplementation(mockGetRecipeNoRecipe);
+      getTodays.mockImplementation(mockGetRecipeNoRecipe);
       const component = render(<Today id="test" />);
 
       await waitFor(() => {
-        expect(component.getByText('no recipe for this day')).toBeVisible();
+        expect(component.getByText('no recipe for this date yet')).toBeVisible();
       });
     });
   });
@@ -133,14 +159,12 @@ describe('todays recipe page tests', () => {
         expect(component.queryByRole('button', { name: 'finished' })).not.toBeInTheDocument();
       });
 
-      expect(postFinished.mock.calls).toHaveLength(1);
-      expect(postFinished.mock.calls[0][0]).toBe(1);
-      expect(postFinished.mock.calls[0][1]).toBe('testAccountId');
-      expect(postFinished.mock.calls[0][2]).toBe('02-02-2022');
-      expect(postFinished.mock.calls[0][3]).toBe('testToken');
+      expect(putFinished.mock.calls).toHaveLength(1);
+      expect(putFinished.mock.calls[0][0]).toBe(661323);
+      expect(putFinished.mock.calls[0][1]).toBe('testToken');
     });
     test('finished button error works', async () => {
-      postFinished.mockImplementation(mockPostFinishedFail);
+      putFinished.mockImplementation(mockPutFinishedFail);
       const component = render(<Today id="test" />);
 
       await waitFor(() => {
@@ -172,59 +196,31 @@ describe('todays recipe page tests', () => {
         expect(component.queryByRole('button', { name: 'favourite' })).not.toBeInTheDocument();
       });
       expect(component.getByRole('button', { name: 'unfavourite' })).toBeVisible();
-      expect(postFavourite.mock.calls).toHaveLength(1);
-      expect(postFavourite.mock.calls[0][0]).toBe(1);
-      expect(postFavourite.mock.calls[0][1]).toBe('testAccountId');
-      expect(postFavourite.mock.calls[0][2]).toBe('testToken');
-    });
-    test('favourite button error works', async () => {
-      const component = render(<Today id="test" />);
+      expect(mockUseTag.mock.calls).toHaveLength(1);
+      expect(mockUseTag.mock.calls[0][0]).toBe('favourite');
+      expect(mockUseTag.mock.calls[0][1]).toBe(661323);
+      expect(mockUseTag.mock.calls[0][2]).toBe(null);
+      expect(mockUseTag.mock.calls[0][3]).toBe('testToken');
 
-      postFavourite.mockImplementation(mockPostFavouriteFail);
-      await waitFor(() => {
-        expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
-      });
-      const favourite = component.getByRole('button', { name: 'favourite' });
-      await userEvent.click(favourite);
-
-      await waitFor(() => {
-        expect(component.getByText('failed to add recipe')).toBeVisible();
-      });
-
-      await act(async () => {
-        await new Promise((res) => { setTimeout(res, 1500); });
-      });
-
-      expect(component.queryByText('failed to add recipe')).not.toBeInTheDocument();
-    });
-    test('unfavourite button works', async () => {
-      const component = render(<Today id="test" />);
-
-      await waitFor(() => {
-        expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
-      });
-      const favourite = component.getByRole('button', { name: 'favourite' });
-      await userEvent.click(favourite);
-
-      await waitFor(() => {
-        expect(component.getByRole('button', { name: 'unfavourite' })).toBeVisible();
-      });
       const unfavourite = component.getByRole('button', { name: 'unfavourite' });
       await userEvent.click(unfavourite);
-
       await waitFor(() => {
         expect(component.queryByRole('button', { name: 'unfavourite' })).not.toBeInTheDocument();
       });
       expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
-      expect(deleteFavourite.mock.calls).toHaveLength(1);
-      expect(deleteFavourite.mock.calls[0][0]).toBe(1);
-      expect(deleteFavourite.mock.calls[0][1]).toBe('testAccountId');
-      expect(deleteFavourite.mock.calls[0][2]).toBe('testToken');
+      expect(mockUseTag.mock.calls).toHaveLength(2);
+      expect(mockUseTag.mock.calls[0][0]).toBe('favourite');
+      expect(mockUseTag.mock.calls[0][1]).toBe(661323);
+      expect(mockUseTag.mock.calls[0][2]).toBe(null);
+      expect(mockUseTag.mock.calls[0][3]).toBe('testToken');
     });
-    test('unfavourite button error works', async () => {
+    test('favourite button error works', async () => {
+      // eslint-disable-next-line max-len
+      UseTag.mockImplementation((action, recipeId, date, token, setLoading, setSelected, selected) => {
+        setLoading(4);
+      });
       const component = render(<Today id="test" />);
 
-      deleteFavourite.mockImplementation(mockDeleteFavouriteFail);
       await waitFor(() => {
         expect(component.getByRole('button', { name: 'favourite' })).toBeVisible();
       });
@@ -232,20 +228,8 @@ describe('todays recipe page tests', () => {
       await userEvent.click(favourite);
 
       await waitFor(() => {
-        expect(component.getByRole('button', { name: 'unfavourite' })).toBeVisible();
-      });
-      const unfavourite = component.getByRole('button', { name: 'unfavourite' });
-      await userEvent.click(unfavourite);
-
-      await waitFor(() => {
         expect(component.getByText('failed to add recipe')).toBeVisible();
       });
-
-      await act(async () => {
-        await new Promise((res) => { setTimeout(res, 1500); });
-      });
-
-      expect(component.queryByText('failed to add recipe')).not.toBeInTheDocument();
     });
   });
 });

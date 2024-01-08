@@ -37,7 +37,7 @@ const Search = ({ className, id }) => {
   useEffect(() => {
     searchService.getSomeRecipes(token, accountId)
       .then((res) => {
-        setItems(res.items);
+        setItems(res.recipes);
         setMoreResults(res.moreResults);
         setLoading(0);
       })
@@ -61,14 +61,41 @@ const Search = ({ className, id }) => {
   const searchResults = (e) => {
     setLoading(1);
     e.preventDefault();
+
     const input = e.target.elements[0].value;
+
+    page.current = 0;
     setSearch(input);
+
     UseSearch(
       accountId,
       token,
       input,
       filters,
-      page,
+      page.current,
+      setItems,
+      setMoreResults,
+      setLoading,
+    );
+    setMessage('results');
+    window.scrollTo({
+      top: 220,
+      behavior: 'smooth',
+    });
+  };
+
+  const changeFilters = (isReset) => {
+    setLoading(1);
+    if (isReset) setFilters([]);
+    page.current = 0;
+
+    const newFilters = isReset ? [] : filters;
+    UseSearch(
+      accountId,
+      token,
+      search,
+      newFilters,
+      page.current,
       setItems,
       setMoreResults,
       setLoading,
@@ -90,11 +117,16 @@ const Search = ({ className, id }) => {
       token,
       search,
       filters,
-      page + 1,
+      page.current += 1,
       updateItems,
       setMoreResults,
       setLoading,
     );
+  };
+
+  const resetFilters = (e) => {
+    setFilters([]);
+    searchResults(e, true);
   };
 
   /**
@@ -139,17 +171,19 @@ const Search = ({ className, id }) => {
           <SearchField
             placeholder="Search"
             id={`${id}__filters__search__container`}
-            onSubmit={(e) => searchResults(e)}
+            onSubmit={(e) => searchResults(e, false)}
+            onChange={(e) => setSearch(e.target.value)}
             width={windowWidth > 600 ? '500px' : '85vw'}
           />
         </div>
         <div className={`${className}__filters__selectors`}>
           <Filters
             selected={filters}
-            resetFilters={() => setFilters([])}
+            resetFilters={(e) => changeFilters(true)}
             removeFilter={(filter) => removeFilter(filter)}
             setFilter={(filter) => updateFilters(filter)}
             windowWidth={windowWidth}
+            searchResults={(e) => changeFilters(false)}
           />
         </div>
       </div>

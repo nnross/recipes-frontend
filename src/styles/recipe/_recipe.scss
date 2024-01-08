@@ -2,7 +2,7 @@
 
 .recipe {
   display: grid;
-  grid-template-columns: auto 340px 50px 700px auto;
+  grid-template-columns: auto 340px 50px 750px auto;
   grid-template-rows: 300px auto;
   height: 100%;
   width: 100%;
@@ -32,9 +32,10 @@
     background: $lightGreen;
     grid-column: 3 / 5;
     grid-row: 1/3;
+    padding-top: 10px;
 
     display: grid;
-    grid-template-columns: 50px auto auto ;
+    grid-template-columns: 50px auto auto;
     grid-template-rows: 60px auto auto auto;
     height: 100%;
     width: 100%;
@@ -74,7 +75,7 @@
     }
     &__instructions {
         grid-column: 2;
-        grid-row: 5;
+        grid-row: 3;
         height: 100%;
         width: 100%;
         padding-left: 20px;
@@ -93,23 +94,23 @@
     }
     &__ingredients {
         padding-top: 10px;
-        padding-left: 10px;
+        padding-left: 20px;
+        padding-right: 30px;
         grid-column: 3;
-        grid-row: 2 / 4;
+        grid-row: 2/4;
         height: 100%;
         width: 100%;
         box-sizing: border-box;
     }
     &__buttons {
-      grid-column: 3;
-      grid-row: 5;
+      grid-column: 2/4;
+      grid-row: 4;
       height: 100%;
       width: 100%;
       display: flex;
-      align-items: flex-end;
+      justify-content: center;
       box-sizing: border-box;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-bottom: 10px;
     }
   }
 }

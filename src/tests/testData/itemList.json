@@ -1,6 +1,6 @@
 {
     "withMore": {
-        "items": [
+        "recipes": [
             {
             "id": 1,
             "title": "test title 1"
@@ -22,10 +22,10 @@
             "title": "test title 5"
             }
         ],
-        "moreItems": true
+        "nextPage": true
     },
     "withNoMore": {
-        "items": [
+        "recipes": [
             {
             "id": 91,
             "title": "test title load 1"
@@ -43,6 +43,6 @@
             "title": "test title 4"
             }
         ],
-        "moreItems": false
+        "nextPage": false
     }
 }

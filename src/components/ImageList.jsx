@@ -6,7 +6,7 @@ import ImageListItem from './ImageListItem';
  * Renders a list of items with their image as the icon.
  * @property {String} className - Custom className if wanted. Default is imageList.
  * @property {String} id - Custom id if wanted. Default is imageList.
- * @property {List<JSON>} id - List of items to be rendered.
+ * @property {List<JSON>} items - List of items to be rendered.
  * @returns list with images as icons.
  */
 const ImageList = ({ className, id, items }) => {
@@ -14,7 +14,7 @@ const ImageList = ({ className, id, items }) => {
 
   items.map((item) => itemList.push(
     <ImageListItem
-      src={item.src}
+      src={item.image}
       title={item.title}
       body={item.body}
       itemId={item.id}

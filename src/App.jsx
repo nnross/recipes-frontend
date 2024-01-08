@@ -12,6 +12,7 @@ import Today from './pages/today';
 import Personal from './pages/personal';
 import Settings from './pages/settings';
 import Layout from './components/Layout';
+import OwnRecipe from './pages/recipe/OwnRecipe';
 
 /**
   Basic structure of the application with routes.
@@ -34,6 +35,7 @@ const App = () => (
         <Route exact path="/today/:date" element={<Today />} />
         <Route exact path="/personal" element={<Personal />} />
         <Route exact path="/settings" element={<Settings />} />
+        <Route exact path="/ownRecipe/:id" element={<OwnRecipe />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

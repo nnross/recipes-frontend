@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import recipeService from '../../services/recipeService';
 import Instructions from '../../components/Instructions';
 import Ingredients from '../../components/Ingredients';
 import Label from '../../components/Label';
 import Load from '../../components/Load';
 import RecipeButtons from './RecipeButtons';
-import { UseTag } from './recipeHooks';
+import { UseTag, addToDb } from './recipeHooks';
 
 /**
- * Renders the recipe page.
+ * Renders the api recipe page.
  * @property {String} className - custom className if wanted. Default is recipe.
  * @property {String} id - custom id if wanted. Default is recipe
  * @returns recipe page.
@@ -22,6 +22,8 @@ const Recipe = ({ className, id }) => {
   const url = getCurrentURL();
   const recipeId = Number(url.substring(29));
 
+  const navigate = useNavigate();
+
   const token = useOutletContext()[1];
   const accountId = useOutletContext()[2];
   const loggedIn = useOutletContext()[3];
@@ -30,7 +32,7 @@ const Recipe = ({ className, id }) => {
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState([]);
   const [source, setSource] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [labels, setLabels] = useState([]);
@@ -39,6 +41,8 @@ const Recipe = ({ className, id }) => {
   const [favourite, setFavourite] = useState(false);
   const [later, setLater] = useState(false);
   const [calendar, setCalendar] = useState(false);
+  const [isInDatabase, setIsInDatabase] = useState(false);
+  const [recipe, setRecipe] = useState(null);
 
   /**
    * Retrieve the data for recipe.
@@ -46,16 +50,18 @@ const Recipe = ({ className, id }) => {
   useEffect(() => {
     recipeService.getRecipe(recipeId)
       .then((res) => {
-        setSrc(res.src);
+        if (res === '') {
+          navigate(`/ownRecipe/${recipeId}`);
+          return;
+        }
+        setSrc(res.image);
         setTitle(res.title);
-        setBody(res.body);
+        setBody(res.summary);
         setInstructions(res.instructions);
         setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
-        setLabels(res.labels);
-        setFavourite(res.favourite);
-        setLater(res.later);
-        setCalendar(res.calendar);
+        setIngredients(res.measurements);
+        setLabels(res.diets);
+        setRecipe(res);
         setLoading(2);
       })
       .catch(() => {
@@ -79,9 +85,17 @@ const Recipe = ({ className, id }) => {
 
     setCurLoad(action);
     setLoading(2);
-    if (action === 'favourite') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setFavourite);
-    if (action === 'doLater') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setLater);
-    if (action === 'toCalendar') UseTag(action, recipeId, accountId, inputDate, token, setLoading, setCalendar);
+
+    if (isInDatabase) {
+      if (action === 'favourite') UseTag(action, recipeId, null, token, setLoading, setFavourite, favourite);
+      if (action === 'doLater') UseTag(action, recipeId, null, token, setLoading, setLater, later);
+      if (action === 'toCalendar') UseTag(action, recipeId, inputDate, token, setLoading, setCalendar);
+    } else {
+      if (action === 'favourite') addToDb(action, accountId, token, recipe, null, setLoading, setFavourite);
+      if (action === 'doLater') addToDb(action, accountId, token, recipe, null, setLoading, setLater);
+      if (action === 'toCalendar') addToDb(action, accountId, token, recipe, inputDate, setLoading, setCalendar);
+      setIsInDatabase(true);
+    }
   };
 
   if (loading === 4) {
@@ -128,7 +142,7 @@ const Recipe = ({ className, id }) => {
             </div>
             <div className={`${className}__container__stats`} />
             <div className={`${className}__container__instructions`}>
-              <Instructions className={`${className}__container__instructions`} id={`${id}__instructions`} instructions={instructions} loading={loading} />
+              <Instructions instructions={instructions} />
             </div>
             <div className={`${className}__container__labels`}>
               <Label labels={labels} />

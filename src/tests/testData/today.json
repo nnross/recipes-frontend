@@ -1,0 +1,223 @@
+{
+    "today":
+    {
+        "recipe": {
+            "id": 661323,
+            "title": "Spinach pie with home made dough",
+            "image": "https://spoonacular.com/recipeImages/661323-556x370.jpg",
+            "servings": 10,
+            "readyInMinutes": 45,
+            "sourceUrl": "http://www.foodista.com/recipe/47F2GTPW/spinach-pie-with-home-made-dough",
+            "instructions": [
+                "In a large bowl mix the butter and flour together until crumble (the butter must be at room temperature).",
+                "Then add in the egg (slightly beaten), water and salt and knead until the dough is not sticky anymore.",
+                "Put the dough in the fridge, Covered in plastic, until we make the filling.",
+                "Filling:",
+                "In a bowl mix the spinach (you SHOULD defrost the spinach and drain it very well Before, Usually I defrost it in the microwave about 10 to 15 min., That's easier) with the shredded cheese, sour cream, chopped dill, chopped onion and shredded carrots (very thin).",
+                "Beat the eggs and stir in (but keep one yolk for oiling the surface of the pie)",
+                "Season with salt and pepper as for your keys.",
+                "I used half pound of feta cheese in the filling But you CAN add 4.5 oz of feta and 3.5 oz of cheddar cheese (cheddar Makes the more homogenous the filling)",
+                "Preheat the oven at 356  F.",
+                "Now you CAN take out the dough from the fridge and divide it in two, one piece is for the bottom of the market and Should Be Bigger, The Other One Will Be for the top of the pie and Will Be Smaller. From the second one we Will make strips and We will make the grid.",
+                "Make the first sheet with the rolling pin a little bit Thicker, THEN oil the tray and put it inside Covering the sides of the tray.",
+                "Add in the filling, THEN make the other sheet and cut strips. Them interpolated on top of the pie and spread over the yolk mixed with 3 tbsp. of milk.",
+                "Cook until is nice roasted.",
+                "Enjoy! it's delightful!"
+            ],
+            "summary": "Spinach pie with home made dough could be just the lacto ovo vegetarian recipe you've been looking for. For $1.57 per serving, you get a hor d'oeuvre that serves 10. One serving contains 315 calories, 12g of protein, and 18g of fat. This recipe from Foodista has 2 fans. Head to the store and pick up...",
+            "healthScore": 24.0,
+            "account": 4,
+            "favourite": false,
+            "doLater": false,
+            "finished": false,
+            "date": "2024-01-07",
+            "dishTypes": [
+                "antipasti",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "cuisines": [],
+            "diets": [
+                "vegetarian"
+            ],
+            "measurements": [
+                {
+                    "name": {
+                        "id": 107,
+                        "name": "all purpose flour"
+                    },
+                    "amount": 250.0,
+                    "unit": {
+                        "id": 20,
+                        "name": "g"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 4,
+                        "name": "butter"
+                    },
+                    "amount": 99.0,
+                    "unit": {
+                        "id": 20,
+                        "name": "g"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 76,
+                        "name": "carrot"
+                    },
+                    "amount": 1.0,
+                    "unit": {
+                        "id": 30,
+                        "name": ""
+                    }
+                },
+                {
+                    "name": {
+                        "id": 9,
+                        "name": "eggs"
+                    },
+                    "amount": 5.0,
+                    "unit": {
+                        "id": 30,
+                        "name": ""
+                    }
+                },
+                {
+                    "name": {
+                        "id": 146,
+                        "name": "feta cheese"
+                    },
+                    "amount": 226.0,
+                    "unit": {
+                        "id": 20,
+                        "name": "g"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 375,
+                        "name": "dill"
+                    },
+                    "amount": 0.0,
+                    "unit": {
+                        "id": 47,
+                        "name": "bunch"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 116,
+                        "name": "spinach"
+                    },
+                    "amount": 453.0,
+                    "unit": {
+                        "id": 20,
+                        "name": "g"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 12,
+                        "name": "milk"
+                    },
+                    "amount": 3.0,
+                    "unit": {
+                        "id": 29,
+                        "name": "Tbsps"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 10,
+                        "name": "onion"
+                    },
+                    "amount": 1.0,
+                    "unit": {
+                        "id": 30,
+                        "name": ""
+                    }
+                },
+                {
+                    "name": {
+                        "id": 238,
+                        "name": "bell pepper"
+                    },
+                    "amount": 10.0,
+                    "unit": {
+                        "id": 22,
+                        "name": "servings"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 2,
+                        "name": "salt"
+                    },
+                    "amount": 10.0,
+                    "unit": {
+                        "id": 22,
+                        "name": "servings"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 157,
+                        "name": "cream"
+                    },
+                    "amount": 99.0,
+                    "unit": {
+                        "id": 20,
+                        "name": "g"
+                    }
+                },
+                {
+                    "name": {
+                        "id": 6,
+                        "name": "water"
+                    },
+                    "amount": 236.0,
+                    "unit": {
+                        "id": 24,
+                        "name": "ml"
+                    }
+                }
+            ]
+        },
+        "calendar": {
+            "Monday": {
+                "date": "2024-01-08",
+                "state": 0
+            },
+            "Thursday": {
+                "date": "2024-01-11",
+                "state": 0
+            },
+            "Friday": {
+                "date": "2024-01-12",
+                "state": 0
+            },
+            "Sunday": {
+                "date": "2024-01-14",
+                "state": 0
+            },
+            "Wednesday": {
+                "date": "2024-01-10",
+                "state": 0
+            },
+            "Tuesday": {
+                "date": "2024-01-09",
+                "state": 0
+            },
+            "Saturday": {
+                "date": "2024-01-13",
+                "state": 0
+            }
+        }
+    }
+}

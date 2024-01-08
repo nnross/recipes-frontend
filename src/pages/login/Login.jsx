@@ -23,7 +23,7 @@ const Login = ({ className, id, closeLogin }) => {
     setLoading(2);
     e.preventDefault();
     const values = e.target.elements;
-    UseLogin(values[0].value, values[1].value, setLoading, setError);
+    UseLogin(values[0].value, values[1].value, setLoading, setError, closeLogin);
   };
   /**
    * Handles the creation of a new account.
@@ -37,9 +37,9 @@ const Login = ({ className, id, closeLogin }) => {
       values[1].value,
       values[2].value,
       values[3].value,
-      values[4].value,
       setLoading,
       setError,
+      closeLogin,
     );
   };
 

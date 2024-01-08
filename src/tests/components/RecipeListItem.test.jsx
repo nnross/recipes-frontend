@@ -13,6 +13,11 @@ describe('recipeListItem tests', () => {
     expect(container.className).toBe('recipeListItem');
 
     expect(component.getByText('test title')).toBeVisible();
-    expect(component.getByText('go to recipe')).toHaveAttribute('href', '/recipe/2');
+    expect(component.getByText('go to recipe')).toHaveAttribute('href', '/ownRecipe/2');
+  });
+  test('recipeListItem renders with longer title', () => {
+    const component = render(<RecipeListItem title="this title is over the limit in characters" id="test" itemId={2} />);
+
+    expect(component.getByText('this title is over the limit in characters')).toHaveStyle('font-size: 20px');
   });
 });

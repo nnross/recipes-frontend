@@ -8,7 +8,7 @@ jest.mock('../../components/RecipeListItem.jsx');
 
 describe('recipeList tests', () => {
   test('recipeList renders', () => {
-    const component = render(<RecipeList items={withMore.items} id="test" />);
+    const component = render(<RecipeList items={withMore.recipes} id="test" />);
 
     const container = component.container.querySelector('#test');
     expect(container).not.toBeNull();

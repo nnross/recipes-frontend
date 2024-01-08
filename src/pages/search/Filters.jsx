@@ -13,7 +13,7 @@ import Filter from '../../components/Filter';
  * @returns Filters component for search page.
  */
 const Filters = ({
-  className, id, resetFilters, selected, removeFilter, setFilter, windowWidth,
+  className, id, resetFilters, selected, removeFilter, setFilter, windowWidth, searchResults,
 }) => {
   const selectedFilters = [];
   const [open, setOpen] = useState(false);
@@ -54,19 +54,27 @@ const Filters = ({
             close filters
           </button>
         )}
-        <Filter title="sort" filters={['date ascending', 'date descending']} selectFilter={setFilter} />
-        <Filter title="ingredients" filters={['beef', 'chicken', 'tofu']} selectFilter={setFilter} />
-        <Filter title="cuisine" filters={['italian', 'asian']} selectFilter={setFilter} />
-        <Filter title="diet" filters={['vegan', 'vegetarian', 'keto']} selectFilter={setFilter} />
-        <Filter title="intolerances" filters={['dairy free', 'gluten free']} selectFilter={setFilter} />
-        <Filter title="type" filters={['main', 'breakfast']} selectFilter={setFilter} />
+        <Filter title="sort" filters={['time asc', 'time desc', 'price asc', 'price desc', 'popularity asc', 'popularity desc']} selectFilter={setFilter} />
+        <Filter title="ingredients" filters={['pork', 'chicken', 'beef', 'lamb', 'fish', 'tofu', 'beans', 'chickpeas', 'lentils', 'cheese', 'pasta', 'potato', 'rice']} selectFilter={setFilter} />
+        <Filter title="cuisine" filters={['african', 'asian', 'american', 'british', 'chinese', 'indian', 'italian', 'japanese', 'korean', 'mexican']} selectFilter={setFilter} />
+        <Filter title="diet" filters={['gluten free', 'vegetarian', 'vegan', 'pescetarian']} selectFilter={setFilter} />
+        <Filter title="intolerances" filters={['dairy', 'egg', 'gluten', 'grain', 'peanut', 'seafood']} selectFilter={setFilter} />
+        <Filter title="type" filters={['dessert', 'fingerfood', 'snack', 'appetizer', 'breakfast', 'main course']} selectFilter={setFilter} />
       </div>
       <div className={`${className}__selected`}>
         {selectedFilters}
       </div>
-      <div className={`${className}__reset`}>
+      <div className={`${className}__buttons`}>
         <button
-          className={`${className}__reset__button`}
+          className={`${className}__buttons__apply`}
+          onClick={(e) => searchResults(e)}
+          type="button"
+          style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
+        >
+          apply
+        </button>
+        <button
+          className={`${className}__buttons__reset`}
           onClick={resetFilters}
           type="button"
           style={selectedFilters.length > 0 ? { display: 'flex' } : { display: 'none' }}
@@ -88,6 +96,7 @@ Filters.propTypes = {
   removeFilter: propTypes.func,
   setFilter: propTypes.func,
   windowWidth: propTypes.number,
+  searchResults: propTypes.func,
 };
 
 Filters.defaultProps = {
@@ -98,4 +107,5 @@ Filters.defaultProps = {
   removeFilter: null,
   setFilter: null,
   windowWidth: 0,
+  searchResults: null,
 };

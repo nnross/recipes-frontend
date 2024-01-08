@@ -2,129 +2,31 @@
   "recipe1": 
     {
       "id": 1,
-      "src": "https://spoonacular.com/recipeImages/284420-636x393.jpg",
+      "image": "https://spoonacular.com/recipeImages/284420-636x393.jpg",
       "title": "Chocolate cake",
-      "body": "test body this is a text that tells more about this dish. Mmm yummy yummy you really should make this recipe as it sounds delicious wow yay. Um this needs to be a bit longer to be realistic so yap yap yap yap yap yap yap yap",
-      "instructions": "test instructions this is a text that tells more about this dish.",
+      "summary": "test body this is a text that tells more about this dish. Mmm yummy yummy you really should make this recipe as it sounds delicious wow yay. Um this needs to be a bit longer to be realistic so yap yap yap yap yap yap yap yap",
+      "instructions": ["test instructions this is a text that tells more about this dish."],
       "favourite": false,
       "later": false,
       "calendar": false,
       "servings": 2,
       "readyInMinutes": 45,
       "healthScore": 19.0,
-      "ingredients": [{
-        "aisle": "Cheese",
+      "measurements": [
+        {
         "amount": 2.0,
-        "consitency": "solid",
-        "id": 1041009,
-        "image": "cheddar-cheese.png",
-        "measures": {
-          "metric": {
-            "amount": 2.0,
-            "unitLong": "Tbsps",
-            "unitShort": "Tbsps"
-          },
-          "us": {
-            "amount": 2.0,
-            "unitLong": "Tbsps",
-            "unitShort": "Tbsps"
-          }
-        },
-        "meta": [
-          "grated",
-          "(I used romano)"
-        ],
-        "name": "cheese",
-        "original": "2 tbsp grated cheese (I used romano)",
-        "originalName": "grated cheese (I used romano)",
-        "unit": "tbsp"
-      },
-      {
-        "aisle": "Oil, Vinegar, Salad Dressing",
-        "amount": 1.0,
-        "consitency": "liquid",
-        "id": 1034053,
-        "image": "olive-oil.jpg",
-        "measures": {
-          "metric": {
-            "amount": 1.0,
-            "unitLong": "Tbsp",
-            "unitShort": "Tbsp"
-          },
-          "us": {
-            "amount": 1.0,
-            "unitLong": "Tbsp",
-            "unitShort": "Tbsp"
-          }
-        },
-        "meta": [],
-        "name": "extra virgin olive oil",
-        "original": "1-2 tbsp extra virgin olive oil",
-        "originalName": "extra virgin olive oil",
-        "unit": "tbsp"
-      },
-      {
-        "aisle": "Produce",
-        "amount": 5.0,
-        "consitency": "solid",
-        "id": 11215,
-        "image": "garlic.jpg",
-        "measures": {
-          "metric": {
-            "amount": 5.0,
-            "unitLong": "cloves",
-            "unitShort": "cloves"
-          },
-          "us": {
-            "amount": 5.0,
-            "unitLong": "cloves",
-            "unitShort": "cloves"
-          }
-        },
-        "meta": [],
-        "name": "garlic",
-        "original": "5-6 cloves garlic",
-        "originalName": "garlic",
-        "unit": "cloves"
-      },
-      {
-        "aisle": "Pasta and Rice",
-        "amount": 6.0,
-        "consitency": "solid",
-        "id": 20420,
-        "image": "fusilli.jpg",
-        "measures": {
-          "metric": {
-            "amount": 170.097,
-            "unitLong": "grams",
-            "unitShort": "g"
-          },
-          "us": {
-            "amount": 6.0,
-            "unitLong": "ounces",
-            "unitShort": "oz"
-          }
-        },
-          "meta": [
-            "(I used linguine)"
-          ],
-        "name": "pasta",
-        "original": "6-8 ounces pasta (I used linguine)",
-        "originalName": "pasta (I used linguine)",
-        "unit": "ounces"
-      }],
-      "labels": [
-        {
-          "type": "vegetarian",
-          "id": 1
-          },
-        {
-          "type": "glutenfree",
-          "id": 2
-        },
+        "unit": {"name": "Tbsps", "id": 1},
+        "name": {"name": "cheese", "id": 2}
+        }
+      ],
+      "diets": [
         {
           "type": "nutfree",
           "id": 3
+        },
+        {
+          "type": "eggfree",
+          "id": 4
         }
       ],
       "sourceUrl": "http://fullbellysisters.blogspot.com/2012/06/pasta-with-garlic-scallions-cauliflower.html"
@@ -132,40 +34,21 @@
     "recipe2":
     {
       "id": 2,
-      "src": "https://spoonacular.com/recipeImages/90629-636x393.jpg",
+      "image": "https://spoonacular.com/recipeImages/90629-636x393.jpg",
       "title": "test title 2",
-      "body": "test body 2",
-      "instructions": "test instructions 2",
-      "ingredients": [{
-        "aisle": "Produce",
+      "summary": "test body 2",
+      "instructions": ["test instructions 2"],
+      "measurements": [{
+        "amount": 2.0,
+        "unit": "Tbsps",
+        "name": "cheese"
+      },
+      {
         "amount": 3.0,
-        "consitency": "solid",
-        "id": 11291,
-        "image": "spring-onions.jpg",
-        "measures": {
-          "metric": {
-            "amount": 3.0,
-            "unitLong": "",
-            "unitShort": ""
-          },
-          "us": {
-            "amount": 3.0,
-            "unitLong": "",
-            "unitShort": ""
-          }
-        },
-        "meta": [
-          "white",
-          "green",
-          "separated",
-          "chopped"
-        ],
-        "name": "scallions",
-        "original": "3 scallions, chopped, white and green parts separated",
-        "originalName": "scallions, chopped, white and green parts separated",
-        "unit": ""
+        "unit": "g",
+        "name": "sugar"
       }],
-      "labels": [
+      "diets": [
         {
           "type": "nutfree",
           "id": 3

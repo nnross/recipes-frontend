@@ -8,6 +8,7 @@ import Label from '../../components/Label';
 import recipeService from '../../services/recipeService';
 import Load from '../../components/Load';
 import Title from './Title';
+import { UseTag } from '../recipe/recipeHooks';
 
 /**
  * Renders today page.
@@ -17,7 +18,6 @@ import Title from './Title';
  */
 
 const Today = ({ className, id }) => {
-  const accountId = useOutletContext()[2];
   const token = useOutletContext()[1];
   const path = window.location.pathname;
   const pathArray = path.split('/');
@@ -25,11 +25,11 @@ const Today = ({ className, id }) => {
   const weekday = new Date(date).toLocaleDateString('en-us', { weekday: 'long' });
   const asDate = new Date(date).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' });
 
-
   const [loading, setLoading] = useState(1);
+  const [recipe, setRecipe] = useState([]);
   const [src, setSrc] = useState('');
   const [title, setTitle] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState([]);
   const [source, setSource] = useState('');
   const [time, setTime] = useState(null);
   const [servings, setServings] = useState(null);
@@ -38,25 +38,32 @@ const Today = ({ className, id }) => {
   const [labels, setLabels] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [favourite, setFavourite] = useState(false);
-  const [finished, setFinished] = useState(1);
-
+  const [finished, setFinished] = useState(false);
+  const [calendar, setCalendar] = useState(null);
   /**
    * Retrieves data for todays recipe
    */
   useEffect(() => {
-    recipeService.getRecipeByDate(date, accountId, token)
+    recipeService.getTodays(
+      date,
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) => {
-        setSrc(res.src);
-        setTitle(res.title);
-        setInstructions(res.instructions);
-        setSource(res.sourceUrl);
-        setIngredients(res.ingredients);
-        setLabels(res.labels);
-        setTime(res.readyInMinutes);
-        setServings(res.servings);
-        setHealth(res.healthScore);
-        setRecipeId(res.id);
-        setFavourite(res.favourite);
+        setRecipe(res.recipe);
+        setCalendar(res.calendar);
+        setSrc(res.recipe.image);
+        setTitle(res.recipe.title);
+        setInstructions(res.recipe.instructions);
+        setSource(res.recipe.sourceUrl);
+        setIngredients(res.recipe.measurements);
+        setLabels(res.recipe.diets);
+        setTime(res.recipe.readyInMinutes);
+        setServings(res.recipe.servings);
+        setHealth(res.recipe.healthScore);
+        setRecipeId(res.recipe.id);
+        setFavourite(res.recipe.favourite);
+        setFinished(res.recipe.finished);
         setLoading(2);
       })
       .catch(() => {
@@ -65,47 +72,20 @@ const Today = ({ className, id }) => {
   }, []);
 
   /**
-  * Adds recipe to favourites
-  */
-  const toFavourite = () => {
-    recipeService.postFavourite(recipeId, accountId, token)
-      .then(() => {
-        setLoading(0);
-        setFavourite(true);
-      })
-      .catch(() => {
-        setLoading(4);
-        setTimeout(() => {
-          setLoading(0);
-        }, 1000);
-      });
-  };
-
-  /**
-   * Removes recipe from favourites
+   * Favourites and unfavourites the recipe.
    */
-  const removeFavourite = () => {
-    recipeService.deleteFavourite(recipeId, accountId, token)
-      .then(() => {
-        setLoading(0);
-        setFavourite(false);
-      })
-      .catch(() => {
-        setLoading(4);
-        setTimeout(() => {
-          setLoading(0);
-        }, 1000);
-      });
+  const favouriteRecipe = () => {
+    UseTag('favourite', recipeId, null, token, setLoading, setFavourite, favourite);
   };
 
   /**
    * Marks recipe as finished
    */
   const finishRecipe = () => {
-    recipeService.postFinished(recipeId, accountId, date, token)
+    recipeService.putFinished(recipeId, token)
       .then(() => {
         setLoading(0);
-        setFinished(2);
+        setFinished(true);
       })
       .catch(() => {
         setLoading(4);
@@ -117,8 +97,31 @@ const Today = ({ className, id }) => {
 
   if (loading === 3) {
     return (
-      <div className={`${className}__recipeError`}>
-        <h3> an error occurred :( </h3>
+      <div>
+        { calendar !== null ? (
+          <div className={`${className}__calendar`}>
+            <Calendar
+              monday={calendar.Monday}
+              tuesday={calendar.Tuesday}
+              wednesday={calendar.Wednesday}
+              thursday={calendar.Thursday}
+              friday={calendar.Friday}
+              saturday={calendar.Saturday}
+              sunday={calendar.Sunday}
+            />
+          </div>
+        ) : null }
+        { recipe === null
+          ? (
+            <div className={`${className}__noRecipe`}>
+              <h3> no recipe for this date yet </h3>
+            </div>
+          )
+          : (
+            <div className={`${className}__recipeError`}>
+              <h3> an error occurred :( </h3>
+            </div>
+          )}
       </div>
     );
   }
@@ -133,9 +136,7 @@ const Today = ({ className, id }) => {
         )
         : (
           <div className={`${className}__title`}>
-            {title === null
-              ? null
-              : <Title title={title} time={time} servings={servings} health={health} />}
+            <Title title={title} time={time} servings={servings} health={health} />
           </div>
         )}
       { loading === 1
@@ -147,50 +148,54 @@ const Today = ({ className, id }) => {
         : (
           <>
             <div className={`${className}__calendar`}>
-              <Calendar sunday={finished} />
+              <Calendar
+                monday={calendar.Monday}
+                tuesday={calendar.Tuesday}
+                wednesday={calendar.Wednesday}
+                thursday={calendar.Thursday}
+                friday={calendar.Friday}
+                saturday={calendar.Saturday}
+                sunday={calendar.Sunday}
+              />
             </div>
             <div className={`${className}__background`} />
-            {title === null
-              ? <p> no recipe for this day </p>
-              : (
-                <>
-                  <div className={`${className}__ingredients`}>
-                    <Ingredients ingredients={ingredients} />
+            <>
+              <div className={`${className}__ingredients`}>
+                <Ingredients ingredients={ingredients} />
+              </div>
+              <div className={`${className}__instructions`}>
+                <Instructions instructions={instructions} loading={loading} />
+              </div>
+              <div className={`${className}__labels`}>
+                <Label labels={labels} />
+              </div>
+              <div className={`${className}__original`}>
+                <a className={`${className}__original__link`} href={source}>original recipe</a>
+              </div>
+              <div className={`${className}__buttons`}>
+                {finished === false
+                  ? <button className={`${className}__buttons__finished`} onClick={() => finishRecipe()} type="button">finished</button>
+                  : <div />}
+                {favourite === false
+                  ? <button className={`${className}__buttons__favourite`} onClick={() => favouriteRecipe()} type="button" aria-label="favourite" />
+                  : <button className={`${className}__buttons__remove`} onClick={() => favouriteRecipe()} type="button" aria-label="unfavourite" />}
+              </div>
+              { loading === 4
+                ? (
+                  <div className={`${className}__error`}>
+                    <p>failed to add recipe</p>
                   </div>
-                  <div className={`${className}__instructions`}>
-                    <Instructions instructions={instructions} loading={loading} />
-                  </div>
-                  <div className={`${className}__labels`}>
-                    <Label labels={labels} />
-                  </div>
-                  <div className={`${className}__original`}>
-                    <a className={`${className}__original__link`} href={source}>original recipe</a>
-                  </div>
-                  <div className={`${className}__buttons`}>
-                    {finished === 1
-                      ? <button className={`${className}__buttons__finished`} onClick={() => finishRecipe()} type="button">finished</button>
-                      : <div />}
-                    {favourite === false
-                      ? <button className={`${className}__buttons__favourite`} onClick={() => toFavourite()} type="button" aria-label="favourite" />
-                      : <button className={`${className}__buttons__remove`} onClick={() => removeFavourite()} type="button" aria-label="unfavourite" />}
-                  </div>
-                  { loading === 4
-                    ? (
-                      <div className={`${className}__error`}>
-                        <p>failed to add recipe</p>
-                      </div>
-                    )
-                    : null }
-                  <div className={`${className}__date`}>
-                    <h3 className={`${className}__date__day`}>{weekday}</h3>
-                    <p className={`${className}__date__info`}>{asDate}</p>
-                  </div>
-                  <div className={`${className}__img`}>
-                    <img className={`${className}__img__1`} src={src} alt="icon" />
-                  </div>
+                )
+                : null }
+              <div className={`${className}__date`}>
+                <h3 className={`${className}__date__day`}>{weekday}</h3>
+                <p className={`${className}__date__info`}>{asDate}</p>
+              </div>
+              <div className={`${className}__img`}>
+                <img className={`${className}__img__1`} src={src} alt="icon" />
+              </div>
 
-                </>
-              )}
+            </>
           </>
         )}
     </div>

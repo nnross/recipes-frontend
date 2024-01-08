@@ -29,5 +29,11 @@ describe('SettingsInput tests', () => {
       await userEvent.type(component.getByDisplayValue('test value'), 'test');
       expect(mock.mock.calls).toHaveLength(4);
     });
+    test('SettingsInput password works correctly', async () => {
+      const mock = jest.fn();
+      const component = render(<SettingsInput password id="test" title="test title" value="test value" disabled={false} onChange={mock} />);
+
+      expect(component.getByDisplayValue('test value')).toHaveAttribute('type', 'password');
+    });
   });
 });

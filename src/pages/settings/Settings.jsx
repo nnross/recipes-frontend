@@ -26,13 +26,16 @@ const Settings = ({ className, id }) => {
   const [originalName, setOriginalName] = useState(null);
   const [originalEmail, setOriginalEmail] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('null');
 
   /**
    * Retrieves users account data.
    */
   useEffect(() => {
-    personService.getAccountData(accountId, token)
+    personService.getAccountData(
+      window.localStorage.getItem('accountId'),
+      window.localStorage.getItem('token'),
+    )
       .then((res) => {
         setUsername(res.username);
         setName(res.name);
@@ -56,6 +59,10 @@ const Settings = ({ className, id }) => {
     personService.deleteAccountData(accountId, token)
       .then(() => {
         setLoading(0);
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('accountId');
+        window.localStorage.removeItem('expiration');
+        window.location.reload();
       })
       .catch(() => {
         setLoading(4);
@@ -70,14 +77,19 @@ const Settings = ({ className, id }) => {
    */
   const saveChanges = () => {
     setLoading(2);
+    const payload = {
+      account: {
+        username,
+        name,
+        email,
+        password,
+      },
+      confirmation: confirmPassword,
+    };
     personService.postAccountData(
       accountId,
       token,
-      username,
-      name,
-      email,
-      password,
-      confirmPassword,
+      payload,
     )
       .then(() => {
         setLoading(0);
@@ -136,8 +148,8 @@ const Settings = ({ className, id }) => {
             <SettingsInput value={username} title="username" onChange={setUsername} disabled={!edit} />
             <SettingsInput value={name} title="name" onChange={setName} disabled={!edit} />
             <SettingsInput value={email} title="email" onChange={setEmail} disabled={!edit} />
-            <SettingsInput placeholder="••••••••" title="password" onChange={setPassword} disabled={!edit} />
-            {password !== '' ? <SettingsInput placeholder="" title="confirm with previous password" onChange={setConfirmPassword} disabled={!edit} /> : null}
+            <SettingsInput password placeholder="••••••••" title="password" onChange={setPassword} disabled={!edit} />
+            {edit ? <SettingsInput password placeholder="" title="confirm with current password" onChange={setConfirmPassword} disabled={!edit} /> : null}
           </div>
           {edit
             ? (
