@@ -66,14 +66,14 @@ describe('Personal page tests', () => {
       expect(container.className).toBe('personal');
 
       await waitFor(() => {
-        expect(component.getByRole('button', { name: 'M' })).toBeVisible();
+        expect(component.getByRole('button', { name: 'monday' })).toBeVisible();
       });
-      expect(component.getByRole('button', { name: 'Tu' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'W' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Th' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'F' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Sa' })).toBeVisible();
-      expect(component.getByRole('button', { name: 'Su' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'tuesday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'wednesday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'thursday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'friday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'saturday' })).toBeVisible();
+      expect(component.getByRole('button', { name: 'sunday' })).toBeVisible();
 
       expect(component.getByRole('button', { name: 'today\'s recipe' })).toHaveAttribute('href', '/today/2022-02-02');
 

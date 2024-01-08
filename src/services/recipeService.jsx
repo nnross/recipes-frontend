@@ -27,6 +27,13 @@ const getRecipeByDate = async (date, accountId, token) => {
   return res.data;
 };
 
+/**
+ * To call to backend to get a recipe for date from the database
+ * @param {*} date The date a recipe is wanted for
+ * @param {*} accountId Id of the account the recipe is for
+ * @param {*} token Token for the account
+ * @returns data for the recipe
+ */
 const getTodays = async (date, accountId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -34,6 +41,8 @@ const getTodays = async (date, accountId, token) => {
   const res = await axios.get(`http://localhost:8080/pages/get/todays?accountId=${accountId}&date=${date}`, config);
   return res.data;
 };
+
+
 const getRecipeFromDb = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -89,13 +98,20 @@ const putDoLater = async (recipeId, token) => {
   return res.data;
 };
 
-const putFinished = (recipeId, accountId, token) => (
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-);
+/**
+ * puts recipe as finisehd
+ * @param {*} recipeId recipe to be finished
+ * @param {*} token token of the account
+ * @returns true if successful
+ */
+const putFinished = async (recipeId, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const res = await axios.put(`${baseUrl}/set/finished?recipeId=${recipeId}`, {}, config);
+  return res.data;
+};
 
 /**
  * Adds recipe to the database.

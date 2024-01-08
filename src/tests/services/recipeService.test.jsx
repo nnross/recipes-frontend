@@ -144,4 +144,18 @@ describe('recipeService tests', () => {
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
+  test('putFinished calls correctly', async () => {
+    const res = await recipeService.putFinished(1, 'token');
+    const config = {
+      headers: { Authorization: 'Bearer token' },
+    };
+
+    await waitFor(() => {
+      expect(res).toBe(true);
+
+      expect(mock.mock.calls).toHaveLength(1);
+      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/finished?recipeId=1');
+      expect(mock.mock.calls[0][1]).toStrictEqual(config);
+    });
+  });
 });
