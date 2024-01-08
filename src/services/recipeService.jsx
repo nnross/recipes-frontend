@@ -27,6 +27,12 @@ const getTodays = async (date, accountId, token) => {
   return res.data;
 };
 
+/**
+ * Gets recipe from databse with id.
+ * @param {Integer} recipeId - id of the recipe
+ * @param {Integer} token - token for user
+ * @returns found recipe.
+ */
 const getRecipeFromDb = async (recipeId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
