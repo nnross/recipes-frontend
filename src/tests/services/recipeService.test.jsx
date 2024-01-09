@@ -38,7 +38,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(true);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/add');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/add');
       expect(mock.mock.calls[0][1]).toStrictEqual({ data: 'test' });
       expect(mock.mock.calls[0][2]).toStrictEqual(config);
     });
@@ -50,7 +50,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(recipe);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/api/id?id=0');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/api/id?id=0');
     });
   });
 
@@ -64,7 +64,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(recipe);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/db?recipeId=0');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/db?recipeId=0');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -79,7 +79,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(recipe);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/favourite?accountId=0&page=0');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/favourite?accountId=0&page=0');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -94,7 +94,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(recipe);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/doLater?accountId=0&page=0');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/doLater?accountId=0&page=0');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -109,7 +109,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(true);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/favourite?recipeId=1');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/set/favourite?recipeId=1');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -124,7 +124,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(true);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/doLater?recipeId=1');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/set/doLater?recipeId=1');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -139,7 +139,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(true);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/calendar?recipeId=1&date=2022-12-12');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/set/calendar?recipeId=1&date=2022-12-12');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -153,7 +153,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(true);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/recipe/set/finished?recipeId=1');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/set/finished?recipeId=1');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -169,7 +169,7 @@ describe('recipeService tests', () => {
       expect(res).toBe(recipe);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/pages/get/todays?accountId=2&date=2022-12-12');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/pages/get/todays?accountId=2&date=2022-12-12');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });

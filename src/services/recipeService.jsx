@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/recipe';
+const baseUrl = 'https://recipes-backend.fly.dev/recipe';
 
 /**
  * Gets recipe with id from the API.
@@ -23,7 +23,7 @@ const getTodays = async (date, accountId, token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
-  const res = await axios.get(`http://localhost:8080/pages/get/todays?accountId=${accountId}&date=${date}`, config);
+  const res = await axios.get(`https://recipes-backend.fly.dev/pages/get/todays?accountId=${accountId}&date=${date}`, config);
   return res.data;
 };
 
@@ -38,7 +38,7 @@ const getRecipeFromDb = async (recipeId, token) => {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const res = await axios.get(`http://localhost:8080/recipe/get/db?recipeId=${recipeId}`, config);
+  const res = await axios.get(`https://recipes-backend.fly.dev/recipe/get/db?recipeId=${recipeId}`, config);
   return res.data;
 };
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/account';
+const baseUrl = 'https://recipes-backend.fly.dev/account';
 
 /**
  * Calls the backend with axios to login the user.
