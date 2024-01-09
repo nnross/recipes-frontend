@@ -1,6 +1,6 @@
 # Recipes-frontend
 Frontend for the recipes application.
-Access the application [here](https://recipes-frontend-seven.vercel.app/search)
+Access the application [here](https://recipes-frontend-seven.vercel.app)
 
 **!! this application is still in the final stages of development, versions in the main branch will pass all the tests and be stable versions, other branches might not pass all the tests!!**
 
