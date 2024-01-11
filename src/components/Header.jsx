@@ -57,7 +57,10 @@ const Header = ({
         {nav}
       </div>
       <div className={`${className}__title`} id={`${id}__title`}>
-        <h4 className={`${className}__title__text`} id={`${id}__title__text`}>
+        <h4
+          className={`${className}__title__text`}
+          id={`${id}__title__text`}
+        >
           RecipeBuddy
         </h4>
       </div>
