@@ -1,7 +1,6 @@
 
 .filter {
   position: relative;
-  z-index: 1;
   &__open {
     cursor: pointer;
     display: flex;
@@ -14,7 +13,6 @@
     height: 33px;
     width: 100%;
     border: 1px solid $darkGreen;
-    z-index: 2;
     border: 1px solid $darkGreen;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -36,10 +34,10 @@
     border: 1px solid $darkGreen;
     position: absolute;
     top: 39px;
-    z-index: -1;
     align-items: column;
     width: 140px;
     background-color: $white;
+    z-index: -1;
     & button {
       cursor: pointer;
       text-align: left;

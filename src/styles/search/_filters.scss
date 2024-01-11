@@ -14,7 +14,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 10px;
-    z-index: 0;
+    z-index: 1;
   }
   &__selected {
     grid-column: 1/1;

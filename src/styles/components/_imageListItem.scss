@@ -1,5 +1,6 @@
 .imageListItem {
   position: relative;
+  z-index: 0;
   &__open {
     position: relative;
     bottom: 10px;
@@ -74,7 +75,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .imageListItem {
     flex: 0 0 45%;
     &__info {
