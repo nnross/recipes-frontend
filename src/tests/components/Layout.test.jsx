@@ -43,6 +43,21 @@ describe('Layout tests', () => {
 
     expect(component.getByText('guarded')).toBeVisible();
   });
+  test('Layout scroll to 30px doesnt effect', () => {
+    const component = render(
+      <BrowserRouter>
+        <Layout id="test" />
+      </BrowserRouter>,
+    );
+
+    const header = component.container.querySelector('#test__header');
+
+    expect(header).toHaveStyle('height: 140px');
+
+    fireEvent.scroll(window, { target: { scrollY: 30 } });
+
+    expect(header).toHaveStyle('height: 140px');
+  });
 
   test('Layout scroll reduces header size', () => {
     const component = render(

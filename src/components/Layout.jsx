@@ -31,13 +31,19 @@ const Layout = ({ className, id, guarded }) => {
       window.localStorage.removeItem('accountId');
     }
 
-    const onScroll = () => setScroll(window.scrollY);
+    const onScroll = () => {
+      if (window.scrollY > 40 || window.scrollY <= 0) setScroll(window.scrollY);
+    };
+
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll);
 
     setAccountId(window.localStorage.getItem('accountId'));
     setToken(window.localStorage.getItem('token'));
   }, []);
+
+  useEffect(() => {
+  }, [scroll]);
 
   /**
    * Opens and closes the login popup.
