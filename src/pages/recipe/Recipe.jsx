@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import recipeService from '../../services/recipeService';
 import Instructions from '../../components/Instructions';
 import Ingredients from '../../components/Ingredients';
@@ -21,6 +21,8 @@ const Recipe = ({ className, id }) => {
   }
   const url = getCurrentURL();
   const recipeId = Number(url.substring(29));
+
+  const navigate = useNavigate();
 
   const token = useOutletContext()[1];
   const accountId = useOutletContext()[2];
@@ -48,8 +50,10 @@ const Recipe = ({ className, id }) => {
   useEffect(() => {
     recipeService.getRecipe(recipeId)
       .then((res) => {
-        if (res === '') window.location.replace(`/ownRecipe/${recipeId}`);
-
+        if (res === '') {
+          navigate(`/ownRecipe/${recipeId}`);
+          return;
+        }
         setSrc(res.image);
         setTitle(res.title);
         setBody(res.summary);

@@ -25,17 +25,17 @@ describe('searchService tests', () => {
       expect(res).toBe(withMore);
 
       expect(mockGet.mock.calls).toHaveLength(1);
-      expect(mockGet.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/api/random');
+      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/api/random');
     });
   });
   test('getSearch calls correctly', async () => {
-    const res = await searchService.getSomeRecipes(0, 'token');
+    const res = await searchService.getSearch('search', 'ingredients', 'cuisine', 'diet', 'intolerance', 'type', 'sort', 'dir', 0);
 
     await waitFor(() => {
       expect(res).toBe(withMore);
 
       expect(mockGet.mock.calls).toHaveLength(1);
-      expect(mockGet.mock.calls[0][0]).toBe('http://localhost:8080/recipe/get/api/random');
+      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/api/search?search=search&ingredients=ingredients&cuisine=cuisine&diet=diet&intolerances=intolerance&type=type&sort=sort&sortDirection=dir&page=0');
     });
   });
 });

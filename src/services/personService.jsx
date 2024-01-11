@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/account';
+const baseUrl = 'https://recipes-backend.fly.dev/account';
 
 /**
  * Gets account data from the database.

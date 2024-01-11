@@ -56,11 +56,14 @@ const Header = ({
         <div className={`${className}__nav__icon`} id={`${id}__nav__icon`} />
         {nav}
       </div>
-      <div className={`${className}__title`} id={`${id}__title`}>
-        <h4 className={`${className}__title__text`} id={`${id}__title__text`}>
+      <a className={`${className}__title`} id={`${id}__title`} href="/">
+        <h4
+          className={`${className}__title__text`}
+          id={`${id}__title__text`}
+        >
           RecipeBuddy
         </h4>
-      </div>
+      </a>
       <div className={`${className}__logIn`} id={`${id}__logIn`}>
         {loggedIn ? (null
         ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">LOG IN</button>)}

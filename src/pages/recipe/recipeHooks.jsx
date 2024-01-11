@@ -76,6 +76,7 @@ export const addToDb = (action, accountId, token, recipe, toDoDate, setLoading, 
  * @param {String} token - token of user.
  * @param {Function} setLoading - the set loading function.
  * @param {Function} setSelected - the setSelected function to set selected.
+ * @param {String} current - the current state of the tag.
  */
 export const UseTag = (action, recipeId, date, token, setLoading, setSelected, current) => {
   if (action === 'favourite') {

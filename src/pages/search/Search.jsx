@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import { useOutletContext } from 'react-router-dom';
@@ -124,11 +123,6 @@ const Search = ({ className, id }) => {
     );
   };
 
-  const resetFilters = (e) => {
-    setFilters([]);
-    searchResults(e, true);
-  };
-
   /**
    * Scrolls back to top
    */
@@ -179,11 +173,11 @@ const Search = ({ className, id }) => {
         <div className={`${className}__filters__selectors`}>
           <Filters
             selected={filters}
-            resetFilters={(e) => changeFilters(true)}
+            resetFilters={() => changeFilters(true)}
             removeFilter={(filter) => removeFilter(filter)}
             setFilter={(filter) => updateFilters(filter)}
             windowWidth={windowWidth}
-            searchResults={(e) => changeFilters(false)}
+            searchResults={() => changeFilters(false)}
           />
         </div>
       </div>

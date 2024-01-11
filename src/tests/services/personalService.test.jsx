@@ -26,7 +26,7 @@ describe('personalService tests', () => {
       expect(res).toBe(personal);
 
       expect(mock.mock.calls).toHaveLength(1);
-      expect(mock.mock.calls[0][0]).toBe('http://localhost:8080/pages/get/personal?accountId=0');
+      expect(mock.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/pages/get/personal?accountId=0');
       expect(mock.mock.calls[0][1]).toStrictEqual(config);
     });
   });
