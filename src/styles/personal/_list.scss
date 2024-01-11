@@ -12,6 +12,7 @@
 		justify-content: center;
 		gap: 4px;
 		& button {
+			cursor: pointer;
 			font-size: 30px;
 			background: none;
 			border: 0;
@@ -39,6 +40,7 @@
 		align-items: center;
 		gap: 10px;
 		& button {
+			cursor: pointer;
 			height: 30px;
 			width: 80px;
 			background: $darkGreen;

@@ -52,8 +52,12 @@ const Header = ({
   return (
     <header className={className} id={id}>
       <div className={`${className}__nav`} id={`${id}__nav`}>
-        <button className={`${className}__nav__button`} id={`${id}__nav__button`} onClick={openNav} type="button" aria-label="hamburger" />
-        <div className={`${className}__nav__icon`} id={`${id}__nav__icon`} />
+        {nav === null && (
+        <>
+          <button className={`${className}__nav__button`} id={`${id}__nav__button`} onClick={openNav} type="button" aria-label="hamburger" />
+          <div className={`${className}__nav__icon`} id={`${id}__nav__icon`} />
+        </>
+        )}
         {nav}
       </div>
       <a className={`${className}__title`} id={`${id}__title`} href="/">
