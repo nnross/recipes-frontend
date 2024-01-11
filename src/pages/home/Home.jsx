@@ -25,7 +25,7 @@ const Home = ({ className, id }) => (
     <a className={`${className}__search`} id={`${id}__search`} href="/search">
       <button className={`${className}__search__button`} type="button">SEARCH FOR RECIPES</button>
     </a>
-    <img src="../../src/assets/soup.jpg" alt="soup" className={`${className}__img`} id={`${id}__img`} />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Autumn_Soup_%28Unsplash%29.jpg" alt="soup" className={`${className}__img`} id={`${id}__img`} />
   </div>
 );
 
