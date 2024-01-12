@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 
 /**
@@ -16,12 +16,41 @@ const Filter = ({
 }) => {
   const [filter, setFilter] = useState(false);
   const buttons = [];
+  const buttonRef = useRef(null);
+  const filterRef = useRef(null);
+
   filters.map((item) => buttons.push(
-    <button className={`${className}__filters__button`} onClick={() => selectFilter(`${title}-${item}`)} type="button">{item}</button>,
+    <button className={`${className}__filters__button`} onClick={() => selectFilter(`${title}-${item}`)} type="button" key={item}>{item}</button>,
   ));
 
+  useEffect(() => {
+    const checkFilters = (event) => {
+      if (!buttonRef.current) return;
+
+      const buttonSize = buttonRef.current.getBoundingClientRect();
+      const filterSize = filterRef.current === null
+        ? null
+        : filterRef.current.getBoundingClientRect();
+
+      // checks if click is inside filter.
+      if (
+        filterSize !== null && (
+          event.clientX < buttonSize.x
+          || (
+            event.clientX > buttonSize.x + buttonSize.width
+            && event.clientY < filterSize.y)
+          || event.clientX > (filterSize.x + filterSize.width)
+          || event.clientY < buttonSize.y
+          || event.clientY > (filterSize.y + filterSize.height))) {
+        setFilter(false);
+      }
+    };
+
+    document.addEventListener('click', checkFilters);
+  }, [buttonRef]);
+
   return (
-    <div className={className} id={id}>
+    <div className={className} id={id} ref={buttonRef}>
       <button
         className={`${className}__open`}
         id={`${id}__open`}
@@ -43,7 +72,7 @@ const Filter = ({
       </button>
       <div className={`${className}__arrow`} style={filter ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' }} />
       {filter ? (
-        <div className={`${className}__filters`} id={`${id}__filters`}>
+        <div className={`${className}__filters`} id={`${id}__filters`} ref={filterRef}>
           {buttons}
         </div>
       ) : (null)}
