@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react/';
-import ImageListItem from '../../components/ImageListItem';
 import userEvent from '@testing-library/user-event';
+import ImageListItem from '../../components/ImageListItem';
 
 afterEach(() => {
   global.innerWidth = 1080;
