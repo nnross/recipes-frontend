@@ -2,8 +2,8 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
-import Filter from '../../components/Filter';
 import { fireEvent } from '@testing-library/dom';
+import Filter from '../../components/Filter';
 
 const getBoundingClientRectMock = jest.fn(() => ({
   x: 100, y: 100, width: 100, height: 100,

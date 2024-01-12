@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import propTypes from 'prop-types';
 
 /**
@@ -14,11 +14,32 @@ const ImageListItem = ({
   className, id, src, title, itemId,
 }) => {
   const [open, setOpen] = useState(false);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const checkFilters = (event) => {
+      if (!imageRef.current) return;
+
+      const imageSize = imageRef.current.getBoundingClientRect();
+
+      // checks if click is inside image.
+      if (
+        event.clientX < imageSize.x
+        || event.clientX > (imageSize.x + imageSize.width)
+        || event.clientY < imageSize.y
+        || event.clientY > (imageSize.y + imageSize.height + 120)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('click', checkFilters);
+  }, [imageRef]);
 
   return (
     <li
       className={`${className}${open ? '__open' : ''}`}
       id={id}
+      ref={imageRef}
     >
       <div
         className={`${className}__wrapper`}

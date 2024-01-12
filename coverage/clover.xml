@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1705056879074" clover="3.2.0">
-  <project timestamp="1705056879074" name="All files">
-    <metrics statements="639" coveredstatements="633" conditionals="195" coveredconditionals="195" methods="169" coveredmethods="167" elements="1003" coveredelements="995" complexity="0" loc="639" ncloc="639" packages="10" files="40" classes="40"/>
+<coverage generated="1705061143435" clover="3.2.0">
+  <project timestamp="1705061143435" name="All files">
+    <metrics statements="647" coveredstatements="641" conditionals="205" coveredconditionals="205" methods="171" coveredmethods="169" elements="1023" coveredelements="1015" complexity="0" loc="647" ncloc="647" packages="10" files="40" classes="40"/>
     <package name="components">
-      <metrics statements="128" coveredstatements="128" conditionals="55" coveredconditionals="55" methods="40" coveredmethods="40"/>
+      <metrics statements="136" coveredstatements="136" conditionals="65" coveredconditionals="65" methods="42" coveredmethods="42"/>
       <file name="Calendar.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Calendar.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="17" count="1" type="stmt"/>
@@ -41,7 +41,7 @@
         <line num="40" count="2" type="stmt"/>
       </file>
       <file name="Header.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Header.jsx">
-        <metrics statements="14" coveredstatements="14" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
+        <metrics statements="14" coveredstatements="14" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
         <line num="13" count="1" type="stmt"/>
         <line num="16" count="10" type="stmt"/>
         <line num="17" count="10" type="stmt"/>
@@ -54,8 +54,8 @@
         <line num="34" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="52" count="10" type="stmt"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
       </file>
       <file name="ImageList.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/ImageList.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -67,14 +67,22 @@
         <line num="40" count="1" type="stmt"/>
       </file>
       <file name="ImageListItem.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/ImageListItem.jsx">
-        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <metrics statements="15" coveredstatements="15" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
         <line num="13" count="1" type="stmt"/>
         <line num="16" count="16" type="stmt"/>
-        <line num="18" count="16" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
-        <line num="39" count="5" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="17" count="16" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="26" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="38" count="16" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
       </file>
       <file name="Ingredients.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Ingredients.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
