@@ -66,14 +66,12 @@
 
 @media only screen and (max-width: 600px) {
 	.personal {
-		grid-template-rows: 100px 400px 450px 50px;
+		grid-template-rows: 100px 500px 450px 50px;
 		grid-template-columns: auto minmax(0, 580px) auto;
 		&__calendar {
 			&__btn {
 				width: 90px;
 				height: 40px;
-				&:hover {
-				}
 			}
 		}
 	}

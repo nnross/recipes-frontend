@@ -131,5 +131,14 @@
 				}
 			}
 		}
+		&__allTime {
+			& div {
+				& span {
+					font-size: 24px;
+					color: $darkGreen;
+				}
+				font-size: 14px;
+			}
+		}
 	}
 }
