@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import propTypes from 'prop-types';
 /**
@@ -25,7 +26,7 @@ export default Label;
 Label.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  labels: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
+  labels: propTypes.arrayOf(propTypes.any),
 };
 
 Label.defaultProps = {
