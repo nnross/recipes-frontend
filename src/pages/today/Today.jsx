@@ -86,6 +86,15 @@ const Today = ({ className, id }) => {
       .then(() => {
         setLoading(0);
         setFinished(true);
+
+        Object.entries(calendar).forEach((entry) => {
+          const copy = entry;
+          if (entry[0] === weekday) {
+            copy[1].state = 2;
+            return copy;
+          }
+          return entry;
+        });
       })
       .catch(() => {
         setLoading(4);
