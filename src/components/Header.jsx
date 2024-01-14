@@ -69,7 +69,7 @@ const Header = ({
         </h4>
       </a>
       <div className={`${className}__logIn`} id={`${id}__logIn`}>
-        {loggedIn ? (null
+        {loggedIn ? (<div className={`${className}__logIn__empty`} />
         ) : (<button className={`${className}__logIn__button`} id={`${id}__logIn__button`} onClick={openLogin} type="button">LOG IN</button>)}
       </div>
     </header>

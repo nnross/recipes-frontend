@@ -32,6 +32,9 @@
         background: $hoverGreen;
       }
     }
+    &__empty {
+      width: 80px;
+    }
   }
   &__nav {
     position: relative;
