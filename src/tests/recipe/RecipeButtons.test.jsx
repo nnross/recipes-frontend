@@ -1,14 +1,11 @@
 /* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
-import { render, waitFor } from '@testing-library/react/';
-import { useOutletContext } from 'react-router-dom';
+import { render } from '@testing-library/react/';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import Recipe from '../../pages/recipe/Recipe';
-import { recipe1 } from '../testData/recipe.json';
-import { getRecipe } from '../../services/recipeService';
-import { UseTag } from '../../pages/recipe/recipeHooks';
 import RecipeButtons from '../../pages/recipe/RecipeButtons';
+
+jest.mock('../../components/Spinner');
 
 describe('recipeButtons tests', () => {
   describe('render tests', () => {

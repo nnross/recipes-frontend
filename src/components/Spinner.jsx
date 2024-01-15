@@ -8,7 +8,9 @@ import propTypes from 'prop-types';
  * @returns Spinner loader.
  */
 const Spinner = ({ className, id }) => (
-  <div className={className} id={id}> loading </div>
+  <div className={className}>
+    <div className={`${className}__circle`} id={id}> </div>
+  </div>
 );
 
 export default Spinner;
