@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import propTypes from 'prop-types';
 /**
@@ -11,7 +12,7 @@ const Label = ({ className, id, labels }) => {
   const labelList = [];
 
   labels.map((label) => labelList.push(
-    <div className={`${className}__${label}`} id={`${id}__${label}`} key={(Math.random() * 1001)} />,
+    <div className={`${className}__${label.name}`} id={`${id}__${label.name}`} key={(Math.random() * 1001)} />,
   ));
   return (
     <div className={`${className}`} id={`${id}`}>
@@ -25,7 +26,7 @@ export default Label;
 Label.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  labels: propTypes.arrayOf(propTypes.objectOf(propTypes.any)),
+  labels: propTypes.arrayOf(propTypes.any),
 };
 
 Label.defaultProps = {

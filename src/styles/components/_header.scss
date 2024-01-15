@@ -3,16 +3,18 @@
   height: 100%;
   width: 100%;
   max-width: 1600px;
-  background: $white;
   color: $black;
   display: flex;
   justify-content: space-around;
+  background: $white;
   &__title {
-    pointer-events: none;
     height: 100%;
     padding-top: 6px;
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: $black;
+    cursor: default;
   }
   &__logIn {
     height: 100%;
@@ -29,6 +31,9 @@
       &:hover {
         background: $hoverGreen;
       }
+    }
+    &__empty {
+      width: 80px;
     }
   }
   &__nav {

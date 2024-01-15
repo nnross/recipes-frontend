@@ -14,16 +14,17 @@ import Spinner from '../../components/Spinner';
  * @returns Results component for search page.
  */
 const Results = ({
-  className, id, items, loadMore, moreResults, loading,
+  className, id, items, loadMore, moreResults, loading, isRandom,
 }) => {
   let msg;
 
   // sets message based on state. if more results, and if an error occurred / is still loading.
-  if (moreResults) msg = (<button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>);
+  if (moreResults && items.length % 12 === 0) msg = (<button className={`${className}__load__btn`} type="button" onClick={loadMore}> load more results </button>);
+  else if (isRandom) msg = null;
   else msg = (<div className={`${className}__noResults`}> no more results </div>);
 
   if (loading === 2) msg = (<Spinner />);
-  else if (loading === 4) msg = (<div> an error occurred </div>); // TODO: error message
+  else if (loading === 4) msg = (<div> an error occurred </div>);
 
   return (
     <div className={className} id={id}>
@@ -44,6 +45,7 @@ Results.propTypes = {
   loadMore: propTypes.func,
   moreResults: propTypes.bool,
   loading: propTypes.number,
+  isRandom: propTypes.bool,
 };
 
 Results.defaultProps = {
@@ -53,6 +55,7 @@ Results.defaultProps = {
   loadMore: null,
   moreResults: false,
   loading: 0,
+  isRandom: true,
 };
 
 export default Results;

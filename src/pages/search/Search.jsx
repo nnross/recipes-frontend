@@ -25,6 +25,7 @@ const Search = ({ className, id }) => {
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState('or scroll for suggestions');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isRandom, setIsRandom] = useState(true);
   const scroll = useOutletContext()[0];
   const page = useRef(0);
 
@@ -39,6 +40,7 @@ const Search = ({ className, id }) => {
         setItems(res.recipes);
         setMoreResults(res.moreResults);
         setLoading(0);
+        setIsRandom(true);
       })
       .catch(() => {
         setLoading(3);
@@ -81,6 +83,7 @@ const Search = ({ className, id }) => {
       top: 220,
       behavior: 'smooth',
     });
+    setIsRandom(false);
   };
 
   const changeFilters = (isReset) => {
@@ -197,6 +200,7 @@ const Search = ({ className, id }) => {
                 loadMore={loadMore}
                 moreResults={moreResults}
                 loading={loading}
+                isRandom={isRandom}
               />
             )
             : <p> no results </p>}

@@ -18,7 +18,6 @@
 
 @media only screen and (max-width: 799px) {
   .imageList {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, calc(100% / 2 - 15px));
   }
 }
