@@ -20,7 +20,7 @@ const Recipe = ({ className, id }) => {
     return window.location.href;
   }
   const url = getCurrentURL().split('/');
-  const recipeId = Number(url[4]);
+  const recipeId = Number(url[url.length - 1]);
 
   const navigate = useNavigate();
 
