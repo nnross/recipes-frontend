@@ -61,6 +61,7 @@ export const UseCreateAccount = (
     .then((res) => {
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('accountId', res.accountId);
+      window.localStorage.setItem('expiration', Date.now() + 1000 * 60 * 120);
       setLoading(0);
       closeLogin();
     })
