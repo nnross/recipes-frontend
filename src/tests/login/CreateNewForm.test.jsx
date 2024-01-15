@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import CreateNewForm from '../../pages/login/CreateNewForm';
 
+jest.mock('../../components/Spinner');
+
 describe('CreateNewForm tests', () => {
   describe('CreateNewForm renders', () => {
     test('successful render works', () => {

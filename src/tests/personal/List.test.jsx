@@ -6,6 +6,7 @@ import { withMore } from '../testData/itemList.json';
 import List from '../../pages/personal/List';
 
 jest.mock('../../components/RecipeList');
+jest.mock('../../components/Spinner');
 
 describe('Personal recipe list tests', () => {
   describe('Personal recipe list renders', () => {

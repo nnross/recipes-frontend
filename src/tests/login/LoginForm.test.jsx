@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import LoginForm from '../../pages/login/LoginForm';
 
+jest.mock('../../components/Spinner');
+
 describe('loginForm tests', () => {
   describe('loginForm renders', () => {
     test('successful render works', () => {
