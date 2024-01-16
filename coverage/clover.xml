@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1705400534162" clover="3.2.0">
-  <project timestamp="1705400534162" name="All files">
-    <metrics statements="655" coveredstatements="649" conditionals="213" coveredconditionals="213" methods="172" coveredmethods="170" elements="1040" coveredelements="1032" complexity="0" loc="655" ncloc="655" packages="10" files="40" classes="40"/>
+<coverage generated="1705423222191" clover="3.2.0">
+  <project timestamp="1705423222191" name="All files">
+    <metrics statements="704" coveredstatements="698" conditionals="249" coveredconditionals="249" methods="183" coveredmethods="181" elements="1136" coveredelements="1128" complexity="0" loc="704" ncloc="704" packages="11" files="43" classes="43"/>
     <package name="components">
       <metrics statements="136" coveredstatements="136" conditionals="65" coveredconditionals="65" methods="42" coveredmethods="42"/>
       <file name="Calendar.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/components/Calendar.jsx">
@@ -554,6 +554,67 @@
         <line num="113" count="1" type="stmt"/>
         <line num="114" count="1" type="stmt"/>
         <line num="115" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.search">
+      <metrics statements="49" coveredstatements="49" conditionals="36" coveredconditionals="36" methods="11" coveredmethods="11"/>
+      <file name="Filters.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/pages/search/Filters.jsx">
+        <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="102" count="1" type="stmt"/>
+      </file>
+      <file name="Results.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/pages/search/Results.jsx">
+        <metrics statements="9" coveredstatements="9" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="22" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="23" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+      </file>
+      <file name="searchHooks.jsx" path="/Users/iiro/Documents/Ohjelmointi/recipes/recipes-frontend/src/pages/search/searchHooks.jsx">
+        <metrics statements="29" coveredstatements="29" conditionals="14" coveredconditionals="14" methods="4" coveredmethods="4"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="59" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages.settings">

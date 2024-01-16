@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/named */
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor } from '@testing-library/react/';
