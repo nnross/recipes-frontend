@@ -53,10 +53,10 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
     .then((res) => {
       setItems(res.recipes);
       setMoreItems(res.nextPage);
-      console.log(res);
       setLoading(0);
     })
-    .catch(() => {
-      setLoading(4);
+    .catch((e) => {
+      if (e.response.status === 503) setLoading(5);
+      else setLoading(4);
     });
 };

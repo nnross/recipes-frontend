@@ -42,8 +42,9 @@ const Search = ({ className, id }) => {
         setLoading(0);
         setIsRandom(true);
       })
-      .catch(() => {
-        setLoading(3);
+      .catch((e) => {
+        if (e.response.status === 503) setLoading(5);
+        else setLoading(3);
       });
   }, []);
 
@@ -152,10 +153,10 @@ const Search = ({ className, id }) => {
     if (!filters.some((item) => (item === filter))) setFilters([...filters, filter]);
   };
 
-  if (loading === 3) {
+  if (loading === 3 || loading === 5) {
     return (
       <div className={`${className}__error`} id={id}>
-        an error occurred
+        {loading === 3 ? 'an error occurred' : 'API limit reached, try again tomorrow.'}
       </div>
     );
   }

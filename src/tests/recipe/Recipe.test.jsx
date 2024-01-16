@@ -18,8 +18,14 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+const error403 = new Error();
+error403.response = { status: 403 };
+const error503 = new Error();
+error503.response = { status: 503 };
 const mockGetRecipe = () => Promise.resolve(recipe1);
-const mockGetRecipeReject = () => Promise.reject();
+const mockGetRecipeReject403 = () => Promise.reject(error403);
+const mockGetRecipeReject503 = () => Promise.reject(error503);
+
 jest.mock('../../services/recipeService', () => ({
   getRecipe: jest.fn(),
 }));
@@ -77,11 +83,19 @@ describe('Recipe tests', () => {
       expect(component.getByRole('link', { name: 'original recipe' })).toHaveAttribute('href', 'http://fullbellysisters.blogspot.com/2012/06/pasta-with-garlic-scallions-cauliflower.html');
     });
     test('render fail works', async () => {
-      getRecipe.mockImplementation(mockGetRecipeReject);
+      getRecipe.mockImplementation(mockGetRecipeReject403);
       const component = render(<Recipe id="test" />);
 
       await waitFor(() => {
         expect(component.getByText('error whilst loading')).toBeVisible();
+      });
+    });
+    test('render fail works with api', async () => {
+      getRecipe.mockImplementation(mockGetRecipeReject503);
+      const component = render(<Recipe id="test" />);
+
+      await waitFor(() => {
+        expect(component.getByText('API limit reached, try again tomorrow.')).toBeVisible();
       });
     });
     test('render load works', async () => {

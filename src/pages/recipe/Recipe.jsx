@@ -64,8 +64,9 @@ const Recipe = ({ className, id }) => {
         setRecipe(res);
         setLoading(2);
       })
-      .catch(() => {
-        setLoading(4);
+      .catch((e) => {
+        if (e.response.status === 503) setLoading(5);
+        else setLoading(4);
       });
   }, []);
 
@@ -98,11 +99,11 @@ const Recipe = ({ className, id }) => {
     }
   };
 
-  if (loading === 4) {
+  if (loading === 4 || loading === 5) {
     return (
       <div className={`${className}`} id={`${id}`}>
         <div className={`${className}__background`}>
-          error whilst loading
+          {loading === 4 ? 'error whilst loading' : 'API limit reached, try again tomorrow.'}
         </div>
       </div>
     );
