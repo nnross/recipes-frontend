@@ -30,7 +30,7 @@ describe('loginService tests', () => {
       expect(res.id).toBe('testId');
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/account/login');
+      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/account/login');
       expect(mockPost.mock.calls[0][1]).toBe(payload);
     });
   });
@@ -50,7 +50,7 @@ describe('loginService tests', () => {
       expect(res.id).toBe('testId');
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/account/create');
+      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/account/create');
       expect(mockPost.mock.calls[0][1]).toBe(payload);
     });
   });
