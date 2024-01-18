@@ -6,7 +6,7 @@ import searchService from '../../services/searchService';
  * @param {String} id - id of the user trying to get recipes.
  * @param {String} token  - token of the user trying to get recipes.
  * @param {String} search - search used for query.
- * @param {String} filters - filters used for query.
+ * @param {List<String>} filters - filters used for query.
  * @param {Integer} page - page selected for query.
  * @param {Function} setItems - function to set the recieved items.
  * @param {Function} setMoreItems - function to set the status of more results.
@@ -53,10 +53,10 @@ export const UseSearch = (id, token, search, filters, page, setItems, setMoreIte
     .then((res) => {
       setItems(res.recipes);
       setMoreItems(res.nextPage);
-      console.log(res);
       setLoading(0);
     })
-    .catch(() => {
-      setLoading(4);
+    .catch((e) => {
+      if (e.response.status === 503) setLoading(5);
+      else setLoading(4);
     });
 };
