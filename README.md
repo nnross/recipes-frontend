@@ -2,6 +2,8 @@
 Frontend for the recipes application.
 
 Access the application [here](https://recipes-frontend-seven.vercel.app)
+<br />
+**HOX: The application is most likely offline so it will take a couple of minutes to start up when you start the first call to the backend.**
 
 **!! this application is still in the final stages of development, versions in the main branch will pass all the tests and be stable versions, other branches might not pass all the tests!!**
 
