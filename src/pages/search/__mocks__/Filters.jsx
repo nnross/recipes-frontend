@@ -19,6 +19,9 @@ const Filters = ({
 
   return (
     <div className={className} id={id}>
+      <div className={`${className}__button`}>
+        <button onClick={() => setFilter('test-addition')} type="button"> add </button>
+      </div>
       <div className={`${className}__selectors`}>
         <button onClick={() => setFilter('test-addition')} type="button"> add </button>
       </div>
