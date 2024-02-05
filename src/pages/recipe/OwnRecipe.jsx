@@ -19,8 +19,8 @@ const OwnRecipe = ({ className, id }) => {
   function getCurrentURL() {
     return window.location.href;
   }
-  const url = getCurrentURL();
-  const recipeId = Number(url.substring(32));
+  const url = getCurrentURL().split('/');
+  const recipeId = Number(url[url.length - 1]);
 
   const token = useOutletContext()[1];
   const loggedIn = useOutletContext()[3];

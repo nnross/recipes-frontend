@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://recipes-backend.fly.dev/account';
+const baseUrl = 'https://recipes-backend-wxel.onrender.com/account';
 
 /**
  * Calls the backend with axios to login the user.

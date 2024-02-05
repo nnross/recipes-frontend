@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://recipes-backend.fly.dev/pages';
+const baseUrl = 'https://recipes-backend-wxel.onrender.com/pages';
 
 /**
  * Gets the initial load data for the personal page from the database.

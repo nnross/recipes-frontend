@@ -20,6 +20,7 @@ export const UseLogin = (username, password, setLoading, setError, closeLogin) =
       window.localStorage.setItem('expiration', Date.now() + 1000 * 60 * 120);
       setLoading(0);
       closeLogin();
+      window.location.reload();
     })
     .catch((exception) => {
       if (exception.response.status === 403) {
@@ -64,6 +65,7 @@ export const UseCreateAccount = (
       window.localStorage.setItem('expiration', Date.now() + 1000 * 60 * 120);
       setLoading(0);
       closeLogin();
+      window.location.reload();
     })
     .catch(() => {
       setError('An error has occurred');

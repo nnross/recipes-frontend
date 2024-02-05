@@ -37,7 +37,7 @@ describe('person tests', () => {
       expect(res).toBe(user);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/account/get?accountId=0');
+      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/account/get?accountId=0');
       expect(mockPost.mock.calls[0][1]).toStrictEqual(config);
     });
   });
@@ -55,7 +55,7 @@ describe('person tests', () => {
       expect(res).toBe(true);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/account/update?accountId=0');
+      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/account/update?accountId=0');
       expect(mockPost.mock.calls[0][2]).toStrictEqual(config);
       expect(mockPost.mock.calls[0][1]).toStrictEqual(payload);
     });
@@ -71,7 +71,7 @@ describe('person tests', () => {
       expect(res).toBe(true);
 
       expect(mockPost.mock.calls).toHaveLength(1);
-      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/account/delete?accountId=0');
+      expect(mockPost.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/account/delete?accountId=0');
       expect(mockPost.mock.calls[0][1]).toStrictEqual(config);
     });
   });

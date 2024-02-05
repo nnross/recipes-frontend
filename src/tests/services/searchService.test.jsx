@@ -25,7 +25,7 @@ describe('searchService tests', () => {
       expect(res).toBe(withMore);
 
       expect(mockGet.mock.calls).toHaveLength(1);
-      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/api/random');
+      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/recipe/get/api/random');
     });
   });
   test('getSearch calls correctly', async () => {
@@ -35,7 +35,7 @@ describe('searchService tests', () => {
       expect(res).toBe(withMore);
 
       expect(mockGet.mock.calls).toHaveLength(1);
-      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend.fly.dev/recipe/get/api/search?search=search&ingredients=ingredients&cuisine=cuisine&diet=diet&intolerances=intolerance&type=type&sort=sort&sortDirection=dir&page=0');
+      expect(mockGet.mock.calls[0][0]).toBe('https://recipes-backend-wxel.onrender.com/recipe/get/api/search?search=search&ingredients=ingredients&cuisine=cuisine&diet=diet&intolerances=intolerance&type=type&sort=sort&sortDirection=dir&page=0');
     });
   });
 });

@@ -150,7 +150,7 @@
  * @returns some recipes from API.
  */
 const getSomeRecipes = async () =&gt; {
-  const res = await axios.get('https://recipes-backend.fly.dev/recipe/get/api/random');
+  const res = await axios.get('https://recipes-backend-wxel.onrender.com/recipe/get/api/random');
   return res.data;
 };
 &nbsp;
@@ -178,7 +178,7 @@ const getSearch = async (
   direction,
   page,
 ) =&gt; {
-  const res = await axios.get(`https://recipes-backend.fly.dev/recipe/get/api/search?search=${search}&amp;ingredients=${ingredients}&amp;cuisine=${cuisine}&amp;diet=${diet}&amp;intolerances=${intolerances}&amp;type=${type}&amp;sort=${sort}&amp;sortDirection=${direction}&amp;page=${page}`);
+  const res = await axios.get(`https://recipes-backend-wxel.onrender.com/recipe/get/api/search?search=${search}&amp;ingredients=${ingredients}&amp;cuisine=${cuisine}&amp;diet=${diet}&amp;intolerances=${intolerances}&amp;type=${type}&amp;sort=${sort}&amp;sortDirection=${direction}&amp;page=${page}`);
   return res.data;
 };
 &nbsp;
