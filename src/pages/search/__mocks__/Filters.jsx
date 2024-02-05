@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Filters = ({
-  className, id, resetFilters, selected, removeFilter, setFilter,
+  className, id, resetFilters, selected, removeFilter, setFilter, searchResults,
 }) => {
   const selectedFilters = [];
   selected.map((filter) => selectedFilters.push(
@@ -19,11 +19,9 @@ const Filters = ({
 
   return (
     <div className={className} id={id}>
-      <div className={`${className}__button`}>
-        <button onClick={() => setFilter('test-addition')} type="button"> add </button>
-      </div>
       <div className={`${className}__selectors`}>
         <button onClick={() => setFilter('test-addition')} type="button"> add </button>
+        <button onClick={() => searchResults()} type="button"> apply </button>
       </div>
       <div className={`${className}__selected`}>
         {selectedFilters}
