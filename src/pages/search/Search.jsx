@@ -43,7 +43,7 @@ const Search = ({ className, id }) => {
         setIsRandom(true);
       })
       .catch((e) => {
-        if (e.response.status === 503) setLoading(5);
+        if (e && e.response.status === 503) setLoading(5);
         else setLoading(3);
       });
   }, []);

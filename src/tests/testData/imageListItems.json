@@ -104,5 +104,10 @@
             }
         ],
         "moreResults": false
+    },
+    "withNone": {
+        "recipes": [
+        ],
+        "moreResults": false
     }
 }
